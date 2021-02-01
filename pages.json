@@ -1,0 +1,65 @@
+{
+	"easycom": {
+		"^u-(.*)": "@/uview-ui/components/u-$1/u-$1.vue"
+	},
+	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
+		{
+			"path": "pages/data/data",
+			"style": {
+				"navigationBarTitleText": "uView-index"
+			}
+		},
+		{
+			"path": "pages/training/training",
+			"style": {
+				"navigationBarTitleText": "uView-center"
+			}
+		},
+		{
+			"path": "pages/user/user",
+			"style": {
+				"navigationBarTitleText": "uView-center"
+			}
+		},
+		{
+			"path": "pages/action/action",
+			"style": {
+				"navigationBarTitleText": ""
+			}
+		}
+	],
+	"globalStyle": {
+		"navigationBarTextStyle": "black",
+		"navigationBarTitleText": "uView",
+		"navigationBarBackgroundColor": "#F8F8F8",
+		"backgroundColor": "#F8F8F8"
+	},
+	"tabBar": {
+	    "color": "#909399",
+	    "selectedColor": "#303133",
+	    "borderStyle": "black",
+	    "backgroundColor": "#ffffff",
+	    "list": [{
+	        "pagePath": "pages/data/data",
+	        "iconPath": "static/index.png",
+	        "selectedIconPath": "static/index-selected.png",
+	        "text": "数据"
+	    }, 
+		{
+		    "pagePath": "pages/training/training",
+		    "iconPath": "static/index.png",
+		    "selectedIconPath": "static/index-selected.png",
+		    "text": "训练"
+		},{
+	        "pagePath": "pages/user/user",
+	        "iconPath": "static/center.png",
+	        "selectedIconPath": "static/center-selected.png",
+	        "text": "我"
+	    },{
+	        "pagePath": "pages/action/action",
+	        "iconPath": "static/center.png",
+	        "selectedIconPath": "static/center-selected.png",
+	        "text": "动作"
+	    }]
+	}
+}

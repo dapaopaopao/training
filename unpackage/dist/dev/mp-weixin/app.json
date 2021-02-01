@@ -1,0 +1,49 @@
+{
+  "pages": [
+    "pages/data/data",
+    "pages/training/training",
+    "pages/user/user",
+    "pages/action/action"
+  ],
+  "subPackages": [],
+  "window": {
+    "navigationBarTextStyle": "black",
+    "navigationBarTitleText": "uView",
+    "navigationBarBackgroundColor": "#F8F8F8",
+    "backgroundColor": "#F8F8F8"
+  },
+  "tabBar": {
+    "color": "#909399",
+    "selectedColor": "#303133",
+    "borderStyle": "black",
+    "backgroundColor": "#ffffff",
+    "list": [
+      {
+        "pagePath": "pages/data/data",
+        "iconPath": "static/index.png",
+        "selectedIconPath": "static/index-selected.png",
+        "text": "数据"
+      },
+      {
+        "pagePath": "pages/training/training",
+        "iconPath": "static/index.png",
+        "selectedIconPath": "static/index-selected.png",
+        "text": "训练"
+      },
+      {
+        "pagePath": "pages/user/user",
+        "iconPath": "static/center.png",
+        "selectedIconPath": "static/center-selected.png",
+        "text": "我"
+      },
+      {
+        "pagePath": "pages/action/action",
+        "iconPath": "static/center.png",
+        "selectedIconPath": "static/center-selected.png",
+        "text": "动作"
+      }
+    ]
+  },
+  "usingComponents": {},
+  "sitemapLocation": "sitemap60.json"
+}
