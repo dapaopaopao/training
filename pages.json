@@ -6,25 +6,31 @@
 		{
 			"path": "pages/data/data",
 			"style": {
+				"navigationBarTitleText": ""
+			}
+		},
+		{
+			"path": "pages/data/uchart",
+			"style": {
 				"navigationBarTitleText": "uView-index"
 			}
 		},
 		{
 			"path": "pages/training/training",
 			"style": {
-				"navigationBarTitleText": "uView-center"
+				"navigationBarTitleText": "随便练练"
 			}
 		},
 		{
 			"path": "pages/user/user",
 			"style": {
-				"navigationBarTitleText": "uView-center"
+				"navigationBarTitleText": "随便练练"
 			}
 		},
 		{
 			"path": "pages/action/action",
 			"style": {
-				"navigationBarTitleText": ""
+				"navigationBarTitleText": "选择动作"
 			}
 		}
 	],
@@ -55,11 +61,14 @@
 	        "iconPath": "static/center.png",
 	        "selectedIconPath": "static/center-selected.png",
 	        "text": "我"
-	    },{
-	        "pagePath": "pages/action/action",
-	        "iconPath": "static/center.png",
-	        "selectedIconPath": "static/center-selected.png",
-	        "text": "动作"
-	    }]
+	    }
+		
+		// {
+	 //        "pagePath": "pages/action/action",
+	 //        "iconPath": "static/center.png",
+	 //        "selectedIconPath": "static/center-selected.png",
+	 //        "text": "动作"
+	 //    }
+		]
 	}
 }

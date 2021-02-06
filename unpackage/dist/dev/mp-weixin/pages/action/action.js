@@ -1,9 +1,9 @@
 (global["webpackJsonp"] = global["webpackJsonp"] || []).push([["pages/action/action"],{
 
 /***/ 66:
-/*!**************************************************************************************!*\
-  !*** C:/Users/bili/Desktop/训练日记/training/main.js?{"page":"pages%2Faction%2Faction"} ***!
-  \**************************************************************************************/
+/*!*************************************************************************************************!*\
+  !*** C:/Users/bili/Desktop/suibianlianlian/training/main.js?{"page":"pages%2Faction%2Faction"} ***!
+  \*************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -17,9 +17,9 @@ createPage(_action.default);
 /***/ }),
 
 /***/ 67:
-/*!*******************************************************************!*\
-  !*** C:/Users/bili/Desktop/训练日记/training/pages/action/action.vue ***!
-  \*******************************************************************/
+/*!******************************************************************************!*\
+  !*** C:/Users/bili/Desktop/suibianlianlian/training/pages/action/action.vue ***!
+  \******************************************************************************/
 /*! no static exports found */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -58,9 +58,9 @@ component.options.__file = "pages/action/action.vue"
 /***/ }),
 
 /***/ 68:
-/*!**************************************************************************************************************!*\
-  !*** C:/Users/bili/Desktop/训练日记/training/pages/action/action.vue?vue&type=template&id=e544f5f4&scoped=true& ***!
-  \**************************************************************************************************************/
+/*!*************************************************************************************************************************!*\
+  !*** C:/Users/bili/Desktop/suibianlianlian/training/pages/action/action.vue?vue&type=template&id=e544f5f4&scoped=true& ***!
+  \*************************************************************************************************************************/
 /*! exports provided: render, staticRenderFns, recyclableRender, components */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -80,9 +80,9 @@ __webpack_require__.r(__webpack_exports__);
 /***/ }),
 
 /***/ 69:
-/*!**************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-preprocess-loader??ref--16-0!./node_modules/@dcloudio/webpack-uni-mp-loader/lib/template.js!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-uni-app-loader/page-meta.js!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib??vue-loader-options!./node_modules/@dcloudio/webpack-uni-mp-loader/lib/style.js!C:/Users/bili/Desktop/训练日记/training/pages/action/action.vue?vue&type=template&id=e544f5f4&scoped=true& ***!
-  \**************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/*!*************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-preprocess-loader??ref--16-0!./node_modules/@dcloudio/webpack-uni-mp-loader/lib/template.js!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-uni-app-loader/page-meta.js!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib??vue-loader-options!./node_modules/@dcloudio/webpack-uni-mp-loader/lib/style.js!C:/Users/bili/Desktop/suibianlianlian/training/pages/action/action.vue?vue&type=template&id=e544f5f4&scoped=true& ***!
+  \*************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
 /*! exports provided: render, staticRenderFns, recyclableRender, components */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -96,10 +96,10 @@ var components
 try {
   components = {
     uIcon: function() {
-      return __webpack_require__.e(/*! import() | uview-ui/components/u-icon/u-icon */ "uview-ui/components/u-icon/u-icon").then(__webpack_require__.bind(null, /*! @/uview-ui/components/u-icon/u-icon.vue */ 118))
+      return __webpack_require__.e(/*! import() | uview-ui/components/u-icon/u-icon */ "uview-ui/components/u-icon/u-icon").then(__webpack_require__.bind(null, /*! @/uview-ui/components/u-icon/u-icon.vue */ 104))
     },
     uButton: function() {
-      return __webpack_require__.e(/*! import() | uview-ui/components/u-button/u-button */ "uview-ui/components/u-button/u-button").then(__webpack_require__.bind(null, /*! @/uview-ui/components/u-button/u-button.vue */ 75))
+      return __webpack_require__.e(/*! import() | uview-ui/components/u-button/u-button */ "uview-ui/components/u-button/u-button").then(__webpack_require__.bind(null, /*! @/uview-ui/components/u-button/u-button.vue */ 97))
     }
   }
 } catch (e) {
@@ -131,7 +131,9 @@ var render = function() {
         ? _vm.__map(item.foods, function(item1, index1) {
             var $orig = _vm.__get_orig(item1)
 
-            var g0 = _vm.chooseList.includes(item1)
+            var g0 = _vm.chooseList.find(function(action) {
+              return action.name === item1.name
+            })
             return {
               $orig: $orig,
               g0: g0
@@ -162,9 +164,9 @@ render._withStripped = true
 /***/ }),
 
 /***/ 70:
-/*!********************************************************************************************!*\
-  !*** C:/Users/bili/Desktop/训练日记/training/pages/action/action.vue?vue&type=script&lang=js& ***!
-  \********************************************************************************************/
+/*!*******************************************************************************************************!*\
+  !*** C:/Users/bili/Desktop/suibianlianlian/training/pages/action/action.vue?vue&type=script&lang=js& ***!
+  \*******************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -178,9 +180,9 @@ __webpack_require__.r(__webpack_exports__);
 /***/ }),
 
 /***/ 71:
-/*!***************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-preprocess-loader??ref--12-1!./node_modules/@dcloudio/webpack-uni-mp-loader/lib/script.js!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib??vue-loader-options!./node_modules/@dcloudio/webpack-uni-mp-loader/lib/style.js!C:/Users/bili/Desktop/训练日记/training/pages/action/action.vue?vue&type=script&lang=js& ***!
-  \***************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/*!**************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-preprocess-loader??ref--12-1!./node_modules/@dcloudio/webpack-uni-mp-loader/lib/script.js!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib??vue-loader-options!./node_modules/@dcloudio/webpack-uni-mp-loader/lib/style.js!C:/Users/bili/Desktop/suibianlianlian/training/pages/action/action.vue?vue&type=script&lang=js& ***!
+  \**************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -301,6 +303,7 @@ var _vuex = __webpack_require__(/*! vuex */ 12);function _interopRequireDefault(
         //this.addAction(actionName)
       } else {
         this.chooseList.splice(actionIndex, 1);
+        console.log(this.chooseList);
         //this.deleteAction(actionIndex)
       }
 
@@ -317,18 +320,21 @@ var _vuex = __webpack_require__(/*! vuex */ 12);function _interopRequireDefault(
       (_this$actionList = this.actionList).push.apply(_this$actionList, _toConsumableArray(this.chooseList));
       //console.log(this.chooseList)
       this.chooseList = [];
-      uni.switchTab({
-        url: '/pages/training/training' });
+      uni.navigateBack({});
 
+
+      // uni.switchTab({
+      //     url: '/pages/training/training'
+      // });
     } }) };exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 
 /***/ }),
 
 /***/ 73:
-/*!*****************************************************************************************************************************!*\
-  !*** C:/Users/bili/Desktop/训练日记/training/pages/action/action.vue?vue&type=style&index=0&id=e544f5f4&lang=scss&scoped=true& ***!
-  \*****************************************************************************************************************************/
+/*!****************************************************************************************************************************************!*\
+  !*** C:/Users/bili/Desktop/suibianlianlian/training/pages/action/action.vue?vue&type=style&index=0&id=e544f5f4&lang=scss&scoped=true& ***!
+  \****************************************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -342,9 +348,9 @@ __webpack_require__.r(__webpack_exports__);
 /***/ }),
 
 /***/ 74:
-/*!*******************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/mini-css-extract-plugin/dist/loader.js??ref--8-oneOf-1-0!./node_modules/css-loader/dist/cjs.js??ref--8-oneOf-1-1!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-preprocess-loader??ref--8-oneOf-1-2!./node_modules/postcss-loader/src??ref--8-oneOf-1-3!./node_modules/sass-loader/dist/cjs.js??ref--8-oneOf-1-4!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-preprocess-loader??ref--8-oneOf-1-5!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib??vue-loader-options!./node_modules/@dcloudio/webpack-uni-mp-loader/lib/style.js!C:/Users/bili/Desktop/训练日记/training/pages/action/action.vue?vue&type=style&index=0&id=e544f5f4&lang=scss&scoped=true& ***!
-  \*******************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/*!******************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/mini-css-extract-plugin/dist/loader.js??ref--8-oneOf-1-0!./node_modules/css-loader/dist/cjs.js??ref--8-oneOf-1-1!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-preprocess-loader??ref--8-oneOf-1-2!./node_modules/postcss-loader/src??ref--8-oneOf-1-3!./node_modules/sass-loader/dist/cjs.js??ref--8-oneOf-1-4!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-preprocess-loader??ref--8-oneOf-1-5!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib??vue-loader-options!./node_modules/@dcloudio/webpack-uni-mp-loader/lib/style.js!C:/Users/bili/Desktop/suibianlianlian/training/pages/action/action.vue?vue&type=style&index=0&id=e544f5f4&lang=scss&scoped=true& ***!
+  \******************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 

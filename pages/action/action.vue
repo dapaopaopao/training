@@ -21,7 +21,7 @@
 								<text>{{item.name}}</text>
 							</view> -->
 							<view class="item-container">
-								<view :class="['item-container-2',chooseList.includes(item1)?'isActive':'']" @click="chooseAction(item1)" v-for="(item1, index1) in item.foods" :key="index1">
+								<view :class="['item-container-2',chooseList.find((action)=>{return action.name===item1.name})?'isActive':'']" @click="chooseAction(item1)" v-for="(item1, index1) in item.foods" :key="index1">
 									<view class="thumb-box" >
 										<image class="item-menu-image" :src="item1.icon" mode=""></image>
 										<view class="item-menu-name">{{item1.name}}</view>
@@ -114,6 +114,7 @@
 					//this.addAction(actionName)
 				}else{
 					this.chooseList.splice(actionIndex,1)
+					console.log(this.chooseList)
 					//this.deleteAction(actionIndex)
 				}
 				
@@ -130,9 +131,12 @@
 				this.actionList.push(...this.chooseList)
 				//console.log(this.chooseList)
 				this.chooseList=[]
-				uni.switchTab({
-				    url: '/pages/training/training'
-				});
+				uni.navigateBack({
+					
+				})
+				// uni.switchTab({
+				//     url: '/pages/training/training'
+				// });
 			}
 		}
 	}
@@ -258,16 +262,20 @@
 		justify-content: center;
 		flex-direction: column;
 		margin-top: 20rpx;
+		
 	}
 	
 	.item-menu-image {
 		width: 120rpx;
 		height: 120rpx;
+		border-radius: 50%;
+		//background-color: opacity;
 	}
 	
 	.isActive{
-		border: 1px solid;
-		border-color:#2B85E4
+		
+		background-color: rgb(255, 245, 244);
+		border-radius: 20rpx;
 	}
 	
 	.item-button-box{

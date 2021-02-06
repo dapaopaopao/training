@@ -140,10 +140,11 @@
 .item-menu-image.data-v-e544f5f4 {
   width: 120rpx;
   height: 120rpx;
+  border-radius: 50%;
 }
 .isActive.data-v-e544f5f4 {
-  border: 1px solid;
-  border-color: #2B85E4;
+  background-color: #fff5f4;
+  border-radius: 20rpx;
 }
 .item-button-box.data-v-e544f5f4 {
   display: -webkit-box;

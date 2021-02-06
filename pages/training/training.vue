@@ -1,62 +1,71 @@
 <template>
 	<view class="wrap">
-		<view class="taobao">
-			<view class="title">
+		<view class="taobao" v-for="(item,index) in actionList" :key="index" >
+			<view class="title" @click="showGroup(index)">
 				<view class="left">
 					<image class="buddha" src="https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=1975388697,1068670603&fm=26&gp=0.jpg" mode="aspectFill"></image>
-					<view class="store">袜子精保护协会</view>
+					<view class="store">{{item.name}}</view>
 				</view>
-				<view class="entrance" @click="addNewGroup(item)">新增一组</view>
-				<view class="entrance">删除</view>
+				<view class="entrance" @click.stop="addNewGroup(item)">新增一组</view>
+				<view class="entrance" @click.stop="deleteAction(index)">删除</view>
 			</view>
-			<view class="ticket">
+			<view :class="['ticket',showGroupList[index]?'active':'']"  v-for="(item1,index1) in item.group" :key='index1'>
 				<view class="left">
-					<image
-						class="picture"
-						src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1578059523488&di=5f592ac19c1b983005d3e85add469756&imgtype=0&src=http%3A%2F%2Fimg010.hc360.cn%2Fg7%2FM00%2F2D%2FB9%2FwKhQs1QfUo6EdeM-AAAAALwk1hM072.jpg"
-						mode="widthFix"
-					></image>
+					<view class="picture">
+						{{index1+1}}
+					</view>
 					<view class="introduce">
 						<view class="top">
-							￥
-							<text class="big">3</text>
-							满88减3
+							
+							<u-input class="item-input" v-model="item1.weight" type="number" placeholder="重量" :border='true' />
+							<view class="unit" @click="changeUnit">
+								{{unit}}
+							</view>
 						</view>
-						<view class="type">店铺优惠券</view>
-						<view class="date u-line-1">2019.11.28-2020.1.24</view>
+						<view class="top">
+							<u-input v-model="item1.num" type="number" placeholder="次数" :border='true' />
+							<view class="unit">
+								次
+							</view>
+						</view>
+						<view class="date u-line-1">休息时间:{{item1.restTime}}秒</view>
 					</view>
 				</view>
 				<view class="right">
-					<view class="use immediate-use" :round="true">去使用</view>
+					<view class="use immediate-use" @click="countDown(item1,$event)" disaled='false'>
+						完成
+					</view>
+					<view class="use immediate-use" :round="true" @click="deleteGroup(index,index1)">删除</view>
 				</view>
 				
 			</view>
 		</view>
-		<view class="action-card" v-for="(item,index) in actionList" :key="index">
-			<view class="">
-				{{item.name}}
-			</view>	
-			<view class="" v-for="(item1,index1) in item.group" :key='index1'>
-				<u-row gutter="16">
-							<u-col span="1">
-								<view class="">
-									{{index1+1}}
-								</view>
-							</u-col>
-							<u-col span="4">
-								<u-input class="item-input" v-model="item1.weight" type="number" placeholder="重量"border=true />
-							</u-col>
-							<u-col span="4">
-								<u-input v-model="item1.num" type="number" placeholder="次数" border=true />
-							</u-col>
-							<u-col span="4">
-									123
-							</u-col>
-						</u-row>
-			</view>
-			<u-button @click="addNewGroup(item)">新增一组</u-button>
-		</view>
 		
+		<u-mask :show="showCountDown" @click="showCountDown = false" :mask-click-able='false'>
+				<view class="mask">
+					<view class="countDown"  @tap.stop>
+						<u-circle-progress active-color="#2979ff"  width="400" bg-color="opacity" :percent="countDownNumPercent">
+								<view class="u-progress-content">
+									<view class="">
+										休息时间倒计时
+									</view>
+									<view class="u-progress-info">
+										{{countDownNum}}
+									</view>
+								</view>
+							</u-circle-progress>
+					</view>
+					<view class="mask-button">
+						<u-button @click="addTime" type="success">+10秒</u-button>
+						<u-button @click="reduceTime" type="success">-10秒</u-button>
+						<u-button @click="endCountDown" type="success">不休息了</u-button>
+					</view>
+				</view>
+		</u-mask>
+		<view class="add" @click="switchToAction">
+			<u-icon name="plus" size="100" ></u-icon>
+			
+		</view>
 	</view>
 </template>
 
@@ -65,23 +74,103 @@
 	export default {
 		data() {
 			return {
-				group:[
+				unit:'kg',
+				showCountDown:false,
+				countDownNum:60,
+				sumCountDown:60,
+				currentGroup:null,
+				timer:'',
+				showGroupList:[],
+				group:
 					{
 						weight:0,
-						num:0
+						num:0,
+						time:60,
+						restTime:0
 					}
-				]
+				
 			}
 		},
 		
 		computed:{
-			...mapState(['actionList'])
+			...mapState(['actionList']),
+			countDownNumPercent(){
+				return  this.countDownNum/this.sumCountDown*100
+			},
+			restTime(){
+				return this.sumCountDown-this.countDownNum
+			}
 		},
 		
 		methods:{
 			addNewGroup(item){
-				item.group.push(JSON.parse(JSON.stringify(item.group[item.group.length-1])) )
+				let newGroup = JSON.parse(JSON.stringify(item.group[item.group.length-1])) 
+				newGroup.restTime=0
+				item.group.length>0? item.group.push(newGroup):item.group.push(this.group)
+			},
+			
+			deleteAction(index){
+				
+				this.actionList.splice(index,1)
+			},
+			
+			deleteGroup(actionIndex,groupIndex){
+				this.actionList[actionIndex].group.splice(groupIndex,1)
+				
+			},
+			
+			changeUnit(){
+				
+				this.unit = this.unit==='kg'? 'lb':'kg'
+			},
+			
+			countDown(item,e){
+				console.log(e)
+				this.currentGroup = item
+				this.countDownNum = item.time
+				this.sumCountDown=item.time
+				this.timer = setInterval(()=>{
+					if(this.countDownNum>0){
+						this.countDownNum--
+						//console.log(this.countDownNum)
+					}else{
+						clearInterval(this.timer)
+					}},1000)
+				this.showCountDown=true
+			},
+			
+			addTime(){
+				this.countDownNum += 10
+				this.sumCountDown +=10
+			},
+			
+			reduceTime(){
+				this.countDownNum -= 10
+				this.sumCountDown -= 10
+			},
+			
+			endCountDown(){
+				this.showCountDown=false
+				clearInterval(this.timer)
+				this.currentGroup.restTime=this.restTime
+				this.currentGroup=null
+			},
+			
+			showGroup(index){
+				let f = this.showGroupList[index] = !this.showGroupList[index]
+				this.$set(this.showGroupList,index,f)
+				console.log(this.showGroupList)
+			},
+			
+			switchToAction(){
+				console.log('11')
+				uni.navigateTo({
+					url:"/pages/action/action"
+				})
 			}
+			
+			
+			
 		}
 	}
 	
@@ -92,10 +181,53 @@
 	.wrap{
 		display: flex;
 		justify-content: center;
+		align-items: center;
+		flex-direction: column;
+		
+		.add{
+			margin-top: 20rpx;
+		}
 	}
 	
-	.action-card{
-		background-color:#606266;
+	.mask{
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		flex-direction: column;
+		height: 100%;
+		.mask-button{
+			display: flex;
+			justify-content: space-around;
+			width: 100%;
+		}
+		.countDown{
+			height: 80%;
+			width: 100%;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			
+			
+			
+			.u-progress-content {
+					display: flex;
+					align-items: center;
+					justify-content: center;
+					flex-direction: column;
+					opacity: 100;
+					
+					
+				}
+				
+				
+				
+				.u-progress-info {
+					font-size: 60rpx;
+					font-weight: bold;
+					margin-right: 10rpx;
+					margin-top: 10rpx;
+				}
+		}
 	}
 	
 	.taobao {
@@ -144,12 +276,30 @@
 				.picture {
 					width: 172rpx;
 					border-radius: 20rpx;
+					display: flex;
+					justify-content: center;
+					align-items: center;
 				}
 				.introduce {
 					margin-left: 10rpx;
+					
+					
 					.top{
+						display: flex;
+						//justify-content: space-around;
 						color:$u-type-warning;
 						font-size: 28rpx;
+						margin-bottom: 10rpx;
+						//width: 150rpx;
+						.item-input{
+							
+						}
+						.unit{
+							display: flex;
+							justify-content: center;
+							align-items: center;
+							width:100rpx
+						}
 						.big{
 							font-size: 60rpx;
 							font-weight: bold;
@@ -173,7 +323,9 @@
 				background-color: rgb(255, 245, 244);
 				border-radius: 20rpx;
 				display: flex;
+				flex-direction: column;
 				align-items: center;
+				justify-content: space-around;
 				.use{
 					height: auto;
 					padding: 0 20rpx;
@@ -186,6 +338,10 @@
 					margin-left: 20rpx;
 				}
 			}
+			
+		}
+		.active{
+			display: none;
 		}
 	}
 </style>

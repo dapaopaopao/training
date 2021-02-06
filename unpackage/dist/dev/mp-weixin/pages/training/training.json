@@ -1,9 +1,10 @@
 {
   "navigationBarTitleText": "uView-center",
   "usingComponents": {
-    "u-row": "/uview-ui/components/u-row/u-row",
-    "u-col": "/uview-ui/components/u-col/u-col",
     "u-input": "/uview-ui/components/u-input/u-input",
-    "u-button": "/uview-ui/components/u-button/u-button"
+    "u-mask": "/uview-ui/components/u-mask/u-mask",
+    "u-circle-progress": "/uview-ui/components/u-circle-progress/u-circle-progress",
+    "u-button": "/uview-ui/components/u-button/u-button",
+    "u-icon": "/uview-ui/components/u-icon/u-icon"
   }
 }

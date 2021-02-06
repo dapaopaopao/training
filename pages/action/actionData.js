@@ -10,7 +10,9 @@ export default[
 			  "group":[
 				  {
 					  "weight":0,
-					  "num":0
+					  "num":0,
+					  "time":60,
+					  "restTime":0
 				  }
 			  ]
 			},
@@ -22,7 +24,9 @@ export default[
 			  "group":[
 			  				  {
 			  					  "weight":0,
-			  					  "num":0
+			  					  "num":0,
+								  "time":60,
+								  "restTime":0
 			  				  }
 			  ]
 			},
@@ -34,7 +38,9 @@ export default[
 			  "group":[
 			  				  {
 			  					  "weight":0,
-			  					  "num":0
+			  					  "num":0,
+								  "time":60,
+								  "restTime":0
 			  				  }
 			  ]
 			},

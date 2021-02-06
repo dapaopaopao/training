@@ -801,7 +801,7 @@ function initData(vueOptions, context) {
     try {
       data = data.call(context); // 支持 Vue.prototype 上挂的数据
     } catch (e) {
-      if (Object({"NODE_ENV":"development","VUE_APP_NAME":"uView-demo","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG) {
+      if (Object({"VUE_APP_NAME":"uView-demo","VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG) {
         console.warn('根据 Vue 的 data 函数初始化小程序 data 失败，请尽量确保 data 函数中不访问 vm 对象，否则可能影响首次数据渲染速度。', data);
       }
     }
@@ -7253,7 +7253,7 @@ function type(obj) {
 
 function flushCallbacks$1(vm) {
     if (vm.__next_tick_callbacks && vm.__next_tick_callbacks.length) {
-        if (Object({"NODE_ENV":"development","VUE_APP_NAME":"uView-demo","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG) {
+        if (Object({"VUE_APP_NAME":"uView-demo","VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG) {
             var mpInstance = vm.$scope;
             console.log('[' + (+new Date) + '][' + (mpInstance.is || mpInstance.route) + '][' + vm._uid +
                 ']:flushCallbacks[' + vm.__next_tick_callbacks.length + ']');
@@ -7274,14 +7274,14 @@ function nextTick$1(vm, cb) {
     //1.nextTick 之前 已 setData 且 setData 还未回调完成
     //2.nextTick 之前存在 render watcher
     if (!vm.__next_tick_pending && !hasRenderWatcher(vm)) {
-        if(Object({"NODE_ENV":"development","VUE_APP_NAME":"uView-demo","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG){
+        if(Object({"VUE_APP_NAME":"uView-demo","VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG){
             var mpInstance = vm.$scope;
             console.log('[' + (+new Date) + '][' + (mpInstance.is || mpInstance.route) + '][' + vm._uid +
                 ']:nextVueTick');
         }
         return nextTick(cb, vm)
     }else{
-        if(Object({"NODE_ENV":"development","VUE_APP_NAME":"uView-demo","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG){
+        if(Object({"VUE_APP_NAME":"uView-demo","VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG){
             var mpInstance$1 = vm.$scope;
             console.log('[' + (+new Date) + '][' + (mpInstance$1.is || mpInstance$1.route) + '][' + vm._uid +
                 ']:nextMPTick');
@@ -7367,7 +7367,7 @@ var patch = function(oldVnode, vnode) {
     });
     var diffData = this.$shouldDiffData === false ? data : diff(data, mpData);
     if (Object.keys(diffData).length) {
-      if (Object({"NODE_ENV":"development","VUE_APP_NAME":"uView-demo","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG) {
+      if (Object({"VUE_APP_NAME":"uView-demo","VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG) {
         console.log('[' + (+new Date) + '][' + (mpInstance.is || mpInstance.route) + '][' + this._uid +
           ']差量更新',
           JSON.stringify(diffData));
@@ -7804,9 +7804,9 @@ module.exports = g;
 
 /***/ }),
 /* 4 */
-/*!******************************************************!*\
-  !*** C:/Users/bili/Desktop/训练日记/training/pages.json ***!
-  \******************************************************/
+/*!*****************************************************************!*\
+  !*** C:/Users/bili/Desktop/suibianlianlian/training/pages.json ***!
+  \*****************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
@@ -7947,9 +7947,9 @@ function normalizeComponent (
 
 /***/ }),
 /* 11 */
-/*!**********************************************************!*\
-  !*** C:/Users/bili/Desktop/训练日记/training/store/store.js ***!
-  \**********************************************************/
+/*!*********************************************************************!*\
+  !*** C:/Users/bili/Desktop/suibianlianlian/training/store/store.js ***!
+  \*********************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -9093,9 +9093,9 @@ var index = {
 
 /***/ }),
 /* 13 */
-/*!*************************************************************!*\
-  !*** C:/Users/bili/Desktop/训练日记/training/uview-ui/index.js ***!
-  \*************************************************************/
+/*!************************************************************************!*\
+  !*** C:/Users/bili/Desktop/suibianlianlian/training/uview-ui/index.js ***!
+  \************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -9244,9 +9244,9 @@ var install = function install(Vue) {
 
 /***/ }),
 /* 14 */
-/*!************************************************************************!*\
-  !*** C:/Users/bili/Desktop/训练日记/training/uview-ui/libs/mixin/mixin.js ***!
-  \************************************************************************/
+/*!***********************************************************************************!*\
+  !*** C:/Users/bili/Desktop/suibianlianlian/training/uview-ui/libs/mixin/mixin.js ***!
+  \***********************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -9317,9 +9317,9 @@ var install = function install(Vue) {
 
 /***/ }),
 /* 15 */
-/*!**************************************************************************!*\
-  !*** C:/Users/bili/Desktop/训练日记/training/uview-ui/libs/request/index.js ***!
-  \**************************************************************************/
+/*!*************************************************************************************!*\
+  !*** C:/Users/bili/Desktop/suibianlianlian/training/uview-ui/libs/request/index.js ***!
+  \*************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -9497,9 +9497,9 @@ new Request();exports.default = _default;
 
 /***/ }),
 /* 16 */
-/*!*******************************************************************************!*\
-  !*** C:/Users/bili/Desktop/训练日记/training/uview-ui/libs/function/deepMerge.js ***!
-  \*******************************************************************************/
+/*!******************************************************************************************!*\
+  !*** C:/Users/bili/Desktop/suibianlianlian/training/uview-ui/libs/function/deepMerge.js ***!
+  \******************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -9537,9 +9537,9 @@ deepMerge;exports.default = _default;
 
 /***/ }),
 /* 17 */
-/*!*******************************************************************************!*\
-  !*** C:/Users/bili/Desktop/训练日记/training/uview-ui/libs/function/deepClone.js ***!
-  \*******************************************************************************/
+/*!******************************************************************************************!*\
+  !*** C:/Users/bili/Desktop/suibianlianlian/training/uview-ui/libs/function/deepClone.js ***!
+  \******************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -9570,9 +9570,9 @@ deepClone;exports.default = _default;
 
 /***/ }),
 /* 18 */
-/*!**************************************************************************!*\
-  !*** C:/Users/bili/Desktop/训练日记/training/uview-ui/libs/function/test.js ***!
-  \**************************************************************************/
+/*!*************************************************************************************!*\
+  !*** C:/Users/bili/Desktop/suibianlianlian/training/uview-ui/libs/function/test.js ***!
+  \*************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -9811,9 +9811,9 @@ function code(value) {var len = arguments.length > 1 && arguments[1] !== undefin
 
 /***/ }),
 /* 19 */
-/*!*********************************************************************************!*\
-  !*** C:/Users/bili/Desktop/训练日记/training/uview-ui/libs/function/queryParams.js ***!
-  \*********************************************************************************/
+/*!********************************************************************************************!*\
+  !*** C:/Users/bili/Desktop/suibianlianlian/training/uview-ui/libs/function/queryParams.js ***!
+  \********************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -9879,9 +9879,9 @@ queryParams;exports.default = _default;
 
 /***/ }),
 /* 20 */
-/*!***************************************************************************!*\
-  !*** C:/Users/bili/Desktop/训练日记/training/uview-ui/libs/function/route.js ***!
-  \***************************************************************************/
+/*!**************************************************************************************!*\
+  !*** C:/Users/bili/Desktop/suibianlianlian/training/uview-ui/libs/function/route.js ***!
+  \**************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -10800,9 +10800,9 @@ if (hadRuntime) {
 
 /***/ }),
 /* 24 */
-/*!********************************************************************************!*\
-  !*** C:/Users/bili/Desktop/训练日记/training/uview-ui/libs/function/timeFormat.js ***!
-  \********************************************************************************/
+/*!*******************************************************************************************!*\
+  !*** C:/Users/bili/Desktop/suibianlianlian/training/uview-ui/libs/function/timeFormat.js ***!
+  \*******************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -10861,9 +10861,9 @@ timeFormat;exports.default = _default;
 
 /***/ }),
 /* 25 */
-/*!******************************************************************************!*\
-  !*** C:/Users/bili/Desktop/训练日记/training/uview-ui/libs/function/timeFrom.js ***!
-  \******************************************************************************/
+/*!*****************************************************************************************!*\
+  !*** C:/Users/bili/Desktop/suibianlianlian/training/uview-ui/libs/function/timeFrom.js ***!
+  \*****************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -10918,9 +10918,9 @@ timeFrom;exports.default = _default;
 
 /***/ }),
 /* 26 */
-/*!***********************************************************************************!*\
-  !*** C:/Users/bili/Desktop/训练日记/training/uview-ui/libs/function/colorGradient.js ***!
-  \***********************************************************************************/
+/*!**********************************************************************************************!*\
+  !*** C:/Users/bili/Desktop/suibianlianlian/training/uview-ui/libs/function/colorGradient.js ***!
+  \**********************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -11061,9 +11061,9 @@ function colorToRgba(color) {var alpha = arguments.length > 1 && arguments[1] !=
 
 /***/ }),
 /* 27 */
-/*!**************************************************************************!*\
-  !*** C:/Users/bili/Desktop/训练日记/training/uview-ui/libs/function/guid.js ***!
-  \**************************************************************************/
+/*!*************************************************************************************!*\
+  !*** C:/Users/bili/Desktop/suibianlianlian/training/uview-ui/libs/function/guid.js ***!
+  \*************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -11112,9 +11112,9 @@ guid;exports.default = _default;
 
 /***/ }),
 /* 28 */
-/*!***************************************************************************!*\
-  !*** C:/Users/bili/Desktop/训练日记/training/uview-ui/libs/function/color.js ***!
-  \***************************************************************************/
+/*!**************************************************************************************!*\
+  !*** C:/Users/bili/Desktop/suibianlianlian/training/uview-ui/libs/function/color.js ***!
+  \**************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -11159,9 +11159,9 @@ color;exports.default = _default;
 
 /***/ }),
 /* 29 */
-/*!*******************************************************************************!*\
-  !*** C:/Users/bili/Desktop/训练日记/training/uview-ui/libs/function/type2icon.js ***!
-  \*******************************************************************************/
+/*!******************************************************************************************!*\
+  !*** C:/Users/bili/Desktop/suibianlianlian/training/uview-ui/libs/function/type2icon.js ***!
+  \******************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -11204,9 +11204,9 @@ type2icon;exports.default = _default;
 
 /***/ }),
 /* 30 */
-/*!*********************************************************************************!*\
-  !*** C:/Users/bili/Desktop/训练日记/training/uview-ui/libs/function/randomArray.js ***!
-  \*********************************************************************************/
+/*!********************************************************************************************!*\
+  !*** C:/Users/bili/Desktop/suibianlianlian/training/uview-ui/libs/function/randomArray.js ***!
+  \********************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -11221,9 +11221,9 @@ randomArray;exports.default = _default;
 
 /***/ }),
 /* 31 */
-/*!*****************************************************************************!*\
-  !*** C:/Users/bili/Desktop/训练日记/training/uview-ui/libs/function/addUnit.js ***!
-  \*****************************************************************************/
+/*!****************************************************************************************!*\
+  !*** C:/Users/bili/Desktop/suibianlianlian/training/uview-ui/libs/function/addUnit.js ***!
+  \****************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -11239,9 +11239,9 @@ function addUnit() {var value = arguments.length > 0 && arguments[0] !== undefin
 
 /***/ }),
 /* 32 */
-/*!****************************************************************************!*\
-  !*** C:/Users/bili/Desktop/训练日记/training/uview-ui/libs/function/random.js ***!
-  \****************************************************************************/
+/*!***************************************************************************************!*\
+  !*** C:/Users/bili/Desktop/suibianlianlian/training/uview-ui/libs/function/random.js ***!
+  \***************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -11259,9 +11259,9 @@ random;exports.default = _default;
 
 /***/ }),
 /* 33 */
-/*!**************************************************************************!*\
-  !*** C:/Users/bili/Desktop/训练日记/training/uview-ui/libs/function/trim.js ***!
-  \**************************************************************************/
+/*!*************************************************************************************!*\
+  !*** C:/Users/bili/Desktop/suibianlianlian/training/uview-ui/libs/function/trim.js ***!
+  \*************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -11284,9 +11284,9 @@ trim;exports.default = _default;
 
 /***/ }),
 /* 34 */
-/*!***************************************************************************!*\
-  !*** C:/Users/bili/Desktop/训练日记/training/uview-ui/libs/function/toast.js ***!
-  \***************************************************************************/
+/*!**************************************************************************************!*\
+  !*** C:/Users/bili/Desktop/suibianlianlian/training/uview-ui/libs/function/toast.js ***!
+  \**************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -11304,9 +11304,9 @@ toast;exports.default = _default;
 
 /***/ }),
 /* 35 */
-/*!*******************************************************************************!*\
-  !*** C:/Users/bili/Desktop/训练日记/training/uview-ui/libs/function/getParent.js ***!
-  \*******************************************************************************/
+/*!******************************************************************************************!*\
+  !*** C:/Users/bili/Desktop/suibianlianlian/training/uview-ui/libs/function/getParent.js ***!
+  \******************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -11361,9 +11361,9 @@ function getParent(name, keys) {
 
 /***/ }),
 /* 36 */
-/*!*****************************************************************************!*\
-  !*** C:/Users/bili/Desktop/训练日记/training/uview-ui/libs/function/$parent.js ***!
-  \*****************************************************************************/
+/*!****************************************************************************************!*\
+  !*** C:/Users/bili/Desktop/suibianlianlian/training/uview-ui/libs/function/$parent.js ***!
+  \****************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -11389,9 +11389,9 @@ function $parent() {var name = arguments.length > 0 && arguments[0] !== undefine
 
 /***/ }),
 /* 37 */
-/*!*************************************************************************!*\
-  !*** C:/Users/bili/Desktop/训练日记/training/uview-ui/libs/function/sys.js ***!
-  \*************************************************************************/
+/*!************************************************************************************!*\
+  !*** C:/Users/bili/Desktop/suibianlianlian/training/uview-ui/libs/function/sys.js ***!
+  \************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -11407,9 +11407,9 @@ function sys() {
 
 /***/ }),
 /* 38 */
-/*!******************************************************************************!*\
-  !*** C:/Users/bili/Desktop/训练日记/training/uview-ui/libs/function/debounce.js ***!
-  \******************************************************************************/
+/*!*****************************************************************************************!*\
+  !*** C:/Users/bili/Desktop/suibianlianlian/training/uview-ui/libs/function/debounce.js ***!
+  \*****************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -11446,9 +11446,9 @@ debounce;exports.default = _default;
 
 /***/ }),
 /* 39 */
-/*!******************************************************************************!*\
-  !*** C:/Users/bili/Desktop/训练日记/training/uview-ui/libs/function/throttle.js ***!
-  \******************************************************************************/
+/*!*****************************************************************************************!*\
+  !*** C:/Users/bili/Desktop/suibianlianlian/training/uview-ui/libs/function/throttle.js ***!
+  \*****************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -11488,9 +11488,9 @@ throttle;exports.default = _default;
 
 /***/ }),
 /* 40 */
-/*!**************************************************************************!*\
-  !*** C:/Users/bili/Desktop/训练日记/training/uview-ui/libs/config/config.js ***!
-  \**************************************************************************/
+/*!*************************************************************************************!*\
+  !*** C:/Users/bili/Desktop/suibianlianlian/training/uview-ui/libs/config/config.js ***!
+  \*************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -11511,9 +11511,9 @@ var version = '1.8.3';var _default =
 
 /***/ }),
 /* 41 */
-/*!**************************************************************************!*\
-  !*** C:/Users/bili/Desktop/训练日记/training/uview-ui/libs/config/zIndex.js ***!
-  \**************************************************************************/
+/*!*************************************************************************************!*\
+  !*** C:/Users/bili/Desktop/suibianlianlian/training/uview-ui/libs/config/zIndex.js ***!
+  \*************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -11570,9 +11570,9 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
 /* 70 */,
 /* 71 */,
 /* 72 */
-/*!**********************************************************************!*\
-  !*** C:/Users/bili/Desktop/训练日记/training/pages/action/actionData.js ***!
-  \**********************************************************************/
+/*!*********************************************************************************!*\
+  !*** C:/Users/bili/Desktop/suibianlianlian/training/pages/action/actionData.js ***!
+  \*********************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -11589,7 +11589,9 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
     "group": [
     {
       "weight": 0,
-      "num": 0 }] },
+      "num": 0,
+      "time": 60,
+      "restTime": 0 }] },
 
 
 
@@ -11601,7 +11603,9 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
     "group": [
     {
       "weight": 0,
-      "num": 0 }] },
+      "num": 0,
+      "time": 60,
+      "restTime": 0 }] },
 
 
 
@@ -11613,7 +11617,9 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
     "group": [
     {
       "weight": 0,
-      "num": 0 }] }] },
+      "num": 0,
+      "time": 60,
+      "restTime": 0 }] }] },
 
 
 
@@ -11680,38 +11686,10 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
 /* 77 */,
 /* 78 */,
 /* 79 */,
-/* 80 */,
-/* 81 */,
-/* 82 */,
-/* 83 */,
-/* 84 */,
-/* 85 */,
-/* 86 */,
-/* 87 */,
-/* 88 */,
-/* 89 */,
-/* 90 */,
-/* 91 */,
-/* 92 */,
-/* 93 */,
-/* 94 */,
-/* 95 */,
-/* 96 */,
-/* 97 */,
-/* 98 */,
-/* 99 */,
-/* 100 */,
-/* 101 */,
-/* 102 */,
-/* 103 */,
-/* 104 */,
-/* 105 */,
-/* 106 */,
-/* 107 */,
-/* 108 */
-/*!*************************************************************************!*\
-  !*** C:/Users/bili/Desktop/训练日记/training/uview-ui/libs/util/emitter.js ***!
-  \*************************************************************************/
+/* 80 */
+/*!************************************************************************************!*\
+  !*** C:/Users/bili/Desktop/suibianlianlian/training/uview-ui/libs/util/emitter.js ***!
+  \************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
