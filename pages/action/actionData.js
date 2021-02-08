@@ -11,6 +11,7 @@ export default[
 				  {
 					  "weight":0,
 					  "num":0,
+					  'unit':'kg',
 					  "time":60,
 					  "restTime":0
 				  }
@@ -25,6 +26,7 @@ export default[
 			  				  {
 			  					  "weight":0,
 			  					  "num":0,
+								   'unit':'kg',
 								  "time":60,
 								  "restTime":0
 			  				  }
@@ -39,6 +41,7 @@ export default[
 			  				  {
 			  					  "weight":0,
 			  					  "num":0,
+								   'unit':'kg',
 								  "time":60,
 								  "restTime":0
 			  				  }

@@ -72,7 +72,6 @@
   -webkit-box-direction: normal;
   -webkit-flex-direction: column;
           flex-direction: column;
-  opacity: 100;
 }
 .mask .countDown .u-progress-info.data-v-c796e874 {
   font-size: 60rpx;

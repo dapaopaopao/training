@@ -21,15 +21,9 @@
 	var lineChartData= {
 		categories: ['2012', '2013', '2014', '2015', '2016', '2017'],
 		series: [{
-			name: '成交量A',
+			name: '热量',
 			data: [35, 20, 25, 37, 4, 20],
 			color: '#000000'
-		}, {
-			name: '成交量B',
-			data: [70, 40, 65, 100, 44, 68]
-		}, {
-			name: '成交量C',
-			data: [100, 80, 95, 150, 112, 132]
 		}]
 	}
 	export default {

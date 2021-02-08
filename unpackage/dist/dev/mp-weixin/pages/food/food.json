@@ -1,0 +1,10 @@
+{
+  "navigationBarTitleText": "饮食",
+  "usingComponents": {
+    "u-button": "/uview-ui/components/u-button/u-button",
+    "u-number-box": "/uview-ui/components/u-number-box/u-number-box",
+    "u-mask": "/uview-ui/components/u-mask/u-mask",
+    "u-circle-progress": "/uview-ui/components/u-circle-progress/u-circle-progress",
+    "u-icon": "/uview-ui/components/u-icon/u-icon"
+  }
+}

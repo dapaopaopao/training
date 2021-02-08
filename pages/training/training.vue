@@ -16,14 +16,15 @@
 					</view>
 					<view class="introduce">
 						<view class="top">
-							
-							<u-input class="item-input" v-model="item1.weight" type="number" placeholder="重量" :border='true' />
-							<view class="unit" @click="changeUnit">
-								{{unit}}
+							<u-number-box v-model="item1.weight" :step="2.5" :positive-integer='false' @change=""></u-number-box>
+							<!-- <u-input class="item-input" v-model="item1.weight" type="number" placeholder="重量" :border='true' /> -->
+							<view class="unit" @click="changeUnit(item1.unit)">
+								{{item1.unit}}
 							</view>
 						</view>
 						<view class="top">
-							<u-input v-model="item1.num" type="number" placeholder="次数" :border='true' />
+							<u-number-box v-model="item1.num" :step="1" @change=""></u-number-box>
+							<!-- <u-input v-model="item1.num" type="number" placeholder="次数" :border='true' /> -->
 							<view class="unit">
 								次
 							</view>
@@ -44,7 +45,7 @@
 		<u-mask :show="showCountDown" @click="showCountDown = false" :mask-click-able='false'>
 				<view class="mask">
 					<view class="countDown"  @tap.stop>
-						<u-circle-progress active-color="#2979ff"  width="400" bg-color="opacity" :percent="countDownNumPercent">
+						<u-circle-progress active-color="#2979ff"  width="400" bg-color="opacity"  :percent="countDownNumPercent">
 								<view class="u-progress-content">
 									<view class="">
 										休息时间倒计时
@@ -119,9 +120,9 @@
 				
 			},
 			
-			changeUnit(){
+			changeUnit(unit){
 				
-				this.unit = this.unit==='kg'? 'lb':'kg'
+				unit = unit ==='kg'? 'lb':'kg'
 			},
 			
 			countDown(item,e){
@@ -214,7 +215,8 @@
 					align-items: center;
 					justify-content: center;
 					flex-direction: column;
-					opacity: 100;
+					//opacity: 100;
+					//background-color: white;
 					
 					
 				}
