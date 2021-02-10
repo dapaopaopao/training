@@ -34,7 +34,7 @@
 							</view>
 							<view class="">
 								<view class="qiun-charts" >
-									<canvas canvas-id="canvasPie" id="canvasPie" class="charts" @touchstart="touchPie"></canvas>
+									<canvas  canvas-id="canvasPie" id="canvasPie" class="charts" @touchstart="touchPie"></canvas>
 								</view>
 							</view>
 						</view>
@@ -142,12 +142,14 @@
 			this.cWidth=uni.upx2px(750);
 			this.cHeight=uni.upx2px(500);
 			this.getServerData();
+			this.getRili()
 			
 		},
 		onShow(){
 			//console.log(this.actionList)
 			console.log(this.pieData)
 			this.getServerData();
+			this.getRili()
 		},
 		components: {
 			'v-calendar': calendar
@@ -186,6 +188,28 @@
 		},
 		methods: {
 			//日历
+			getRili() {
+				uni.showLoading({
+					title: '处理中...'
+				})
+				uniCloud.callFunction({
+					name: 'get'
+				}).then((res) => {
+					uni.hideLoading()
+					uni.showModal({
+						content: `查询成功，获取数据列表为：${JSON.stringify(res.result.data)}`,
+						showCancel: false
+					})
+					console.log(res)
+				}).catch((err) => {
+					uni.hideLoading()
+					uni.showModal({
+						content: `查询失败，错误信息为：${err.message}`,
+						showCancel: false
+					})
+					console.error(err)
+				})
+			},
 			// tab栏切换
 			change(index) {
 				this.swiperCurrent = index;

@@ -1,5 +1,5 @@
 <template>
-	<view class="content">
+	<view class="content"  >
 		<view>
 			<view class="flex year-month">
 				<view @click="prevMonth">上一月</view>
@@ -11,12 +11,12 @@
 				<view @click="nextMonth">下一月</view>
 			</view>
 			<view class="flex">
-				<view class="flex-item flex" v-for="item in weeks" >
+				<view class="flex-item flex" v-for="(item,index) in weeks" :key="index" >
 					<text class="week">{{item}}</text>
 				</view>
 			</view>
 			<view class="flex-wrap">
-				<template v-for="item in visibleDays" :Key="item.day">
+				<template v-for="item in visibleDays" :Key="item.day" >
 					<view class="day-box flex-column">
 						<text
 							class="day"

@@ -1,5 +1,7 @@
 <template>
 	<view class="wrap">
+		<button type="default" @click="addAction">传给后台</button>
+		<button type="default" @click="loginByWeixin">登录</button>
 		<view class="taobao" v-for="(item,index) in actionList" :key="index" >
 			<view class="title" @click="showGroup(index)">
 				<view class="left">
@@ -168,8 +170,91 @@
 				uni.navigateTo({
 					url:"/pages/action/action"
 				})
-			}
+			},
 			
+			
+			//登录
+			loginByWeixin() {
+				this.getWeixinCode().then((code) => {
+					return uniCloud.callFunction({
+						name: 'user-center',
+						data: {
+							action: 'loginByWeixin',
+							params: {
+								code,
+							}
+						}
+					})
+				}).then((res) => {
+					uni.showModal({
+						showCancel: false,
+						content: JSON.stringify(res.result)
+					})
+					if (res.result.code === 0) {
+						uni.setStorageSync('uni_id_token', res.result.token)
+						uni.setStorageSync('uni_id_token_expired', res.result.tokenExpired)
+					}
+				}).catch((e) => {
+					console.error(e)
+					uni.showModal({
+						showCancel: false,
+						content: '微信登录失败，请稍后再试'
+					})
+				})
+			},
+			getWeixinCode() {
+				return new Promise((resolve, reject) => {
+					// #ifdef APP-PLUS
+					weixinAuthService.authorize(function(res) {
+						resolve(res.code)
+					}, function(err) {
+						console.log(err)
+						reject(new Error('微信登录失败'))
+					});
+					// #endif
+					// #ifdef MP-WEIXIN
+					uni.login({
+						provider: 'weixin',
+						success(res) {
+							resolve(res.code)
+						},
+						fail(err) {
+							reject(new Error('微信登录失败'))
+						}
+					})
+					// #endif
+				})
+			},
+			
+			
+			//传给后台
+			addAction() {
+				uni.showLoading({
+					title: '处理中...'
+				})
+				uniCloud.callFunction({
+					name: 'add',
+					data: {
+						name: 'DCloud',
+						subType: 'uniCloud',
+						createTime: Date.now()
+					}
+				}).then((res) => {
+					uni.hideLoading()
+					uni.showModal({
+						content: `成功添加一条数据，文档id为：${res.result.id}`,
+						showCancel: false
+					})
+					console.log(res)
+				}).catch((err) => {
+					uni.hideLoading()
+					uni.showModal({
+						content: `添加数据失败，错误信息为：${err.message}`,
+						showCancel: false
+					})
+					console.error(err)
+				})
+			},
 			
 			
 		}

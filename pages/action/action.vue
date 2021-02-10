@@ -21,7 +21,7 @@
 								<text>{{item.name}}</text>
 							</view> -->
 							<view class="item-container">
-								<view :class="['item-container-2',chooseList.find((action)=>{return action.name===item1.name})?'isActive':'']" @click="chooseAction(item1)" v-for="(item1, index1) in item.foods" :key="index1">
+								<view :class="['item-container-2',chooseList.find((action)=>{return action.name===item1.name})?'isActive':'']" @click="chooseAction(item1)" v-for="(item1, index1) in item.actions" :key="index1">
 									<view class="thumb-box" >
 										<image class="item-menu-image" :src="item1.icon" mode=""></image>
 										<view class="item-menu-name">{{item1.name}}</view>

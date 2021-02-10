@@ -1,0 +1,52 @@
+{
+  "pages": [
+    "pages/data/data",
+    "pages/data/uchart",
+    "pages/training/training",
+    "pages/food/food",
+    "pages/food/selectFood",
+    "pages/user/user",
+    "pages/action/action"
+  ],
+  "subPackages": [],
+  "window": {
+    "navigationBarTextStyle": "black",
+    "navigationBarTitleText": "uView",
+    "navigationBarBackgroundColor": "#F8F8F8",
+    "backgroundColor": "#F8F8F8"
+  },
+  "tabBar": {
+    "color": "#909399",
+    "selectedColor": "#303133",
+    "borderStyle": "black",
+    "backgroundColor": "#ffffff",
+    "list": [
+      {
+        "pagePath": "pages/data/data",
+        "iconPath": "static/index.png",
+        "selectedIconPath": "static/index-selected.png",
+        "text": "统计"
+      },
+      {
+        "pagePath": "pages/training/training",
+        "iconPath": "static/index.png",
+        "selectedIconPath": "static/index-selected.png",
+        "text": "训练"
+      },
+      {
+        "pagePath": "pages/food/food",
+        "iconPath": "static/index.png",
+        "selectedIconPath": "static/index-selected.png",
+        "text": "饮食"
+      },
+      {
+        "pagePath": "pages/user/user",
+        "iconPath": "static/center.png",
+        "selectedIconPath": "static/center-selected.png",
+        "text": "我"
+      }
+    ]
+  },
+  "usingComponents": {},
+  "sitemapLocation": "sitemap.json"
+}
