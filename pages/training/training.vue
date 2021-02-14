@@ -1,7 +1,8 @@
 <template>
 	<view class="wrap">
-		<button type="default" @click="addAction">传给后台</button>
-		<button type="default" @click="loginByWeixin">登录</button>
+		
+		<button type="default" @click="addAction"> 完成全部训练</button>
+		
 		<view class="taobao" v-for="(item,index) in actionList" :key="index" >
 			<view class="title" @click="showGroup(index)">
 				<view class="left">
@@ -45,18 +46,19 @@
 		</view>
 		
 		<u-mask :show="showCountDown" @click="showCountDown = false" :mask-click-able='false'>
-				<view class="mask">
+				<view v-if="showCountDown" class="mask">
 					<view class="countDown"  @tap.stop>
 						<u-circle-progress active-color="#2979ff"  width="400" bg-color="opacity"  :percent="countDownNumPercent">
-								<view class="u-progress-content">
-									<view class="">
-										休息时间倒计时
-									</view>
-									<view class="u-progress-info">
-										{{countDownNum}}
-									</view>
+							<view class="u-progress-content">
+								<view class="">
+									休息时间倒计时
 								</view>
-							</u-circle-progress>
+								<view class="u-progress-info">
+									{{countDownNum}}
+								</view>
+							</view>
+						</u-circle-progress>
+						
 					</view>
 					<view class="mask-button">
 						<u-button @click="addTime" type="success">+10秒</u-button>
@@ -74,13 +76,14 @@
 
 <script>
 	import {mapState} from 'vuex';
+	
 	export default {
 		data() {
 			return {
 				unit:'kg',
 				showCountDown:false,
-				countDownNum:60,
-				sumCountDown:60,
+				countDownNum:0,
+				sumCountDown:0,
 				currentGroup:null,
 				timer:'',
 				showGroupList:[],
@@ -90,13 +93,26 @@
 						num:0,
 						time:60,
 						restTime:0
-					}
+					},
+				cacheTime:0
 				
 			}
 		},
+		components:{
+			
+		},
+		onShow(){
+			console.log(this.$store.state.userInfo.action)
 		
+		},
+		onHide(){
+			this.getCacheTime()
+			uni.setStorageSync('actionList',this.$store.state.actionList)
+			uni.setStorageSync('cacheTime',this.cacheTime)
+			
+		},
 		computed:{
-			...mapState(['actionList']),
+			...mapState(['actionList','part']),
 			countDownNumPercent(){
 				return  this.countDownNum/this.sumCountDown*100
 			},
@@ -115,6 +131,9 @@
 			deleteAction(index){
 				
 				this.actionList.splice(index,1)
+				if(this.actionList.length===0){
+					this.part=[]
+				}
 			},
 			
 			deleteGroup(actionIndex,groupIndex){
@@ -128,7 +147,7 @@
 			},
 			
 			countDown(item,e){
-				console.log(e)
+				console.log(item,e)
 				this.currentGroup = item
 				this.countDownNum = item.time
 				this.sumCountDown=item.time
@@ -173,58 +192,7 @@
 			},
 			
 			
-			//登录
-			loginByWeixin() {
-				this.getWeixinCode().then((code) => {
-					return uniCloud.callFunction({
-						name: 'user-center',
-						data: {
-							action: 'loginByWeixin',
-							params: {
-								code,
-							}
-						}
-					})
-				}).then((res) => {
-					uni.showModal({
-						showCancel: false,
-						content: JSON.stringify(res.result)
-					})
-					if (res.result.code === 0) {
-						uni.setStorageSync('uni_id_token', res.result.token)
-						uni.setStorageSync('uni_id_token_expired', res.result.tokenExpired)
-					}
-				}).catch((e) => {
-					console.error(e)
-					uni.showModal({
-						showCancel: false,
-						content: '微信登录失败，请稍后再试'
-					})
-				})
-			},
-			getWeixinCode() {
-				return new Promise((resolve, reject) => {
-					// #ifdef APP-PLUS
-					weixinAuthService.authorize(function(res) {
-						resolve(res.code)
-					}, function(err) {
-						console.log(err)
-						reject(new Error('微信登录失败'))
-					});
-					// #endif
-					// #ifdef MP-WEIXIN
-					uni.login({
-						provider: 'weixin',
-						success(res) {
-							resolve(res.code)
-						},
-						fail(err) {
-							reject(new Error('微信登录失败'))
-						}
-					})
-					// #endif
-				})
-			},
+			
 			
 			
 			//传给后台
@@ -235,14 +203,17 @@
 				uniCloud.callFunction({
 					name: 'add',
 					data: {
-						name: 'DCloud',
-						subType: 'uniCloud',
-						createTime: Date.now()
+						_id:this.$store.state.userInfo._id,
+						action:{
+							date:new Date().getTime(),
+							part:this.part,
+							actionList:this.actionList
+						}
 					}
 				}).then((res) => {
 					uni.hideLoading()
 					uni.showModal({
-						content: `成功添加一条数据，文档id为：${res.result.id}`,
+						content: `保存成功`,
 						showCancel: false
 					})
 					console.log(res)
@@ -256,6 +227,18 @@
 				})
 			},
 			
+			getCacheTime(){
+				// 获取当前日期对象时间戳
+				let curDate = new Date()
+				
+				//马上要到明天的时间对象
+				curDate.setHours(23)
+				curDate.setMinutes(59)
+				curDate.setSeconds(59)
+				
+				//马上要到明天的时间戳
+				this.cacheTime  = curDate.getTime()
+			}
 			
 		}
 	}

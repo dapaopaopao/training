@@ -14,9 +14,12 @@
 				
 			</view>
 			<view class="">
-				<u-button type="error" size="mini">热量:{{fat*9+protein*4+carbohydrate*4}}</u-button>
+				<u-button type="error" size="mini">热量:{{heat}}</u-button>
 				
 			</view>
+		</view>
+		<view class="">
+			<button type="default" @click="addFood">保存</button>
 		</view>
 		<view class="taobao" v-for="(item,index) in foodList" :key="index" >
 			<view class="title" @click="showGroup(index)">
@@ -109,21 +112,22 @@
 						num:0,
 						time:60,
 						restTime:0
-					}
+					},
+					cacheTime:0
 				
 			}
 		},
 		onShow(){
 			console.log(this.foodList)
 		},
+		onHide(){
+			this.getCacheTime()
+			uni.setStorageSync('foodList',this.$store.state.foodList)
+			uni.setStorageSync('cacheTime',this.cacheTime)
+		},
 		computed:{
 			...mapState(['foodList']),
-			countDownNumPercent(){
-				return  this.countDownNum/this.sumCountDown*100
-			},
-			restTime(){
-				return this.sumCountDown-this.countDownNum
-			},
+			
 			protein(){
 				return this.foodList.reduce((pre,cur)=>{
 					return pre + cur.protein * cur.weight
@@ -139,6 +143,9 @@
 					return pre + cur.fat * cur.weight
 				},0)
 			},
+			heat(){
+				return this.fat*9+this.protein*4+this.carbohydrate*4
+			}
 		},
 		
 		methods:{
@@ -163,37 +170,6 @@
 				this.unit = this.unit==='kg'? 'g':'kg'
 			},
 			
-			countDown(item,e){
-				console.log(e)
-				this.currentGroup = item
-				this.countDownNum = item.time
-				this.sumCountDown=item.time
-				this.timer = setInterval(()=>{
-					if(this.countDownNum>0){
-						this.countDownNum--
-						//console.log(this.countDownNum)
-					}else{
-						clearInterval(this.timer)
-					}},1000)
-				this.showCountDown=true
-			},
-			
-			addTime(){
-				this.countDownNum += 10
-				this.sumCountDown +=10
-			},
-			
-			reduceTime(){
-				this.countDownNum -= 10
-				this.sumCountDown -= 10
-			},
-			
-			endCountDown(){
-				this.showCountDown=false
-				clearInterval(this.timer)
-				this.currentGroup.restTime=this.restTime
-				this.currentGroup=null
-			},
 			
 			showGroup(index){
 				let f = this.showGroupList[index] = !this.showGroupList[index]
@@ -206,8 +182,61 @@
 				uni.navigateTo({
 					url:"/pages/food/selectFood"
 				})
-			}
+			},
 			
+			addFood() {
+				let newFoodList =  this.foodList.map((item,index)=>{
+					return Object.assign({},{
+						name:item.name,
+						weight:item.weight
+					})
+				})
+				uni.showLoading({
+					title: '处理中...'
+				})
+				uniCloud.callFunction({
+					name: 'add',
+					data: {
+						_id:this.$store.state.userInfo._id,
+						food:{
+							date:new Date().getTime(),
+							foodList:newFoodList,
+							protein:this.protein,
+							carbohydrate:this.carbohydrate,
+							fat:this.fat,
+							heat:this.heat
+						}
+					}
+				}).then((res) => {
+					uni.hideLoading()
+					uni.showModal({
+						content: `保存成功`,
+						showCancel: false
+					})
+					console.log(res)
+				}).catch((err) => {
+					uni.hideLoading()
+					uni.showModal({
+						content: `添加数据失败，错误信息为：${err.message}`,
+						showCancel: false
+					})
+					console.error(err)
+				})
+			},
+			
+			
+			getCacheTime(){
+				// 获取当前日期对象时间戳
+				let curDate = new Date()
+				
+				//马上要到明天的时间对象
+				curDate.setHours(23)
+				curDate.setMinutes(59)
+				curDate.setSeconds(59)
+				
+				//马上要到明天的时间戳
+				this.cacheTime  = curDate.getTime()
+			}
 			
 			
 		}

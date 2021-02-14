@@ -1,6 +1,8 @@
 {
   "pages": [
+    "pages/blank/blank",
     "pages/data/data",
+    "pages/login/login",
     "pages/data/uchart",
     "pages/training/training",
     "pages/food/food",
@@ -48,5 +50,5 @@
     ]
   },
   "usingComponents": {},
-  "sitemapLocation": "sitemap65.json"
+  "sitemapLocation": "sitemap22.json"
 }

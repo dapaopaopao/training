@@ -107,7 +107,7 @@
 				let foodIndex= this.chooseList.findIndex((item)=>{
 					return item.name===foodName
 				})
-			
+				
 				if(foodIndex<0){
 					this.chooseList.push(JSON.parse(JSON.stringify(food)) )
 					//console.log(this.chooseList)

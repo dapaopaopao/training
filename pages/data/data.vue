@@ -1,7 +1,5 @@
 <template>
 	<view class="">
-		
-
 		<view class="wrap">
 			<view class="u-tabs-box">
 				<u-tabs-swiper activeColor="#f29100" ref="tabs" :list="list" :current="current" @change="change" :is-scroll="false" swiperWidth="750"></u-tabs-swiper>
@@ -43,13 +41,13 @@
 								<view class="qiun-title-dot-light">最近30天</view>
 							</view>
 							<view class="qiun-charts" >
-								<canvas canvas-id="canvasColumn" id="canvasColumn" class="charts" @touchstart="touchColumn"></canvas>
+								<canvas  canvas-id="canvasColumn" id="canvasColumn" class="charts" @touchstart="touchColumn"></canvas>
 							</view>
 							<view class="qiun-bg-white qiun-title-bar qiun-common-mt" >
 								<view class="qiun-title-dot-light">最近一周</view>
 							</view>
 							<view class="qiun-charts" >
-								<canvas canvas-id="canvasLineA" id="canvasLineA" class="charts" @touchstart="touchLineA"></canvas>
+								<canvas  canvas-id="canvasLineA" id="canvasLineA" class="charts" @touchstart="touchLineA"></canvas>
 							</view>
 						</view>
 						
@@ -57,9 +55,33 @@
 					
 				</swiper-item>
 				<swiper-item class="swiper-item">
-					<view class="content">
-						 <v-calendar name="calendar" :defaultTime="time" :extraData="extraData"  @calendarTap="calendarTap" @monthTap="monthTap" />
-					</view>
+					<scroll-view scroll-y style="height: 100%;width: 100%;">
+						<view class="content">
+							 <v-calendar name="calendar" :defaultTime="time" :extraData="extraData"  @calendarTap="calendarTap" @monthTap="monthTap" />
+						</view>
+						<view v-if="showDetail" class="">
+							<view  class="qiun-bg-white qiun-title-bar qiun-common-mt" >
+								<view  class="qiun-title-dot-light">详情</view>
+								
+							</view>
+							<view  class="wrap-taobao">
+								<view class="taobao" v-for="(item,index) in riliDetail" :key="index" >
+									<view class="title">
+										<view class="left">
+											<!-- <image class="buddha" src="https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=1975388697,1068670603&fm=26&gp=0.jpg" mode="aspectFill"></image> -->
+											<view class="store">{{item.name}}</view>
+										</view>
+										<!-- <view class="entrance" @click.stop="addNewGroup(item)">新增一组</view>
+										<view class="entrance" @click.stop="deleteAction(index)">删除</view> -->
+										<view :class=""  v-for="(item1,index1) in item.group" :key='index1'>
+											{{item1.weight}}{{item1.unit}} × {{item1.num}}次
+										</view>	
+									</view>
+								</view>
+							</view>
+						</view>
+						
+					</scroll-view>
 				</swiper-item>
 				
 				
@@ -71,48 +93,37 @@
 <script>
 	import uCharts from '../../u-charts/u-charts/u-charts.js';
 	import calendar from '../../components/tale-calendar/calendar.vue';
-	import extraData from './data-test.js'
+	
 	import {mapState} from 'vuex'
 	
-	import chartData from './uchart-data.js'
+	//import chartData from './uchart-data.js'
 	var _self;
 	var canvaColumn=null;
 	var canvaLineA=null;
 	var canvaPie=null;
-	var lineChartData= {
-		categories: ['2012', '2013', '2014', '2015', '2016', '2017','2018'],
-		series: [{
-			name: '热量（Kcal）',
-			data: [3500, 2000, 2005, 3700, 4000, 2000,3100],
-			color: '#000000'
-		}]
-	};
-	// var pieData={
-	//   "series": [{
-	// 	"name": "蛋白质",
-	// 	"data": 200
-	//   }, {
-	// 	"name": "碳水",
-	// 	"data": 300
-	//   }, {
-	// 	"name": "脂肪",
-	// 	"data": 60
-	//   }]
-	// };
+	
+// 	let extraData=[
+// 	{'date': '2020-6-3', 'value': '腿', dot: true, active: true},
+// 	{'date': '2020-6-5', 'value': '胸', dot: true, active: false},
+// 	{'date': '2020-6-11', 'value': '背', dot: true, active: true},
+// 	{'date': '2020-6-12', 'value': '肩', dot: true, active: true}
+// ]
+	
 	
 	export default {
-
 		data() {
 			return {
 				//日历
+				showDetail:false,
+				riliDetail:{},
 				time:{
-					year:2020,
-					month:5,
+					year:new Date().getFullYear(),
+					month:new Date().getMonth(),
 					},
-				extraData,
+				extraData:[],
 				month: {
-					year: 2020,
-					month: 6
+					year: new Date().getFullYear(),
+					month: new Date().getMonth()+1
 				},
 				list: [
 					{
@@ -134,6 +145,25 @@
 				pixelRatio:1,
 				serverData:'',
 				
+				//
+				realLineDate:{
+					categories:[],
+					series: [{
+						name: '热量（Kcal）',
+						data: [],
+						color: '#000000'
+					}]
+				},
+				realColumnDate :
+					{
+					  categories: ["胸", "背", "肩",'腿','二头','三头'],
+					  series: [
+						  {
+							name: " 训练次数",
+							data:[]
+						  },
+						  ]
+					}
 			}
 		},
 		onLoad() {
@@ -141,15 +171,18 @@
 			_self = this;
 			this.cWidth=uni.upx2px(750);
 			this.cHeight=uni.upx2px(500);
+			this.getColumnData();
+			this.getLineDate();
 			this.getServerData();
-			this.getRili()
-			
+			//this.getRili()
+			this.getRiliData()
 		},
 		onShow(){
 			//console.log(this.actionList)
-			console.log(this.pieData)
+			//console.log(this.pieData)
 			this.getServerData();
-			this.getRili()
+			this.getRiliData()
+			//this.getRili()
 		},
 		components: {
 			'v-calendar': calendar
@@ -188,6 +221,17 @@
 		},
 		methods: {
 			//日历
+			getRiliData(){
+				this.extraData=this.$store.state.userInfo.action.map((item,index)=>{
+					let time = new Date(item.date)
+					let y = time.getFullYear()
+					let m = time.getMonth()+1
+					let d = time.getDate()
+					let pushTime = y+'-'+m + '-' + d
+					return {date:pushTime,value:item.part}
+				})
+				console.log(this.extraData)
+			},
 			getRili() {
 				uni.showLoading({
 					title: '处理中...'
@@ -196,11 +240,11 @@
 					name: 'get'
 				}).then((res) => {
 					uni.hideLoading()
-					uni.showModal({
-						content: `查询成功，获取数据列表为：${JSON.stringify(res.result.data)}`,
-						showCancel: false
-					})
-					console.log(res)
+					// uni.showModal({
+					// 	content: `查询成功，获取数据列表为：${JSON.stringify(res.result.data)}`,
+					// 	showCancel: false
+					// })
+					// console.log(res)
 				}).catch((err) => {
 					uni.hideLoading()
 					uni.showModal({
@@ -225,6 +269,27 @@
 			},
 			calendarTap(e) {
 				console.log(e);
+				let {year,month,day}=e
+				month++
+				let riliTime = year + '-' + month + '-' + day
+				console.log(riliTime)
+				this.$store.state.userInfo.action.forEach((item,index)=>{
+					let time = new Date(item.date)
+					let y = time.getFullYear()
+					let m = time.getMonth()+1
+					let d = time.getDate()
+					let pushTime = y+'-'+m + '-' + d
+					console.log(pushTime)
+					if(pushTime===riliTime){
+						this.riliDetail = item.actionList
+						this.showDetail=true
+					}else{
+						this.showDetail=false
+					}
+					
+				})
+				
+				
 				
 			},
 			monthTap(val) {
@@ -239,27 +304,10 @@
 			
 			//uchart
 			getServerData(){
-				uni.request({
-					url: 'https://www.ucharts.cn/data.json',
-					data:{
-					},
-					success: function(res) {
-						console.log(res.data.data)
-						//下面这个根据需要保存后台数据，我是为了模拟更新柱状图，所以存下来了
-						_self.serverData=res.data.data;
-						let Column={categories:[],series:[]};
-						//这里我后台返回的是数组，所以用等于，如果您后台返回的是单条数据，需要push进去
-						Column.categories=res.data.data.Column.categories;
-						Column.series=res.data.data.Column.series;
-						 _self.showColumn("canvasColumn",chartData);
-						 _self.showLineA("canvasLineA",lineChartData);
-						 _self.showPie("canvasPie",_self.pieData);
-						
-					},
-					fail: () => {
-						_self.tips="网络错误，小程序端请检查合法域名";
-					},
-				});
+				 
+				 _self.showLineA("canvasLineA",this.realLineDate);
+				 _self.showPie("canvasPie",_self.pieData);	
+				 _self.showColumn("canvasColumn",this.realColumnDate);
 			},
 			showColumn(canvasId,chartData){
 				canvaColumn=new uCharts({
@@ -341,7 +389,10 @@
 					canvasId: canvasId,
 					type: 'pie',
 					fontSize:11,
-					legend:{show:true},
+					legend:{
+						show:true,
+						
+						},
 					background:'#FFFFFF',
 					pixelRatio:_self.pixelRatio,
 					series: chartData.series,
@@ -364,6 +415,7 @@
 				});
 			},
 			touchColumn(e){
+				
 				canvaColumn.showToolTip(e, {
 					textList: [{text:'',color:'#0ea391'}],
 					format: function (item, category) {
@@ -391,12 +443,104 @@
 				});
 			},
 			touchLineA(e) {
-							canvaLineA.showToolTip(e, {
-								format: function (item, category) {
-									return `${category}  热量：${item.data} kcal` 
+				canvaLineA.showToolTip(e, {
+					format: function (item, category) {
+						return `${category}  热量：${item.data} kcal` 
+					}
+				});
+			},
+						
+			getColumnData(){
+				let columnData =  [
+								{
+									value:0,
+									time:[]
+								},
+								{
+									value:0,
+									time:[]
+								},
+								{
+									value:0,
+									time:[]
+								},
+								{
+									value:0,
+									time:[]
+								},
+								{
+									value:0,
+									time:[]
+								},
+								{
+									value:0,
+									time:[]
+								},
+							];
+				this.$store.state.userInfo.action.forEach((item,index)=>{
+					let time = new Date(item.date)
+					let m = time.getMonth()+1
+					let d = time.getDate()
+					let pushTime = m + '-' + d
+					item.part.forEach((item1,index1)=>{
+						switch(item1){
+							case '胸': 
+								{
+									columnData[0].value++
+									columnData[0].time.push(pushTime)
+									console.log(columnData[0])
+									break;
 								}
-							});
+							case '背':
+								{
+									columnData[1].value++
+									columnData[1].time.push(pushTime)
+									break;
+								}
+							case '肩':
+								{
+									columnData[2].value++
+									columnData[2].time.push(pushTime)
+									break;
+								}		
+							case '腿':
+								{
+									columnData[3].value++
+									columnData[3].time.push(pushTime)
+									break;
+								}
+							case '二头':
+								{
+									columnData[4].value++
+									columnData[4].time.push(pushTime)
+									break;
+								}
+							case '三头':
+								{
+									columnData[5].value++
+									columnData[5].time.push(pushTime)
+									break;
+								}		
 						}
+					})
+				})
+				this.realColumnDate.series[0].data=columnData
+			},
+			
+			getLineDate(){
+				let data = this.$store.state.userInfo.food.map((item,index)=>{
+					return item.heat
+				})
+				let time = this.$store.state.userInfo.food.map((item,index)=>{
+					let time = new Date(item.date)
+					let m = time.getMonth()+1
+					let d = time.getDate()
+					let pushTime = m + '-' + d
+					return pushTime
+				})
+				this.realLineDate.categories=time
+				this.realLineDate.series[0].data = data
+			}
 			
 		}
 };

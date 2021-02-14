@@ -3,8 +3,10 @@ import Vuex from 'vuex'
 Vue.use(Vuex)
 export default new Vuex.Store({
 	state:{
+		userInfo:{},
 		actionList:[],
-		foodList:[]
+		foodList:[],
+		part:[]
 	},
 	mutations:{
 		addAction(state,actionName){

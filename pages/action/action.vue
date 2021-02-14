@@ -21,7 +21,7 @@
 								<text>{{item.name}}</text>
 							</view> -->
 							<view class="item-container">
-								<view :class="['item-container-2',chooseList.find((action)=>{return action.name===item1.name})?'isActive':'']" @click="chooseAction(item1)" v-for="(item1, index1) in item.actions" :key="index1">
+								<view :class="['item-container-2',chooseList.find((action)=>{return action.name===item1.name})?'isActive':'']" @click="chooseAction(item1,item.name)" v-for="(item1, index1) in item.actions" :key="index1">
 									<view class="thumb-box" >
 										<image class="item-menu-image" :src="item1.icon" mode=""></image>
 										<view class="item-menu-name">{{item1.name}}</view>
@@ -33,7 +33,7 @@
 								</view>
 								<view class="item-button-box">
 									<u-button class="item-button"  v-if="hasChoose"  @click="cancleChoose">取消</u-button>
-									<u-button class="item-button"  v-if="hasChoose" @click="setChoose">添加</u-button>
+									<u-button class="item-button"  v-if="hasChoose" @click="setChoose(item)">添加</u-button>
 								</view>
 							</view>
 						</view>
@@ -48,6 +48,11 @@
 	//import classifyData from "@/common/classify.data.js";
 	import classifyData from "@/pages/action/actionData.js";
 	import {mapState,mapMutations,mapGetters} from 'vuex';
+	let partObj = {}
+	for(let item of classifyData){
+		partObj[item.name]=0
+	}
+	console.log(partObj)
 	export default {
 		data() {
 			return {
@@ -60,7 +65,7 @@
 			}
 		},
 		computed: {
-			...mapState(['actionList']),
+			...mapState(['actionList','part']),
 			hasChoose(){
 				return this.chooseList.length===0?false:true
 			}
@@ -102,7 +107,7 @@
 				})
 			},
 			
-			chooseAction(action){
+			chooseAction(action,part){
 				let actionName= action.name
 				let actionIndex= this.chooseList.findIndex((item)=>{
 					return item.name===actionName
@@ -110,11 +115,13 @@
 				//let actionIndex = this.chooseList.indexOf(actionName)
 				if(actionIndex<0){
 					this.chooseList.push(JSON.parse(JSON.stringify(action)) )
-					console.log(this.chooseList)
+					//console.log(this.chooseList)
+					partObj[part] +=1
 					//this.addAction(actionName)
 				}else{
 					this.chooseList.splice(actionIndex,1)
-					console.log(this.chooseList)
+					//console.log(this.chooseList)
+					partObj[part] -=1
 					//this.deleteAction(actionIndex)
 				}
 				
@@ -127,10 +134,19 @@
 				//console.log(this.chooseList)
 			},
 			
-			setChoose(){
+			setChoose(item){
 				this.actionList.push(...this.chooseList)
 				//console.log(this.chooseList)
 				this.chooseList=[]
+				for(let part in partObj){
+					if(partObj[part]>0){
+						if(this.part.indexOf(part)<0){
+							this.part.push(part)
+						}
+						
+					}
+				}
+				console.log('part',this.part)
 				uni.navigateBack({
 					
 				})

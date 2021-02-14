@@ -298,11 +298,13 @@ exports.main = async (event) => {
 			{
 				const {
 					uid,
-					nickname
+					nickname,
+					avatarUrl
 				} = params
 				res = await uniID.updateUser({
 					uid,
-					nickname
+					nickname,
+					avatarUrl
 				});
 				break;
 			}

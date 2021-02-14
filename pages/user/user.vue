@@ -12,7 +12,7 @@
 				<u-avatar :src="pic" size="140"></u-avatar>
 			</view>
 			<view class="u-flex-1">
-				<view class="u-font-18 u-p-b-20">uView ui</view>
+				<view class="u-font-18 u-p-b-20">{{nickName}}</view>
 				<!-- <view class="u-font-14 u-tips-color">微信号:helang_uView</view> -->
 			</view>
 			<view class="u-m-l-10 u-p-10">
@@ -36,7 +36,8 @@
 		
 		<view class="u-m-t-20">
 			<u-cell-group>
-				<u-cell-item icon="setting" title="设置"></u-cell-item>
+				<u-cell-item icon="setting" title="意见反馈"></u-cell-item>
+				<!-- <u-cell-item icon="setting" title="设置"></u-cell-item> -->
 			</u-cell-group>
 		</view>
 	</view>
@@ -46,12 +47,16 @@
 	export default {
 		data() {
 			return {
-				pic:'https://uviewui.com/common/logo.png',
-				show:true
+				pic:this.$store.state.userInfo.avatarUrl,
+				show:true,
+				nickName:this.$store.state.userInfo.nickname
 			}
 		},
 		onLoad() {
 			
+		},
+		onShow(){
+			console.log(this.$store.state.userInfo)
 		},
 		methods: {
 			

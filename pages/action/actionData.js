@@ -6,7 +6,7 @@ export default[
 			  "name": "平板卧推",
 			  "key": "平板卧推",
 			  "icon": "https://cdn.uviewui.com/uview/common/classify/1/1.jpg",
-			  "cat": 10,
+		
 			  "group":[
 				  {
 					  "weight":0,
@@ -21,7 +21,7 @@ export default[
 			  "name": "上斜卧推",
 			  "key": "上斜卧推",
 			  "icon": "https://cdn.uviewui.com/uview/common/classify/1/1.jpg",
-			  "cat": 10,
+			
 			  "group":[
 				  {
 					  "weight":0,
@@ -36,7 +36,7 @@ export default[
 			  "name": "下斜卧推",
 			  "key": "下斜卧推",
 			  "icon": "https://cdn.uviewui.com/uview/common/classify/1/1.jpg",
-			  "cat": 10,
+			  
 			  "group":[
 				  {
 					  "weight":0,
@@ -56,7 +56,7 @@ export default[
 			  "name": "A字裙",
 			  "key": "A字裙",
 			  "icon": "https://cdn.uviewui.com/uview/common/classify/1/1.jpg",
-			  "cat": 10
+			 
 			}
 		]
 	},
@@ -67,7 +67,7 @@ export default[
 			  "name": "A字裙",
 			  "key": "A字裙",
 			  "icon": "https://cdn.uviewui.com/uview/common/classify/1/1.jpg",
-			  "cat": 10
+			 
 			}
 		]
 	},
@@ -78,7 +78,7 @@ export default[
 			  "name": "A字裙",
 			  "key": "A字裙",
 			  "icon": "https://cdn.uviewui.com/uview/common/classify/1/1.jpg",
-			  "cat": 10
+			  
 			}
 		]
 	},
@@ -89,7 +89,7 @@ export default[
 			  "name": "A字裙",
 			  "key": "A字裙",
 			  "icon": "https://cdn.uviewui.com/uview/common/classify/1/1.jpg",
-			  "cat": 10
+			 
 			}
 		]
 	},
@@ -100,7 +100,7 @@ export default[
 			  "name": "A字裙",
 			  "key": "A字裙",
 			  "icon": "https://cdn.uviewui.com/uview/common/classify/1/1.jpg",
-			  "cat": 10
+			 
 			}
 		]
 	}
