@@ -6,50 +6,53 @@
 			</view>
 			<swiper class="swiper-box" :current="swiperCurrent" @transition="transition" @animationfinish="animationfinish">
 				<swiper-item class="swiper-item">
-					<scroll-view scroll-y style="height: 100%;width: 100%;">
-						<view class="qiun-columns">
-							<view class="qiun-bg-white qiun-title-bar qiun-common-mt" >
-								<view class="qiun-title-dot-light">今天</view>
-								<view class="">
-									分享
+					<scroll-view scroll-y style="height: 100%;width: 100%;" @scroll="scroll">
+						<view class="">
+							<view class="qiun-columns">
+								<view class="qiun-bg-white qiun-title-bar qiun-common-mt" >
+									<view class="qiun-title-dot-light">今天</view>
+									<view class="">
+										分享
+									</view>
 								</view>
-							</view>
-							<u-empty class="empty" text="毫无训练痕迹" mode="list"  v-if="actionList.length===0?true:false"></u-empty>
-							<view  class="wrap-taobao">
-								<view class="taobao" v-for="(item,index) in actionList" :key="index" >
-									<view class="title">
-										<view class="left">
-											<!-- <image class="buddha" src="https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=1975388697,1068670603&fm=26&gp=0.jpg" mode="aspectFill"></image> -->
-											<view class="store">{{item.name}}</view>
+								<u-empty class="empty" text="毫无训练痕迹" mode="list"  v-if="actionList.length===0?true:false"></u-empty>
+								<view  class="wrap-taobao">
+									<view class="taobao" v-for="(item,index) in actionList" :key="index" >
+										<view class="title">
+											<view class="left">
+												<!-- <image class="buddha" src="https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=1975388697,1068670603&fm=26&gp=0.jpg" mode="aspectFill"></image> -->
+												<view class="store">{{item.name}}</view>
+											</view>
+											<!-- <view class="entrance" @click.stop="addNewGroup(item)">新增一组</view>
+											<view class="entrance" @click.stop="deleteAction(index)">删除</view> -->
+											<view :class=""  v-for="(item1,index1) in item.group" :key='index1'>
+												{{item1.weight}}{{item1.unit}} × {{item1.num}}次
+											</view>	
 										</view>
-										<!-- <view class="entrance" @click.stop="addNewGroup(item)">新增一组</view>
-										<view class="entrance" @click.stop="deleteAction(index)">删除</view> -->
-										<view :class=""  v-for="(item1,index1) in item.group" :key='index1'>
-											{{item1.weight}}{{item1.unit}} × {{item1.num}}次
-										</view>	
+									</view>
+								</view>
+								<view class="">
+									<view class="qiun-charts" >
+										<canvas  canvas-id="canvasPie" id="canvasPie" class="charts" @tap="touchPie"></canvas>
 									</view>
 								</view>
 							</view>
-							<view class="">
+							<view class="qiun-columns">
+								<view class="qiun-bg-white qiun-title-bar qiun-common-mt" >
+									<view class="qiun-title-dot-light">最近30天</view>
+								</view>
 								<view class="qiun-charts" >
-									<canvas  canvas-id="canvasPie" id="canvasPie" class="charts" @touchstart="touchPie"></canvas>
+									<canvas  canvas-id="canvasColumn" id="canvasColumn" class="charts" @tap="touchColumn"></canvas>
+								</view>
+								<view class="qiun-bg-white qiun-title-bar qiun-common-mt" >
+									<view class="qiun-title-dot-light">最近一周</view>
+								</view>
+								<view class="qiun-charts" >
+									<canvas  canvas-id="canvasLineA" id="canvasLineA" class="charts" @tap="touchLineA"></canvas>
 								</view>
 							</view>
 						</view>
-						<view class="qiun-columns">
-							<view class="qiun-bg-white qiun-title-bar qiun-common-mt" >
-								<view class="qiun-title-dot-light">最近30天</view>
-							</view>
-							<view class="qiun-charts" >
-								<canvas  canvas-id="canvasColumn" id="canvasColumn" class="charts" @touchstart="touchColumn"></canvas>
-							</view>
-							<view class="qiun-bg-white qiun-title-bar qiun-common-mt" >
-								<view class="qiun-title-dot-light">最近一周</view>
-							</view>
-							<view class="qiun-charts" >
-								<canvas  canvas-id="canvasLineA" id="canvasLineA" class="charts" @touchstart="touchLineA"></canvas>
-							</view>
-						</view>
+						
 						
 					</scroll-view>
 					
@@ -144,6 +147,7 @@
 				cHeight:'',
 				pixelRatio:1,
 				serverData:'',
+				scrollTop: -45,
 				
 				//
 				realLineDate:{
@@ -268,27 +272,28 @@
 				this.current = current;
 			},
 			calendarTap(e) {
-				console.log(e);
+				//console.log(e);
 				let {year,month,day}=e
 				month++
 				let riliTime = year + '-' + month + '-' + day
 				console.log(riliTime)
-				this.$store.state.userInfo.action.forEach((item,index)=>{
+				
+				
+				for(let item of this.$store.state.userInfo.action){
 					let time = new Date(item.date)
 					let y = time.getFullYear()
 					let m = time.getMonth()+1
 					let d = time.getDate()
 					let pushTime = y+'-'+m + '-' + d
-					console.log(pushTime)
+					
 					if(pushTime===riliTime){
 						this.riliDetail = item.actionList
 						this.showDetail=true
+						break
 					}else{
 						this.showDetail=false
 					}
-					
-				})
-				
+				}
 				
 				
 			},
@@ -408,14 +413,24 @@
 				});
 			},
 			touchPie(e){
+				//#ifndef H5
+				e.changedTouches[0].pageY+=this.scrollTop;
+				e.mp.changedTouches[0].pageY+=this.scrollTop;
+				console.log(e)
+				//#endif
+				
 				canvaPie.showToolTip(e, {
 					format: function (item) {
 						return item.name + ':' + item.data 
 					}
 				});
 			},
+			
 			touchColumn(e){
-				
+				//#ifndef H5
+				e.changedTouches[0].pageY+=this.scrollTop;
+				e.mp.changedTouches[0].pageY+=this.scrollTop;
+				//#endif
 				canvaColumn.showToolTip(e, {
 					textList: [{text:'',color:'#0ea391'}],
 					format: function (item, category) {
@@ -443,6 +458,10 @@
 				});
 			},
 			touchLineA(e) {
+				//#ifndef H5
+				e.changedTouches[0].pageY+=this.scrollTop;
+				e.mp.changedTouches[0].pageY+=this.scrollTop;
+				//#endif
 				canvaLineA.showToolTip(e, {
 					format: function (item, category) {
 						return `${category}  热量：${item.data} kcal` 
@@ -540,7 +559,11 @@
 				})
 				this.realLineDate.categories=time
 				this.realLineDate.series[0].data = data
-			}
+			},
+			
+			scroll(e) {
+					this.scrollTop = e.detail.scrollTop-45
+			},
 			
 		}
 };

@@ -251,10 +251,13 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
+
+
 var _uCharts = _interopRequireDefault(__webpack_require__(/*! ../../u-charts/u-charts/u-charts.js */ 56));
 
 
-var _vuex = __webpack_require__(/*! vuex */ 17);function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function ownKeys(object, enumerableOnly) {var keys = Object.keys(object);if (Object.getOwnPropertySymbols) {var symbols = Object.getOwnPropertySymbols(object);if (enumerableOnly) symbols = symbols.filter(function (sym) {return Object.getOwnPropertyDescriptor(object, sym).enumerable;});keys.push.apply(keys, symbols);}return keys;}function _objectSpread(target) {for (var i = 1; i < arguments.length; i++) {var source = arguments[i] != null ? arguments[i] : {};if (i % 2) {ownKeys(Object(source), true).forEach(function (key) {_defineProperty(target, key, source[key]);});} else if (Object.getOwnPropertyDescriptors) {Object.defineProperties(target, Object.getOwnPropertyDescriptors(source));} else {ownKeys(Object(source)).forEach(function (key) {Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key));});}}return target;}function _defineProperty(obj, key, value) {if (key in obj) {Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true });} else {obj[key] = value;}return obj;}var calendar = function calendar() {__webpack_require__.e(/*! require.ensure | components/tale-calendar/calendar */ "components/tale-calendar/calendar").then((function () {return resolve(__webpack_require__(/*! ../../components/tale-calendar/calendar.vue */ 134));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};
+var _vuex = __webpack_require__(/*! vuex */ 17);function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function _createForOfIteratorHelper(o, allowArrayLike) {var it;if (typeof Symbol === "undefined" || o[Symbol.iterator] == null) {if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") {if (it) o = it;var i = 0;var F = function F() {};return { s: F, n: function n() {if (i >= o.length) return { done: true };return { done: false, value: o[i++] };}, e: function e(_e) {throw _e;}, f: F };}throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");}var normalCompletion = true,didErr = false,err;return { s: function s() {it = o[Symbol.iterator]();}, n: function n() {var step = it.next();normalCompletion = step.done;return step;}, e: function e(_e2) {didErr = true;err = _e2;}, f: function f() {try {if (!normalCompletion && it.return != null) it.return();} finally {if (didErr) throw err;}} };}function _unsupportedIterableToArray(o, minLen) {if (!o) return;if (typeof o === "string") return _arrayLikeToArray(o, minLen);var n = Object.prototype.toString.call(o).slice(8, -1);if (n === "Object" && o.constructor) n = o.constructor.name;if (n === "Map" || n === "Set") return Array.from(o);if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen);}function _arrayLikeToArray(arr, len) {if (len == null || len > arr.length) len = arr.length;for (var i = 0, arr2 = new Array(len); i < len; i++) {arr2[i] = arr[i];}return arr2;}function ownKeys(object, enumerableOnly) {var keys = Object.keys(object);if (Object.getOwnPropertySymbols) {var symbols = Object.getOwnPropertySymbols(object);if (enumerableOnly) symbols = symbols.filter(function (sym) {return Object.getOwnPropertyDescriptor(object, sym).enumerable;});keys.push.apply(keys, symbols);}return keys;}function _objectSpread(target) {for (var i = 1; i < arguments.length; i++) {var source = arguments[i] != null ? arguments[i] : {};if (i % 2) {ownKeys(Object(source), true).forEach(function (key) {_defineProperty(target, key, source[key]);});} else if (Object.getOwnPropertyDescriptors) {Object.defineProperties(target, Object.getOwnPropertyDescriptors(source));} else {ownKeys(Object(source)).forEach(function (key) {Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key));});}}return target;}function _defineProperty(obj, key, value) {if (key in obj) {Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true });} else {obj[key] = value;}return obj;}var calendar = function calendar() {__webpack_require__.e(/*! require.ensure | components/tale-calendar/calendar */ "components/tale-calendar/calendar").then((function () {return resolve(__webpack_require__(/*! ../../components/tale-calendar/calendar.vue */ 134));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};
 
 //import chartData from './uchart-data.js'
 var _self;
@@ -304,6 +307,7 @@ var _default =
       cHeight: '',
       pixelRatio: 1,
       serverData: '',
+      scrollTop: -45,
 
       //
       realLineDate: {
@@ -427,28 +431,29 @@ var _default =
       this.swiperCurrent = current;
       this.current = current;
     },
-    calendarTap: function calendarTap(e) {var _this = this;
-      console.log(e);var
-      year = e.year,month = e.month,day = e.day;
+    calendarTap: function calendarTap(e) {
+      //console.log(e);
+      var year = e.year,month = e.month,day = e.day;
       month++;
       var riliTime = year + '-' + month + '-' + day;
-      console.log(riliTime);
-      this.$store.state.userInfo.action.forEach(function (item, index) {
-        var time = new Date(item.date);
-        var y = time.getFullYear();
-        var m = time.getMonth() + 1;
-        var d = time.getDate();
-        var pushTime = y + '-' + m + '-' + d;
-        console.log(pushTime);
-        if (pushTime === riliTime) {
-          _this.riliDetail = item.actionList;
-          _this.showDetail = true;
-        } else {
-          _this.showDetail = false;
-        }
+      console.log(riliTime);var _iterator = _createForOfIteratorHelper(
 
-      });
 
+      this.$store.state.userInfo.action),_step;try {for (_iterator.s(); !(_step = _iterator.n()).done;) {var item = _step.value;
+          var time = new Date(item.date);
+          var y = time.getFullYear();
+          var m = time.getMonth() + 1;
+          var d = time.getDate();
+          var pushTime = y + '-' + m + '-' + d;
+
+          if (pushTime === riliTime) {
+            this.riliDetail = item.actionList;
+            this.showDetail = true;
+            break;
+          } else {
+            this.showDetail = false;
+          }
+        }} catch (err) {_iterator.e(err);} finally {_iterator.f();}
 
 
     },
@@ -568,28 +573,38 @@ var _default =
 
     },
     touchPie: function touchPie(e) {
+
+      e.changedTouches[0].pageY += this.scrollTop;
+      e.mp.changedTouches[0].pageY += this.scrollTop;
+      console.log(e);
+
+
       canvaPie.showToolTip(e, {
         format: function format(item) {
           return item.name + ':' + item.data;
         } });
 
     },
+
     touchColumn: function touchColumn(e) {
+
+      e.changedTouches[0].pageY += this.scrollTop;
+      e.mp.changedTouches[0].pageY += this.scrollTop;
 
       canvaColumn.showToolTip(e, {
         textList: [{ text: '', color: '#0ea391' }],
-        format: function format(item, category) {var _this2 = this;
+        format: function format(item, category) {var _this = this;
 
           if (typeof item.data === 'object') {
             this.textList[0].text = "".concat(category, "\uFF1A").concat(item.data.value, "\u6B21");
             item.data.time.forEach(function (date, index) {
               if (index === 0) {
-                _this2.textList.push({
+                _this.textList.push({
                   text: "\u65E5\u671F\uFF1A".concat(date),
                   color: '#0ea391' });
 
               } else {
-                _this2.textList.push({
+                _this.textList.push({
                   text: "          ".concat(date),
                   color: '#0ea391' });
 
@@ -603,6 +618,10 @@ var _default =
 
     },
     touchLineA: function touchLineA(e) {
+
+      e.changedTouches[0].pageY += this.scrollTop;
+      e.mp.changedTouches[0].pageY += this.scrollTop;
+
       canvaLineA.showToolTip(e, {
         format: function format(item, category) {
           return "".concat(category, "  \u70ED\u91CF\uFF1A").concat(item.data, " kcal");
@@ -700,6 +719,10 @@ var _default =
       });
       this.realLineDate.categories = time;
       this.realLineDate.series[0].data = data;
+    },
+
+    scroll: function scroll(e) {
+      this.scrollTop = e.detail.scrollTop - 45;
     } } };exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"], __webpack_require__(/*! ./node_modules/@dcloudio/vue-cli-plugin-uni/packages/uni-cloud/dist/index.js */ 8)["default"]))
 

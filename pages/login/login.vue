@@ -1,7 +1,7 @@
 <template>
 	<view class="wrap">
 		<view class="">
-			<image src="../../static/center-selected.png" mode=""></image>
+			<image src="../../static/chifan.jpg" mode=""></image>
 			<button  open-type="getUserInfo"   @getuserinfo="loginByWeixin">微信登录</button>
 			
 		</view>

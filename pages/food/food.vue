@@ -1,26 +1,34 @@
 <template>
 	<view class="wrap">
-		<view class="sum-wrap">
-			<view class="">
-				<u-button type="primary" size="mini">蛋白质:{{protein}}</u-button>
-				
+		<view class="wrap-1">
+			<view class="sum-wrap">
+				<view class="">
+					<u-button type="primary" size="mini">蛋白质:{{protein}}</u-button>
+				</view>
+				<view class="">
+					<u-button type="warning" size="mini">碳水:{{carbohydrate}}</u-button>
+					
+				</view>
+				<view class="">
+					<u-button type="success" size="mini">脂肪:{{fat}}</u-button>
+					
+				</view>
+				<view class="">
+					<u-button type="error" size="mini">热量:{{heat}}</u-button>
+					
+				</view>
 			</view>
-			<view class="">
-				<u-button type="warning" size="mini">碳水:{{carbohydrate}}</u-button>
+			<view class="add-wrap">
 				
-			</view>
-			<view class="">
-				<u-button type="success" size="mini">脂肪:{{fat}}</u-button>
-				
-			</view>
-			<view class="">
-				<u-button type="error" size="mini">热量:{{heat}}</u-button>
-				
+				<view class="" >
+					<u-button type="default " @click="switchToAction" size="medium">添加食物</u-button>
+				</view>
+				<view class="">
+					<u-button type="default" size="medium" @click="addFood">保存</u-button>
+				</view>
 			</view>
 		</view>
-		<view class="">
-			<button type="default" @click="addFood">保存</button>
-		</view>
+		
 		<view class="taobao" v-for="(item,index) in foodList" :key="index" >
 			<view class="title" @click="showGroup(index)">
 				<view class="left">
@@ -32,65 +40,34 @@
 			</view>
 			<view :class="['ticket',showGroupList[index]?'active':'']"  >
 				<view class="left">
-					
 					<view class="introduce">
 						<view class="top">
 							<u-number-box v-model="item.weight" :step="unit==='g'?100:1" @change=""></u-number-box>
-							<view class="unit" @click="changeUnit">
+							<view class="unit" >
 								{{unit}}
 							</view>
 						</view>
 						
-						<view class="date u-line-1">
-							
-								<view  class="">
-									蛋白质：{{item.protein*item.weight}} {{unit}}
-								</view>
-								<view class="">
-									碳水：{{item.carbohydrate*item.weight}} {{unit}}
-								</view>
-								<view class="">
-									脂肪：{{item.fat*item.weight}} {{unit}}
-								</view>
-							
-							
-						</view>
+						
 					</view>
 				</view>
 				<view class="right">
-					<!-- <view class="use immediate-use" @click="" disaled='false'>
-						完成
-					</view> -->
-					<!-- <view class="use immediate-use" :round="true" >删除</view> -->
+					<view  class="use immediate-use">
+						蛋白质：{{item.protein*item.weight}} {{unit}}
+					</view>
+					<view class="use immediate-use">
+						碳水：{{item.carbohydrate*item.weight}} {{unit}}
+					</view>
+					<view class="use immediate-use">
+						脂肪：{{item.fat*item.weight}} {{unit}}
+					</view>
 				</view>
 			</view>
 			
 			
 		</view>
-		<u-mask :show="showCountDown" @click="showCountDown = false" :mask-click-able='false'>
-				<view class="mask">
-					<view class="countDown"  @tap.stop>
-						<u-circle-progress active-color="#2979ff"  width="400" bg-color="opacity" :percent="countDownNumPercent">
-								<view class="u-progress-content">
-									<view class="">
-										休息时间倒计时
-									</view>
-									<view class="u-progress-info">
-										{{countDownNum}}
-									</view>
-								</view>
-							</u-circle-progress>
-					</view>
-					<view class="mask-button">
-						<u-button @click="addTime" type="success">+10秒</u-button>
-						<u-button @click="reduceTime" type="success">-10秒</u-button>
-						<u-button @click="endCountDown" type="success">不休息了</u-button>
-					</view>
-				</view>
-		</u-mask>
-		<view class="add" @click="switchToAction">
-			<u-icon name="plus" size="100" ></u-icon>
-		</view>
+		
+		
 	</view>
 </template>
 
@@ -251,11 +228,27 @@
 		justify-content: center;
 		align-items: center;
 		flex-direction: column;
-		margin-top: 20rpx;
+		
+		padding-top: 180rpx;
+		.wrap-1{
+			padding: 20rpx;
+			position: fixed;
+			top: 0;
+			width: 100%;
+			background-color: white;
+		}
 		.sum-wrap{
 			width: 100%;
 			display: flex;
 			justify-content: space-around;
+			
+			margin-bottom: 20rpx;
+		}
+		.add-wrap{
+			display: flex;
+			justify-content: space-around;
+			
+			width: 100%;
 		}
 		.add{
 			margin-top: 20rpx;
@@ -340,11 +333,11 @@
 		.ticket {
 			display: flex;
 			.left {
-				width: 70%;
+				width: 60%;
 				padding: 30rpx 20rpx;
 				background-color: rgb(255, 245, 244);
 				border-radius: 20rpx;
-				border-right: dashed 2rpx rgb(224, 215, 211);
+				//border-right: dashed 2rpx rgb(224, 215, 211);
 				display: flex;
 				.picture {
 					width: 172rpx;
@@ -354,12 +347,15 @@
 					align-items: center;
 				}
 				.introduce {
-					margin-left: 10rpx;
-					
+					//margin-left: 10rpx;
+					display: flex;
+					align-items: center;
+					justify-content: center;
 					
 					.top{
 						display: flex;
-						//justify-content: space-around;
+						align-items: center;
+						justify-content: center;
 						color:$u-type-warning;
 						font-size: 28rpx;
 						margin-bottom: 20rpx;
@@ -391,8 +387,8 @@
 				}
 			}
 			.right {
-				width: 30%;
-				padding: 40rpx 20rpx;
+				width: 40%;
+				padding: 20rpx 20rpx;
 				background-color: rgb(255, 245, 244);
 				border-radius: 20rpx;
 				display: flex;
@@ -401,11 +397,11 @@
 				justify-content: space-around;
 				.use{
 					height: auto;
-					padding: 0 20rpx;
+					padding: 10rpx 20rpx;
 					font-size: 24rpx;
 					border-radius: 40rpx;
-					color: #ffffff!important;
-					background-color: $u-type-warning!important;
+					color: #000000!important;
+					//background-color: $u-type-warning!important;
 					line-height: 40rpx;
 					color: rgb(117, 142, 165);
 					margin-left: 20rpx;

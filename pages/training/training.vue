@@ -1,7 +1,27 @@
 <template>
 	<view class="wrap">
+		<view class="clock-wrap">
+			<view class="" style="display: flex;justify-content: center;align-items: center;">
+				<u-icon  v-if="showTime" name="clock" size="100" @click="startTime"></u-icon>
+				<u-icon v-if="!showTime" name="clock-fill" size="100" @click="endTime"></u-icon>
+				<view style="font-size: 56rpx;">{{hour}}:{{minute}}:{{second}}</view>
+			</view>
+			<view class="">
+				<u-button type="default" size="medium" @click="this.showModel=true"> 完成全部训练</u-button>
+				<u-modal v-model="showModel" @confirm="addAction()" @cancel="this.showModel=false" ref="uModal" content="练完了吗?" :show-title='false' :show-cancel-button='true' :async-close="true"></u-modal>
+			</view>
+			<view class="add" @click="switchToAction">
+				<view class="" style="display: flex;justify-content: center;align-items: center;">
+					<u-icon name="plus" size="56" ></u-icon>
+					<view class="" style="font-size: 50rpx;">
+						添加动作
+					</view>
+				</view>
+				
+			</view>
+			
+		</view>
 		
-		<button type="default" @click="addAction"> 完成全部训练</button>
 		
 		<view class="taobao" v-for="(item,index) in actionList" :key="index" >
 			<view class="title" @click="showGroup(index)">
@@ -11,6 +31,7 @@
 				</view>
 				<view class="entrance" @click.stop="addNewGroup(item)">新增一组</view>
 				<view class="entrance" @click.stop="deleteAction(index)">删除</view>
+
 			</view>
 			<view :class="['ticket',showGroupList[index]?'active':'']"  v-for="(item1,index1) in item.group" :key='index1'>
 				<view class="left">
@@ -37,7 +58,7 @@
 				</view>
 				<view class="right">
 					<view class="use immediate-use" @click="countDown(item1,$event)" disaled='false'>
-						完成
+						休息
 					</view>
 					<view class="use immediate-use" :round="true" @click="deleteGroup(index,index1)">删除</view>
 				</view>
@@ -48,8 +69,9 @@
 		<u-mask :show="showCountDown" @click="showCountDown = false" :mask-click-able='false'>
 				<view v-if="showCountDown" class="mask">
 					<view class="countDown"  @tap.stop>
-						<u-circle-progress active-color="#2979ff"  width="400" bg-color="opacity"  :percent="countDownNumPercent">
-							<view class="u-progress-content">
+						<!-- <u-circle-progress active-color="#2979ff"  width="400" bg-color="opacity"  :percent="countDownNumPercent"> -->
+						<cmd-progress type="circle" :percent="countDownNumPercent"  :showInfo="false" :width="200" ></cmd-progress>
+							<view class="u-progress-content" style="position: absolute;top: 30%;background-color: white;border-radius: 50%;height: 360rpx;width: 360rpx;">
 								<view class="">
 									休息时间倒计时
 								</view>
@@ -60,6 +82,8 @@
 						</u-circle-progress>
 						
 					</view>
+					
+					
 					<view class="mask-button">
 						<u-button @click="addTime" type="success">+10秒</u-button>
 						<u-button @click="reduceTime" type="success">-10秒</u-button>
@@ -67,15 +91,13 @@
 					</view>
 				</view>
 		</u-mask>
-		<view class="add" @click="switchToAction">
-			<u-icon name="plus" size="100" ></u-icon>
-			
-		</view>
+		
 	</view>
 </template>
 
 <script>
 	import {mapState} from 'vuex';
+	import cmdProgress from '../../components/cmd-progress/cmd-progress.vue'
 	
 	export default {
 		data() {
@@ -94,16 +116,26 @@
 						time:60,
 						restTime:0
 					},
-				cacheTime:0
+				cacheTime:0,
 				
+				
+				//计时器
+				hour:"00",
+				minute:"00",
+				second:"00",
+				totalCount:0,
+				timerSum:null,
+				showTime:true,
+				
+				
+				showModel:false
 			}
 		},
 		components:{
-			
+			cmdProgress
 		},
 		onShow(){
 			console.log(this.$store.state.userInfo.action)
-		
 		},
 		onHide(){
 			this.getCacheTime()
@@ -151,6 +183,7 @@
 				this.currentGroup = item
 				this.countDownNum = item.time
 				this.sumCountDown=item.time
+				
 				this.timer = setInterval(()=>{
 					if(this.countDownNum>0){
 						this.countDownNum--
@@ -212,6 +245,7 @@
 					}
 				}).then((res) => {
 					uni.hideLoading()
+					clearInterval(this.timer);
 					uni.showModal({
 						content: `保存成功`,
 						showCancel: false
@@ -238,7 +272,36 @@
 				
 				//马上要到明天的时间戳
 				this.cacheTime  = curDate.getTime()
-			}
+			},
+			
+			startTime(){
+				let _this = this;
+				let count = 0;
+				_this.timerSum = setInterval(function(){
+					count++;
+					_this.second = _this.showNum(count % 60);
+					_this.hour = _this.showNum(parseInt(count / 60 / 60));
+					_this.minute = _this.showNum(parseInt(count / 60) % 60);
+					_this.totalCount = count;
+				},1000);
+				this.showTime = false;
+			},
+			
+			endTime(){
+				this.showTime = true;
+				clearInterval(this.timerSum);
+			},
+			
+			showNum(num) {
+				if (num < 10) {
+					return '0' + num
+				}
+				return num
+			},
+			
+			
+			
+			
 			
 		}
 	}
@@ -249,12 +312,28 @@
 <style lang="scss" scoped>
 	.wrap{
 		display: flex;
+		padding-top: 200rpx;
 		justify-content: center;
 		align-items: center;
 		flex-direction: column;
-		
+		.clock-wrap{
+			z-index: 99;
+			background-color: white;
+			position: fixed;
+			top:0;
+			padding: 20rpx;
+			display: flex;
+			width: 100%;
+			justify-content: space-between;
+			align-items: center;
+			flex-wrap: wrap;
+		}
 		.add{
 			margin-top: 20rpx;
+			display: flex;
+			width: 100%;
+			justify-content: center;
+			align-items: center;
 		}
 	}
 	
@@ -270,6 +349,7 @@
 			width: 100%;
 		}
 		.countDown{
+			position: relative;
 			height: 80%;
 			width: 100%;
 			display: flex;
@@ -389,7 +469,7 @@
 			}
 			.right {
 				width: 30%;
-				padding: 40rpx 20rpx;
+				padding: 20rpx 20rpx;
 				background-color: rgb(255, 245, 244);
 				border-radius: 20rpx;
 				display: flex;
@@ -399,11 +479,11 @@
 				.use{
 					height: auto;
 					padding: 0 20rpx;
-					font-size: 24rpx;
+					font-size: 30rpx;
 					border-radius: 40rpx;
 					color: #ffffff!important;
 					background-color: $u-type-warning!important;
-					line-height: 40rpx;
+					line-height: 50rpx;
 					color: rgb(117, 142, 165);
 					margin-left: 20rpx;
 				}
