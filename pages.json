@@ -22,6 +22,12 @@
 			}
 		},
 		{
+			"path": "pages/history/history",
+			"style": {
+				"navigationBarTitleText": ""
+			}
+		},
+		{
 			"path": "pages/data/uchart",
 			"style": {
 				"navigationBarTitleText": "uView-index"
@@ -47,13 +53,25 @@
 		{
 			"path": "pages/user/user",
 			"style": {
-				"navigationBarTitleText": "随便练练"
+				"navigationBarTitleText": ""
 			}
 		},
 		{
 			"path": "pages/action/action",
 			"style": {
 				"navigationBarTitleText": "选择动作"
+			}
+		},
+		{
+			"path": "pages/user/body",
+			"style": {
+				"navigationBarTitleText": ""
+			}
+		},
+		{
+			"path": "pages/user/diary",
+			"style": {
+				"navigationBarTitleText": ""
 			}
 		}
 	],
@@ -70,34 +88,35 @@
 	    "backgroundColor": "#ffffff",
 	    "list": [{
 	        "pagePath": "pages/data/data",
-	        "iconPath": "static/index.png",
-	        "selectedIconPath": "static/index-selected.png",
+	        "iconPath": "static/sum.png",
+	        "selectedIconPath": "static/sum-active.png",
 	        "text": "统计"
 	    }, 
+		
+		{
+		    "pagePath": "pages/history/history",
+		    "iconPath": "static/history.png",
+		    "selectedIconPath": "static/history-active.png",
+		    "text": "日历"
+		},
 		{
 		    "pagePath": "pages/training/training",
-		    "iconPath": "static/index.png",
-		    "selectedIconPath": "static/index-selected.png",
+		    "iconPath": "static/train.png",
+		    "selectedIconPath": "static/train-active.png",
 		    "text": "训练"
 		},
 		{
 		    "pagePath": "pages/food/food",
-		    "iconPath": "static/index.png",
-		    "selectedIconPath": "static/index-selected.png",
+		    "iconPath": "static/eat.png",
+		    "selectedIconPath": "static/eat-active.png",
 		    "text": "饮食"
 		},{
 	        "pagePath": "pages/user/user",
-	        "iconPath": "static/center.png",
-	        "selectedIconPath": "static/center-selected.png",
+	        "iconPath": "static/me.png",
+	        "selectedIconPath": "static/me-active.png",
 	        "text": "我"
 	    }
 		
-		// {
-	 //        "pagePath": "pages/action/action",
-	 //        "iconPath": "static/center.png",
-	 //        "selectedIconPath": "static/center-selected.png",
-	 //        "text": "动作"
-	 //    }
 		]
 	}
 }

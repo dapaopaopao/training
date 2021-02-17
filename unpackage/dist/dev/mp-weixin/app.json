@@ -3,12 +3,15 @@
     "pages/blank/blank",
     "pages/data/data",
     "pages/login/login",
+    "pages/history/history",
     "pages/data/uchart",
     "pages/training/training",
     "pages/food/food",
     "pages/food/selectFood",
     "pages/user/user",
-    "pages/action/action"
+    "pages/action/action",
+    "pages/user/body",
+    "pages/user/diary"
   ],
   "subPackages": [],
   "window": {
@@ -25,30 +28,35 @@
     "list": [
       {
         "pagePath": "pages/data/data",
-        "iconPath": "static/index.png",
-        "selectedIconPath": "static/index-selected.png",
+        "iconPath": "static/sum.png",
+        "selectedIconPath": "static/sum-active.png",
         "text": "统计"
       },
       {
+        "pagePath": "pages/history/history",
+        "iconPath": "static/history.png",
+        "selectedIconPath": "static/history-active.png",
+        "text": "日历"
+      },
+      {
         "pagePath": "pages/training/training",
-        "iconPath": "static/index.png",
-        "selectedIconPath": "static/index-selected.png",
+        "iconPath": "static/train.png",
+        "selectedIconPath": "static/train-active.png",
         "text": "训练"
       },
       {
         "pagePath": "pages/food/food",
-        "iconPath": "static/index.png",
-        "selectedIconPath": "static/index-selected.png",
+        "iconPath": "static/eat.png",
+        "selectedIconPath": "static/eat-active.png",
         "text": "饮食"
       },
       {
         "pagePath": "pages/user/user",
-        "iconPath": "static/center.png",
-        "selectedIconPath": "static/center-selected.png",
+        "iconPath": "static/me.png",
+        "selectedIconPath": "static/me-active.png",
         "text": "我"
       }
     ]
   },
-  "usingComponents": {},
-  "sitemapLocation": "sitemap6.json"
+  "usingComponents": {}
 }

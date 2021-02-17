@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "",
+  "usingComponents": {
+    "v-calendar": "/components/tale-calendar/calendar"
+  }
+}

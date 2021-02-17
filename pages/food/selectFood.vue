@@ -1,10 +1,10 @@
 <template>
 	<view class="u-wrap">
 		<view class="u-search-box">
-			<view class="u-search-inner">
+			<!-- <view class="u-search-inner">
 				<u-icon name="search" color="#909399" :size="28"></u-icon>
 				<text class="u-search-text">搜索动作</text>
-			</view>
+			</view> -->
 		</view>
 		<view class="u-menu-wrap">
 			<scroll-view scroll-y scroll-with-animation class="u-tab-view menu-scroll-view" :scroll-top="scrollTop">
@@ -27,7 +27,7 @@
 										<view class="item-menu-name">{{item1.name}}</view>
 									</view>
 									<view >
-										数据等等
+										
 									</view>
 									
 								</view>

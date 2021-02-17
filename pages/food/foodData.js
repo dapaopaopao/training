@@ -5,7 +5,7 @@ export default[
 			{
 			  "name": "饭",
 			  "key": "平板卧推",
-			  "icon": "https://cdn.uviewui.com/uview/common/classify/1/1.jpg",
+			  "icon": "../../static/meat.png",
 			  "cat": 10,
 			  "protein":0.1,
 			  'carbohydrate':0.2,
@@ -23,7 +23,7 @@ export default[
 			{
 			  "name": "全麦面包",
 			  "key": "上斜卧推",
-			  "icon": "https://cdn.uviewui.com/uview/common/classify/1/1.jpg",
+			 "icon": "../../static/meat.png",
 			  "cat": 10,
 			  "protein":0.1,
 			  'carbohydrate':0.3,
@@ -42,7 +42,7 @@ export default[
 			{
 			  "name": "香蕉",
 			  "key": "下斜卧推",
-			  "icon": "https://cdn.uviewui.com/uview/common/classify/1/1.jpg",
+			  "icon": "../../static/meat.png",
 			  "cat": 10,
 			  "protein":0.1,
 			  'carbohydrate':0.5,
@@ -67,7 +67,25 @@ export default[
 			{
 			  "name": "鸡胸",
 			  "key": "A字裙",
-			  "icon": "https://cdn.uviewui.com/uview/common/classify/1/1.jpg",
+			  "icon": "../../static/meat.png",
+			  "cat": 10,
+			  "cat": 10,
+			  "protein":0.2,
+			  'carbohydrate':0.5,
+			  'fat':0.6,
+			  'weight':0,
+			  'unit':'g',
+			}
+		]
+	},
+	{
+		"name":"脂肪",
+		
+		"foods":[
+			{
+			  "name": "花生",
+			  "key": "A字裙",
+			  "icon": "../../static/meat.png",
 			  "cat": 10,
 			  "cat": 10,
 			  "protein":0.2,

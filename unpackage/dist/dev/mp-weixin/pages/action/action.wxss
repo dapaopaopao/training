@@ -135,7 +135,6 @@
   -webkit-box-direction: normal;
   -webkit-flex-direction: column;
           flex-direction: column;
-  margin-top: 20rpx;
 }
 .item-menu-image.data-v-e544f5f4 {
   width: 120rpx;

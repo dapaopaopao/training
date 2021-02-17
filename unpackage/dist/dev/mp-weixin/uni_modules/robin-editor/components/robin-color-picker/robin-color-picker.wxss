@@ -1,0 +1,101 @@
+@charset "UTF-8";
+/**
+ * 下方引入的为uView UI的集成样式文件，为scss预处理器，其中包含了一些"u-"开头的自定义变量
+ * uView自定义的css类名和scss变量，均以"u-"开头，不会造成冲突，请放心使用 
+ */
+.content.data-v-f790bb40 {
+  height: 100%;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+          align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+          justify-content: center;
+  background-color: #fff;
+}
+.content .head.data-v-f790bb40 {
+  width: 100%;
+}
+.content .color-picker.data-v-f790bb40 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+          align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+          justify-content: center;
+}
+.content .color-picker .color-name.data-v-f790bb40 {
+  margin: 23rpx;
+  font-size: 45rpx;
+  font-weight: bold;
+  letter-spacing: 8rpx;
+}
+.content .color-picker .show-view.data-v-f790bb40 {
+  height: 56rpx;
+  width: 567rpx;
+}
+.content .color-picker .hue-view.data-v-f790bb40 {
+  width: 567rpx;
+  height: 56rpx;
+  margin: 12rpx 0;
+  position: relative;
+  background: -webkit-linear-gradient(left, #f00, #ff0, #0f0, #0ff, #00f, #f0f, #f00);
+  background: linear-gradient(to right, #f00, #ff0, #0f0, #0ff, #00f, #f0f, #f00);
+}
+.content .color-picker .hue-view .anchor.data-v-f790bb40 {
+  width: 12rpx;
+  height: 100%;
+  position: absolute;
+  background: #ffffff;
+  -webkit-transform: translate(-50%);
+          transform: translate(-50%);
+  box-shadow: 0 0 2rpx rgba(0, 0, 0, 0.6);
+}
+.content .color-picker .color-view.data-v-f790bb40 {
+  width: 567rpx;
+  height: 345rpx;
+  position: relative;
+  margin-bottom: 12rpx;
+}
+.content .color-picker .color-view.data-v-f790bb40::before, .content .color-picker .color-view.data-v-f790bb40::after {
+  content: '';
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+}
+.content .color-picker .color-view.data-v-f790bb40::before {
+  background: -webkit-linear-gradient(left, white, transparent);
+  background: linear-gradient(to right, white, transparent);
+}
+.content .color-picker .color-view.data-v-f790bb40::after {
+  background: -webkit-linear-gradient(bottom, black, transparent);
+  background: linear-gradient(to top, black, transparent);
+}
+.content .color-picker .color-view .anchor.data-v-f790bb40 {
+  z-index: 1;
+  width: 24rpx;
+  height: 24rpx;
+  border-radius: 50%;
+  position: absolute;
+  border: 4rpx solid #ffffff;
+  background: rgba(0, 0, 0, 0.3);
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+}
+

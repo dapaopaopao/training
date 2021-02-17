@@ -123,7 +123,7 @@
 								provider: 'weixin',
 								success: function(infoRes) {				
 									//_self.$store.state.wxUserInfo=infoRes.userInfo
-									console.log(infoRes.userInfo)
+									//console.log(infoRes.userInfo)
 									userInfo=infoRes.userInfo
 									
 								}

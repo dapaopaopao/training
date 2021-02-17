@@ -32,7 +32,7 @@
 		<view class="taobao" v-for="(item,index) in foodList" :key="index" >
 			<view class="title" @click="showGroup(index)">
 				<view class="left">
-					<image class="buddha" src="https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=1975388697,1068670603&fm=26&gp=0.jpg" mode="aspectFill"></image>
+					<image class="buddha" :src="item.icon" mode="aspectFill"></image>
 					<view class="store">{{item.name}}</view>
 				</view>
 				<!-- <view class="entrance" @click.stop="addNewGroup(item)">新增一组</view> -->
@@ -95,7 +95,7 @@
 			}
 		},
 		onShow(){
-			console.log(this.foodList)
+			//console.log(this.foodList)
 		},
 		onHide(){
 			this.getCacheTime()
@@ -151,11 +151,11 @@
 			showGroup(index){
 				let f = this.showGroupList[index] = !this.showGroupList[index]
 				this.$set(this.showGroupList,index,f)
-				console.log(this.showGroupList)
+				//console.log(this.showGroupList)
 			},
 			
 			switchToAction(){
-				console.log('11')
+				//console.log('11')
 				uni.navigateTo({
 					url:"/pages/food/selectFood"
 				})
@@ -172,7 +172,7 @@
 					title: '处理中...'
 				})
 				uniCloud.callFunction({
-					name: 'add',
+					name: 'add-food',
 					data: {
 						_id:this.$store.state.userInfo._id,
 						food:{
@@ -190,7 +190,7 @@
 						content: `保存成功`,
 						showCancel: false
 					})
-					console.log(res)
+					//console.log(res)
 				}).catch((err) => {
 					uni.hideLoading()
 					uni.showModal({

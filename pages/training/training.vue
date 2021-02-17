@@ -26,7 +26,7 @@
 		<view class="taobao" v-for="(item,index) in actionList" :key="index" >
 			<view class="title" @click="showGroup(index)">
 				<view class="left">
-					<image class="buddha" src="https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=1975388697,1068670603&fm=26&gp=0.jpg" mode="aspectFill"></image>
+					<image class="buddha" :src="item.icon" mode="aspectFill"></image>
 					<view class="store">{{item.name}}</view>
 				</view>
 				<view class="entrance" @click.stop="addNewGroup(item)">新增一组</view>
@@ -135,7 +135,7 @@
 			cmdProgress
 		},
 		onShow(){
-			console.log(this.$store.state.userInfo.action)
+			//console.log(this.$store.state.userInfo.action)
 		},
 		onHide(){
 			this.getCacheTime()
@@ -179,7 +179,7 @@
 			},
 			
 			countDown(item,e){
-				console.log(item,e)
+				//console.log(item,e)
 				this.currentGroup = item
 				this.countDownNum = item.time
 				this.sumCountDown=item.time
@@ -214,11 +214,11 @@
 			showGroup(index){
 				let f = this.showGroupList[index] = !this.showGroupList[index]
 				this.$set(this.showGroupList,index,f)
-				console.log(this.showGroupList)
+				//console.log(this.showGroupList)
 			},
 			
 			switchToAction(){
-				console.log('11')
+				//console.log('11')
 				uni.navigateTo({
 					url:"/pages/action/action"
 				})
@@ -230,27 +230,29 @@
 			
 			//传给后台
 			addAction() {
-				uni.showLoading({
-					title: '处理中...'
-				})
+				// uni.showLoading({
+				// 	title: '处理中...'
+				// })
 				uniCloud.callFunction({
-					name: 'add',
+					name: 'add-action',
 					data: {
 						_id:this.$store.state.userInfo._id,
 						action:{
 							date:new Date().getTime(),
+							trainingTime:`${this.hour}:${this.minute}:${this.second}`,
 							part:this.part,
 							actionList:this.actionList
 						}
 					}
 				}).then((res) => {
-					uni.hideLoading()
+					//uni.hideLoading()
+					this.showModel=false
 					clearInterval(this.timer);
 					uni.showModal({
 						content: `保存成功`,
 						showCancel: false
 					})
-					console.log(res)
+					//console.log(res)
 				}).catch((err) => {
 					uni.hideLoading()
 					uni.showModal({
