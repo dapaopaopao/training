@@ -6,4 +6,12 @@
 .wrap.data-v-fde09b90 {
   padding: 20rpx;
 }
+#editor.data-v-fde09b90 {
+  width: 100%;
+  height: 1050rpx;
+  background-color: #ffffff;
+}
+button.data-v-fde09b90 {
+  margin-top: 10px;
+}
 

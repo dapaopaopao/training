@@ -2581,7 +2581,68 @@ if (hadRuntime) {
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _ref, _ref2;function _defineProperty(obj, key, value) {if (key in obj) {Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true });} else {obj[key] = value;}return obj;}var _default = [
+Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _ref, _ref2, _ref3, _ref4, _ref5;function _defineProperty(obj, key, value) {if (key in obj) {Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true });} else {obj[key] = value;}return obj;}var _default = [
+{
+  "name": "补剂",
+  "foods": [
+  {
+    "name": "蛋白粉",
+    "key": "蛋白粉",
+    "icon": "../../static/meat.png",
+    "cat": 10,
+    "protein": 0.7,
+    'carbohydrate': 0.06,
+    'fat': 0.06,
+    "weight": 0,
+    "group": [
+    {
+      "weight": 0,
+      "num": 0,
+      "time": 60,
+      "restTime": 0 }] },
+
+
+
+  {
+    "name": "肌酸",
+    "key": "肌酸",
+    "icon": "../../static/meat.png",
+    "cat": 10,
+    "protein": 0,
+    'carbohydrate': 0,
+    'fat': 0,
+    'weight': 0,
+    'unit': 'g',
+    "group": [
+    {
+      "weight": 0,
+      "num": 0,
+      "time": 60,
+      "restTime": 0 }] },
+
+
+
+  {
+    "name": "BCAA",
+    "key": "BCAA",
+    "icon": "../../static/meat.png",
+    "cat": 10,
+    "protein": 0,
+    'carbohydrate': 0,
+    'fat': 0,
+    'weight': 0,
+    'unit': 'g',
+    "group": [
+    {
+      "weight": 0,
+      "num": 0,
+      "time": 60,
+      "restTime": 0 }] }] },
+
+
+
+
+
 {
   "name": "碳水",
   "foods": [
@@ -2590,9 +2651,9 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
     "key": "平板卧推",
     "icon": "../../static/meat.png",
     "cat": 10,
-    "protein": 0.1,
-    'carbohydrate': 0.2,
-    'fat': 0.4,
+    "protein": 0.02,
+    'carbohydrate': 0.25,
+    'fat': 0,
     "weight": 0,
     "group": [
     {
@@ -2609,8 +2670,8 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
     "icon": "../../static/meat.png",
     "cat": 10,
     "protein": 0.1,
-    'carbohydrate': 0.3,
-    'fat': 0.2,
+    'carbohydrate': 0.4,
+    'fat': 0.03,
     'weight': 0,
     'unit': 'g',
     "group": [
@@ -2628,8 +2689,27 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
     "icon": "../../static/meat.png",
     "cat": 10,
     "protein": 0.1,
-    'carbohydrate': 0.5,
-    'fat': 0.8,
+    'carbohydrate': 0.22,
+    'fat': 0,
+    'weight': 0,
+    'unit': 'g',
+    "group": [
+    {
+      "weight": 0,
+      "num": 0,
+      "time": 60,
+      "restTime": 0 }] },
+
+
+
+  {
+    "name": "燕麦",
+    "key": "燕麦",
+    "icon": "../../static/meat.png",
+    "cat": 10,
+    "protein": 0.1,
+    'carbohydrate': 0.7,
+    'fat': 0,
     'weight': 0,
     'unit': 'g',
     "group": [
@@ -2653,29 +2733,65 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
     "icon": "../../static/meat.png",
     "cat": 10 }, _defineProperty(_ref, "cat",
   10), _defineProperty(_ref,
-  "protein", 0.2), _defineProperty(_ref,
-  'carbohydrate', 0.5), _defineProperty(_ref,
-  'fat', 0.6), _defineProperty(_ref,
+  "protein", 0.25), _defineProperty(_ref,
+  'carbohydrate', 0.01), _defineProperty(_ref,
+  'fat', 0.02), _defineProperty(_ref,
   'weight', 0), _defineProperty(_ref,
-  'unit', 'g'), _ref)] },
+  'unit', 'g'), _ref), (_ref2 = {
+
+
+    "name": "牛肉",
+    "key": "A字裙",
+    "icon": "../../static/meat.png",
+    "cat": 10 }, _defineProperty(_ref2, "cat",
+  10), _defineProperty(_ref2,
+  "protein", 0.2), _defineProperty(_ref2,
+  'carbohydrate', 0.01), _defineProperty(_ref2,
+  'fat', 0.05), _defineProperty(_ref2,
+  'weight', 0), _defineProperty(_ref2,
+  'unit', 'g'), _ref2), (_ref3 = {
+
+
+    "name": "猪肉",
+    "key": "A字裙",
+    "icon": "../../static/meat.png",
+    "cat": 10 }, _defineProperty(_ref3, "cat",
+  10), _defineProperty(_ref3,
+  "protein", 0.1), _defineProperty(_ref3,
+  'carbohydrate', 0.02), _defineProperty(_ref3,
+  'fat', 0.3), _defineProperty(_ref3,
+  'weight', 0), _defineProperty(_ref3,
+  'unit', 'g'), _ref3)] },
 
 
 
 {
   "name": "脂肪",
 
-  "foods": [(_ref2 = {
+  "foods": [(_ref4 = {
 
     "name": "花生",
     "key": "A字裙",
     "icon": "../../static/meat.png",
-    "cat": 10 }, _defineProperty(_ref2, "cat",
-  10), _defineProperty(_ref2,
-  "protein", 0.2), _defineProperty(_ref2,
-  'carbohydrate', 0.5), _defineProperty(_ref2,
-  'fat', 0.6), _defineProperty(_ref2,
-  'weight', 0), _defineProperty(_ref2,
-  'unit', 'g'), _ref2)] }];exports.default = _default;
+    "cat": 10 }, _defineProperty(_ref4, "cat",
+  10), _defineProperty(_ref4,
+  "protein", 0.12), _defineProperty(_ref4,
+  'carbohydrate', 0.13), _defineProperty(_ref4,
+  'fat', 0.25), _defineProperty(_ref4,
+  'weight', 0), _defineProperty(_ref4,
+  'unit', 'g'), _ref4), (_ref5 = {
+
+
+    "name": "核桃",
+    "key": "A字裙",
+    "icon": "../../static/meat.png",
+    "cat": 10 }, _defineProperty(_ref5, "cat",
+  10), _defineProperty(_ref5,
+  "protein", 0.15), _defineProperty(_ref5,
+  'carbohydrate', 0.2), _defineProperty(_ref5,
+  'fat', 0.6), _defineProperty(_ref5,
+  'weight', 0), _defineProperty(_ref5,
+  'unit', 'g'), _ref5)] }];exports.default = _default;
 
 /***/ }),
 
@@ -2704,9 +2820,51 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
   "name": "胸",
   "actions": [
   {
-    "name": "平板卧推",
-    "key": "平板卧推",
-    "icon": "../../static/muscle.png",
+    "name": "杠铃卧推",
+    "key": "杠铃卧推",
+    "icon": "../../static/rou.png",
+    "group": [
+    {
+      "weight": 0,
+      "num": 0,
+      'unit': 'kg',
+      "time": 60,
+      "restTime": 0 }] },
+
+
+
+  {
+    "name": "哑铃卧推",
+    "key": "哑铃卧推",
+    "icon": "../../static/rou.png",
+    "group": [
+    {
+      "weight": 0,
+      "num": 0,
+      'unit': 'kg',
+      "time": 60,
+      "restTime": 0 }] },
+
+
+
+  {
+    "name": "窄距卧推",
+    "key": "窄距卧推",
+    "icon": "../../static/rou.png",
+    "group": [
+    {
+      "weight": 0,
+      "num": 0,
+      'unit': 'kg',
+      "time": 60,
+      "restTime": 0 }] },
+
+
+
+  {
+    "name": "上斜杠铃卧推",
+    "key": "上斜杠铃卧推",
+    "icon": "../../static/rou.png",
 
     "group": [
     {
@@ -2719,10 +2877,9 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
 
 
   {
-    "name": "上斜卧推",
-    "key": "上斜卧推",
-    "icon": "../../static/muscle.png",
-
+    "name": "上斜哑铃卧推",
+    "key": "上斜哑铃卧推",
+    "icon": "../../static/rou.png",
     "group": [
     {
       "weight": 0,
@@ -2734,10 +2891,107 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
 
 
   {
-    "name": "下斜卧推",
-    "key": "下斜卧推",
-    "icon": "../../static/muscle.png",
+    "name": "下斜杠铃卧推",
+    "key": "下斜杠铃卧推",
+    "icon": "../../static/rou.png",
+    "group": [
+    {
+      "weight": 0,
+      "num": 0,
+      'unit': 'kg',
+      "time": 60,
+      "restTime": 0 }] },
 
+
+
+  {
+    "name": "下斜哑铃卧推",
+    "key": "下斜哑铃卧推",
+    "icon": "../../static/rou.png",
+    "group": [
+    {
+      "weight": 0,
+      "num": 0,
+      'unit': 'kg',
+      "time": 60,
+      "restTime": 0 }] },
+
+
+
+  {
+    "name": "上斜哑铃飞鸟",
+    "key": "上斜哑铃飞鸟",
+    "icon": "../../static/rou.png",
+    "group": [
+    {
+      "weight": 0,
+      "num": 0,
+      'unit': 'kg',
+      "time": 60,
+      "restTime": 0 }] },
+
+
+
+  {
+    "name": "平板哑铃飞鸟",
+    "key": "平板哑铃飞鸟",
+    "icon": "../../static/rou.png",
+    "group": [
+    {
+      "weight": 0,
+      "num": 0,
+      'unit': 'kg',
+      "time": 60,
+      "restTime": 0 }] },
+
+
+
+  {
+    "name": "下斜哑铃飞鸟",
+    "key": "下斜哑铃飞鸟",
+    "icon": "../../static/rou.png",
+    "group": [
+    {
+      "weight": 0,
+      "num": 0,
+      'unit': 'kg',
+      "time": 60,
+      "restTime": 0 }] },
+
+
+
+  {
+    "name": "器械推胸",
+    "key": "器械推胸",
+    "icon": "../../static/rou.png",
+    "group": [
+    {
+      "weight": 0,
+      "num": 0,
+      'unit': 'kg',
+      "time": 60,
+      "restTime": 0 }] },
+
+
+
+  {
+    "name": "绳索夹胸",
+    "key": "绳索夹胸",
+    "icon": "../../static/rou.png",
+    "group": [
+    {
+      "weight": 0,
+      "num": 0,
+      'unit': 'kg',
+      "time": 60,
+      "restTime": 0 }] },
+
+
+
+  {
+    "name": "双杠臂屈伸",
+    "key": "双杠臂屈伸",
+    "icon": "../../static/rou.png",
     "group": [
     {
       "weight": 0,
@@ -2756,8 +3010,77 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
   {
     "name": "引体向上",
     "key": "引体向上",
-    "icon": "../../static/muscle.png",
+    "icon": "../../static/rou.png",
+    "group": [
+    {
+      "weight": 0,
+      "num": 0,
+      'unit': 'kg',
+      "time": 60,
+      "restTime": 0 }] },
 
+
+
+  {
+    "name": "杠铃俯身划船",
+    "key": "杠铃俯身划船",
+    "icon": "../../static/rou.png",
+    "group": [
+    {
+      "weight": 0,
+      "num": 0,
+      'unit': 'kg',
+      "time": 60,
+      "restTime": 0 }] },
+
+
+
+  {
+    "name": "哑铃俯身划船",
+    "key": "哑铃俯身划船",
+    "icon": "../../static/rou.png",
+    "group": [
+    {
+      "weight": 0,
+      "num": 0,
+      'unit': 'kg',
+      "time": 60,
+      "restTime": 0 }] },
+
+
+
+  {
+    "name": "器械划船",
+    "key": "器械划船",
+    "icon": "../../static/rou.png",
+    "group": [
+    {
+      "weight": 0,
+      "num": 0,
+      'unit': 'kg',
+      "time": 60,
+      "restTime": 0 }] },
+
+
+
+  {
+    "name": "高位下拉",
+    "key": "高位下拉",
+    "icon": "../../static/rou.png",
+    "group": [
+    {
+      "weight": 0,
+      "num": 0,
+      'unit': 'kg',
+      "time": 60,
+      "restTime": 0 }] },
+
+
+
+  {
+    "name": "硬拉",
+    "key": "硬拉",
+    "icon": "../../static/rou.png",
     "group": [
     {
       "weight": 0,
@@ -2770,14 +3093,71 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
 
 
 
+
 {
   "name": "肩膀",
   "actions": [
   {
+    "name": "杠铃推举",
+    "key": "杠铃推举",
+    "icon": "../../static/rou.png",
+    "group": [
+    {
+      "weight": 0,
+      "num": 0,
+      'unit': 'kg',
+      "time": 60,
+      "restTime": 0 }] },
+
+
+
+  {
     "name": "哑铃推举",
     "key": "哑铃推举",
-    "icon": "../../static/muscle.png",
+    "icon": "../../static/rou.png",
 
+    "group": [
+    {
+      "weight": 0,
+      "num": 0,
+      'unit': 'kg',
+      "time": 60,
+      "restTime": 0 }] },
+
+
+
+  {
+    "name": "前平举",
+    "key": "前平举",
+    "icon": "../../static/rou.png",
+    "group": [
+    {
+      "weight": 0,
+      "num": 0,
+      'unit': 'kg',
+      "time": 60,
+      "restTime": 0 }] },
+
+
+
+  {
+    "name": "侧平举",
+    "key": "侧平举",
+    "icon": "../../static/rou.png",
+    "group": [
+    {
+      "weight": 0,
+      "num": 0,
+      'unit': 'kg',
+      "time": 60,
+      "restTime": 0 }] },
+
+
+
+  {
+    "name": "俯身飞鸟",
+    "key": "俯身飞鸟",
+    "icon": "../../static/rou.png",
     "group": [
     {
       "weight": 0,
@@ -2794,9 +3174,79 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
   "name": "二头",
   "actions": [
   {
+    "name": "哑铃交替弯矩",
+    "key": "哑铃交替弯矩",
+    "icon": "../../static/rou.png",
+    "group": [
+    {
+      "weight": 0,
+      "num": 0,
+      'unit': 'kg',
+      "time": 60,
+      "restTime": 0 }] },
+
+
+
+  {
+    "name": "哑铃单边弯举",
+    "key": "哑铃单边弯矩",
+    "icon": "../../static/rou.png",
+    "group": [
+    {
+      "weight": 0,
+      "num": 0,
+      'unit': 'kg',
+      "time": 60,
+      "restTime": 0 }] },
+
+
+
+  {
+    "name": "杠铃弯举",
+    "key": "杠铃弯举",
+    "icon": "../../static/rou.png",
+    "group": [
+    {
+      "weight": 0,
+      "num": 0,
+      'unit': 'kg',
+      "time": 60,
+      "restTime": 0 }] },
+
+
+
+  {
+    "name": "锤式弯举",
+    "key": "锤式弯举",
+    "icon": "../../static/rou.png",
+    "group": [
+    {
+      "weight": 0,
+      "num": 0,
+      'unit': 'kg',
+      "time": 60,
+      "restTime": 0 }] },
+
+
+
+  {
+    "name": "绳索弯举",
+    "key": "绳索弯举",
+    "icon": "../../static/rou.png",
+    "group": [
+    {
+      "weight": 0,
+      "num": 0,
+      'unit': 'kg',
+      "time": 60,
+      "restTime": 0 }] },
+
+
+
+  {
     "name": "牧师凳弯举",
     "key": "牧师凳弯举",
-    "icon": "../../static/muscle.png",
+    "icon": "../../static/rou.png",
 
     "group": [
     {
@@ -2816,7 +3266,82 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
   {
     "name": "窄距卧推",
     "key": "窄距卧推",
-    "icon": "../../static/muscle.png",
+    "icon": "../../static/rou.png",
+
+    "group": [
+    {
+      "weight": 0,
+      "num": 0,
+      'unit': 'kg',
+      "time": 60,
+      "restTime": 0 }] },
+
+
+
+  {
+    "name": "双手颈后臂屈伸",
+    "key": "双手颈后臂屈伸",
+    "icon": "../../static/rou.png",
+
+    "group": [
+    {
+      "weight": 0,
+      "num": 0,
+      'unit': 'kg',
+      "time": 60,
+      "restTime": 0 }] },
+
+
+
+  {
+    "name": "单手颈后臂屈伸",
+    "key": "单手颈后臂屈伸",
+    "icon": "../../static/rou.png",
+
+    "group": [
+    {
+      "weight": 0,
+      "num": 0,
+      'unit': 'kg',
+      "time": 60,
+      "restTime": 0 }] },
+
+
+
+  {
+    "name": "双杠臂屈伸",
+    "key": "双杠臂屈伸",
+    "icon": "../../static/rou.png",
+
+    "group": [
+    {
+      "weight": 0,
+      "num": 0,
+      'unit': 'kg',
+      "time": 60,
+      "restTime": 0 }] },
+
+
+
+  {
+    "name": "正手绳索下压",
+    "key": "正手绳索下压",
+    "icon": "../../static/rou.png",
+
+    "group": [
+    {
+      "weight": 0,
+      "num": 0,
+      'unit': 'kg',
+      "time": 60,
+      "restTime": 0 }] },
+
+
+
+  {
+    "name": "反手手绳索下压",
+    "key": "反手手绳索下压",
+    "icon": "../../static/rou.png",
 
     "group": [
     {
@@ -2836,7 +3361,7 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
   {
     "name": "自由深蹲",
     "key": "自由深蹲",
-    "icon": "../../static/muscle.png",
+    "icon": "../../static/rou.png",
 
     "group": [
     {
@@ -2844,7 +3369,204 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
       "num": 0,
       'unit': 'kg',
       "time": 60,
-      "restTime": 0 }] }] }];exports.default = _default;
+      "restTime": 0 }] },
+
+
+
+  {
+    "name": "史密斯深蹲",
+    "key": "史密斯深蹲",
+    "icon": "../../static/rou.png",
+    "group": [
+    {
+      "weight": 0,
+      "num": 0,
+      'unit': 'kg',
+      "time": 60,
+      "restTime": 0 }] },
+
+
+
+  {
+    "name": "腿弯举",
+    "key": "腿弯举",
+    "icon": "../../static/rou.png",
+    "group": [
+    {
+      "weight": 0,
+      "num": 0,
+      'unit': 'kg',
+      "time": 60,
+      "restTime": 0 }] },
+
+
+
+  {
+    "name": "坐姿踢腿",
+    "key": "坐姿踢腿",
+    "icon": "../../static/rou.png",
+    "group": [
+    {
+      "weight": 0,
+      "num": 0,
+      'unit': 'kg',
+      "time": 60,
+      "restTime": 0 }] },
+
+
+
+  {
+    "name": "箭步走",
+    "key": "箭步走",
+    "icon": "../../static/rou.png",
+    "group": [
+    {
+      "weight": 0,
+      "num": 0,
+      'unit': 'kg',
+      "time": 60,
+      "restTime": 0 }] }] },
+
+
+
+
+
+{
+  "name": "腹",
+  "actions": [
+  {
+    "name": "负重卷腹",
+    "key": "负重卷腹",
+    "icon": "../../static/rou.png",
+
+    "group": [
+    {
+      "weight": 0,
+      "num": 0,
+      'unit': 'kg',
+      "time": 60,
+      "restTime": 0 }] },
+
+
+
+  {
+    "name": "史密斯深蹲",
+    "key": "史密斯深蹲",
+    "icon": "../../static/rou.png",
+    "group": [
+    {
+      "weight": 0,
+      "num": 0,
+      'unit': 'kg',
+      "time": 60,
+      "restTime": 0 }] },
+
+
+
+  {
+    "name": "腿弯举",
+    "key": "腿弯举",
+    "icon": "../../static/rou.png",
+    "group": [
+    {
+      "weight": 0,
+      "num": 0,
+      'unit': 'kg',
+      "time": 60,
+      "restTime": 0 }] },
+
+
+
+  {
+    "name": "坐姿踢腿",
+    "key": "坐姿踢腿",
+    "icon": "../../static/rou.png",
+    "group": [
+    {
+      "weight": 0,
+      "num": 0,
+      'unit': 'kg',
+      "time": 60,
+      "restTime": 0 }] },
+
+
+
+  {
+    "name": "箭步走",
+    "key": "箭步走",
+    "icon": "../../static/rou.png",
+    "group": [
+    {
+      "weight": 0,
+      "num": 0,
+      'unit': 'kg',
+      "time": 60,
+      "restTime": 0 }] }] },
+
+
+
+
+
+{
+  "name": "有氧",
+  "actions": [
+  {
+    "name": "跑步",
+    "key": "跑步",
+    "icon": "../../static/rou.png",
+    'kind': '有氧',
+    "group": [
+    {
+      "weight": 0,
+      "num": 0,
+      'unit': 'kg',
+      "time": 60,
+      "restTime": '' }] },
+
+
+
+  {
+    "name": "椭圆机",
+    "key": "椭圆机",
+    "icon": "../../static/rou.png",
+    'kind': '有氧',
+    "group": [
+    {
+      "weight": 0,
+      "num": 0,
+      'unit': 'kg',
+      "time": 60,
+      "restTime": '' }] },
+
+
+
+  {
+    "name": "单车",
+    "key": "单车",
+    "icon": "../../static/rou.png",
+    'kind': '有氧',
+    "group": [
+    {
+      "weight": 0,
+      "num": 0,
+      'unit': 'kg',
+      "time": 60,
+      "restTime": '' }] },
+
+
+
+  {
+    "name": "跳绳",
+    "key": "跳绳",
+    "icon": "../../static/rou.png",
+    'kind': '有氧',
+    "group": [
+    {
+      "weight": 0,
+      "num": 0,
+      'unit': 'kg',
+      "time": 60,
+      "restTime": '' }] }] }];exports.default = _default;
 
 /***/ }),
 
@@ -10583,6 +11305,66 @@ new Request();exports.default = _default;
 
 /***/ }),
 
+/***/ 205:
+/*!************************************************************************************!*\
+  !*** C:/Users/bili/Desktop/suibianlianlian/training/uview-ui/libs/util/emitter.js ***!
+  \************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0; /**
+                                                                                                      * 递归使用 call 方式this指向
+                                                                                                      * @param componentName // 需要找的组件的名称
+                                                                                                      * @param eventName // 事件名称
+                                                                                                      * @param params // 需要传递的参数
+                                                                                                      */
+function _broadcast(componentName, eventName, params) {
+  // 循环子节点找到名称一样的子节点 否则 递归 当前子节点
+  this.$children.map(function (child) {
+    if (componentName === child.$options.name) {
+      child.$emit.apply(child, [eventName].concat(params));
+    } else {
+      _broadcast.apply(child, [componentName, eventName].concat(params));
+    }
+  });
+}var _default =
+{
+  methods: {
+    /**
+              * 派发 (向上查找) (一个)
+              * @param componentName // 需要找的组件的名称
+              * @param eventName // 事件名称
+              * @param params // 需要传递的参数
+              */
+    dispatch: function dispatch(componentName, eventName, params) {
+      var parent = this.$parent || this.$root; //$parent 找到最近的父节点 $root 根节点
+      var name = parent.$options.name; // 获取当前组件实例的name
+      // 如果当前有节点 && 当前没名称 且 当前名称等于需要传进来的名称的时候就去查找当前的节点
+      // 循环出当前名称的一样的组件实例
+      while (parent && (!name || name !== componentName)) {
+        parent = parent.$parent;
+        if (parent) {
+          name = parent.$options.name;
+        }
+      }
+      // 有节点表示当前找到了name一样的实例
+      if (parent) {
+        parent.$emit.apply(parent, [eventName].concat(params));
+      }
+    },
+    /**
+        * 广播 (向下查找) (广播多个)
+        * @param componentName // 需要找的组件的名称
+        * @param eventName // 事件名称
+        * @param params // 需要传递的参数
+        */
+    broadcast: function broadcast(componentName, eventName, params) {
+      _broadcast.call(this, componentName, eventName, params);
+    } } };exports.default = _default;
+
+/***/ }),
+
 /***/ 21:
 /*!******************************************************************************************!*\
   !*** C:/Users/bili/Desktop/suibianlianlian/training/uview-ui/libs/function/deepMerge.js ***!
@@ -10900,67 +11682,76 @@ function code(value) {var len = arguments.length > 1 && arguments[1] !== undefin
 
 /***/ }),
 
-/***/ 233:
-/*!************************************************************************************!*\
-  !*** C:/Users/bili/Desktop/suibianlianlian/training/uview-ui/libs/util/emitter.js ***!
-  \************************************************************************************/
+/***/ 24:
+/*!********************************************************************************************!*\
+  !*** C:/Users/bili/Desktop/suibianlianlian/training/uview-ui/libs/function/queryParams.js ***!
+  \********************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0; /**
-                                                                                                      * 递归使用 call 方式this指向
-                                                                                                      * @param componentName // 需要找的组件的名称
-                                                                                                      * @param eventName // 事件名称
-                                                                                                      * @param params // 需要传递的参数
+                                                                                                      * 对象转url参数
+                                                                                                      * @param {*} data,对象
+                                                                                                      * @param {*} isPrefix,是否自动加上"?"
                                                                                                       */
-function _broadcast(componentName, eventName, params) {
-  // 循环子节点找到名称一样的子节点 否则 递归 当前子节点
-  this.$children.map(function (child) {
-    if (componentName === child.$options.name) {
-      child.$emit.apply(child, [eventName].concat(params));
-    } else {
-      _broadcast.apply(child, [componentName, eventName].concat(params));
+function queryParams() {var data = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};var isPrefix = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : true;var arrayFormat = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 'brackets';
+  var prefix = isPrefix ? '?' : '';
+  var _result = [];
+  if (['indices', 'brackets', 'repeat', 'comma'].indexOf(arrayFormat) == -1) arrayFormat = 'brackets';var _loop = function _loop(
+  key) {
+    var value = data[key];
+    // 去掉为空的参数
+    if (['', undefined, null].indexOf(value) >= 0) {
+      return "continue";
     }
-  });
+    // 如果值为数组，另行处理
+    if (value.constructor === Array) {
+      // e.g. {ids: [1, 2, 3]}
+      switch (arrayFormat) {
+        case 'indices':
+          // 结果: ids[0]=1&ids[1]=2&ids[2]=3
+          for (var i = 0; i < value.length; i++) {
+            _result.push(key + '[' + i + ']=' + value[i]);
+          }
+          break;
+        case 'brackets':
+          // 结果: ids[]=1&ids[]=2&ids[]=3
+          value.forEach(function (_value) {
+            _result.push(key + '[]=' + _value);
+          });
+          break;
+        case 'repeat':
+          // 结果: ids=1&ids=2&ids=3
+          value.forEach(function (_value) {
+            _result.push(key + '=' + _value);
+          });
+          break;
+        case 'comma':
+          // 结果: ids=1,2,3
+          var commaStr = "";
+          value.forEach(function (_value) {
+            commaStr += (commaStr ? "," : "") + _value;
+          });
+          _result.push(key + '=' + commaStr);
+          break;
+        default:
+          value.forEach(function (_value) {
+            _result.push(key + '[]=' + _value);
+          });}
+
+    } else {
+      _result.push(key + '=' + value);
+    }};for (var key in data) {var _ret = _loop(key);if (_ret === "continue") continue;
+  }
+  return _result.length ? prefix + _result.join('&') : '';
 }var _default =
-{
-  methods: {
-    /**
-              * 派发 (向上查找) (一个)
-              * @param componentName // 需要找的组件的名称
-              * @param eventName // 事件名称
-              * @param params // 需要传递的参数
-              */
-    dispatch: function dispatch(componentName, eventName, params) {
-      var parent = this.$parent || this.$root; //$parent 找到最近的父节点 $root 根节点
-      var name = parent.$options.name; // 获取当前组件实例的name
-      // 如果当前有节点 && 当前没名称 且 当前名称等于需要传进来的名称的时候就去查找当前的节点
-      // 循环出当前名称的一样的组件实例
-      while (parent && (!name || name !== componentName)) {
-        parent = parent.$parent;
-        if (parent) {
-          name = parent.$options.name;
-        }
-      }
-      // 有节点表示当前找到了name一样的实例
-      if (parent) {
-        parent.$emit.apply(parent, [eventName].concat(params));
-      }
-    },
-    /**
-        * 广播 (向下查找) (广播多个)
-        * @param componentName // 需要找的组件的名称
-        * @param eventName // 事件名称
-        * @param params // 需要传递的参数
-        */
-    broadcast: function broadcast(componentName, eventName, params) {
-      _broadcast.call(this, componentName, eventName, params);
-    } } };exports.default = _default;
+
+queryParams;exports.default = _default;
 
 /***/ }),
 
-/***/ 234:
+/***/ 241:
 /*!********************************************************************************************!*\
   !*** C:/Users/bili/Desktop/suibianlianlian/training/uview-ui/libs/util/async-validator.js ***!
   \********************************************************************************************/
@@ -12323,11 +13114,11 @@ Schema.warning = warning;
 Schema.messages = messages;var _default =
 
 Schema;exports.default = _default;
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/node-libs-browser/mock/process.js */ 235)))
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/node-libs-browser/mock/process.js */ 242)))
 
 /***/ }),
 
-/***/ 235:
+/***/ 242:
 /*!********************************************************!*\
   !*** ./node_modules/node-libs-browser/mock/process.js ***!
   \********************************************************/
@@ -12358,7 +13149,7 @@ exports.binding = function (name) {
     var path;
     exports.cwd = function () { return cwd };
     exports.chdir = function (dir) {
-        if (!path) path = __webpack_require__(/*! path */ 236);
+        if (!path) path = __webpack_require__(/*! path */ 243);
         cwd = path.resolve(dir, cwd);
     };
 })();
@@ -12372,7 +13163,7 @@ exports.features = {};
 
 /***/ }),
 
-/***/ 236:
+/***/ 243:
 /*!***********************************************!*\
   !*** ./node_modules/path-browserify/index.js ***!
   \***********************************************/
@@ -12682,76 +13473,7 @@ var substr = 'ab'.substr(-1) === 'b'
     }
 ;
 
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../node-libs-browser/mock/process.js */ 235)))
-
-/***/ }),
-
-/***/ 24:
-/*!********************************************************************************************!*\
-  !*** C:/Users/bili/Desktop/suibianlianlian/training/uview-ui/libs/function/queryParams.js ***!
-  \********************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0; /**
-                                                                                                      * 对象转url参数
-                                                                                                      * @param {*} data,对象
-                                                                                                      * @param {*} isPrefix,是否自动加上"?"
-                                                                                                      */
-function queryParams() {var data = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};var isPrefix = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : true;var arrayFormat = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 'brackets';
-  var prefix = isPrefix ? '?' : '';
-  var _result = [];
-  if (['indices', 'brackets', 'repeat', 'comma'].indexOf(arrayFormat) == -1) arrayFormat = 'brackets';var _loop = function _loop(
-  key) {
-    var value = data[key];
-    // 去掉为空的参数
-    if (['', undefined, null].indexOf(value) >= 0) {
-      return "continue";
-    }
-    // 如果值为数组，另行处理
-    if (value.constructor === Array) {
-      // e.g. {ids: [1, 2, 3]}
-      switch (arrayFormat) {
-        case 'indices':
-          // 结果: ids[0]=1&ids[1]=2&ids[2]=3
-          for (var i = 0; i < value.length; i++) {
-            _result.push(key + '[' + i + ']=' + value[i]);
-          }
-          break;
-        case 'brackets':
-          // 结果: ids[]=1&ids[]=2&ids[]=3
-          value.forEach(function (_value) {
-            _result.push(key + '[]=' + _value);
-          });
-          break;
-        case 'repeat':
-          // 结果: ids=1&ids=2&ids=3
-          value.forEach(function (_value) {
-            _result.push(key + '=' + _value);
-          });
-          break;
-        case 'comma':
-          // 结果: ids=1,2,3
-          var commaStr = "";
-          value.forEach(function (_value) {
-            commaStr += (commaStr ? "," : "") + _value;
-          });
-          _result.push(key + '=' + commaStr);
-          break;
-        default:
-          value.forEach(function (_value) {
-            _result.push(key + '[]=' + _value);
-          });}
-
-    } else {
-      _result.push(key + '=' + value);
-    }};for (var key in data) {var _ret = _loop(key);if (_ret === "continue") continue;
-  }
-  return _result.length ? prefix + _result.join('&') : '';
-}var _default =
-
-queryParams;exports.default = _default;
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../node-libs-browser/mock/process.js */ 242)))
 
 /***/ }),
 
@@ -13009,67 +13731,6 @@ timeFrom;exports.default = _default;
 
 /***/ }),
 
-/***/ 279:
-/*!**********************************************************************************************************!*\
-  !*** C:/Users/bili/Desktop/suibianlianlian/training/uni_modules/uni-popup/components/uni-popup/popup.js ***!
-  \**********************************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _message = _interopRequireDefault(__webpack_require__(/*! ./message.js */ 280));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
-// 定义 type 类型:弹出类型：top/bottom/center
-var config = {
-  // 顶部弹出
-  top: 'top',
-  // 底部弹出
-  bottom: 'bottom',
-  // 居中弹出
-  center: 'center',
-  // 消息提示
-  message: 'top',
-  // 对话框
-  dialog: 'center',
-  // 分享
-  share: 'bottom' };var _default =
-
-
-{
-  data: function data() {
-    return {
-      config: config,
-      popupWidth: 0,
-      popupHeight: 0 };
-
-  },
-  mixins: [_message.default],
-  computed: {
-    isDesktop: function isDesktop() {
-      return this.popupWidth >= 500 && this.popupHeight >= 500;
-    } },
-
-  mounted: function mounted() {var _this = this;
-    var fixSize = function fixSize() {var _uni$getSystemInfoSyn =
-
-
-
-
-      uni.getSystemInfoSync(),windowWidth = _uni$getSystemInfoSyn.windowWidth,windowHeight = _uni$getSystemInfoSyn.windowHeight,windowTop = _uni$getSystemInfoSyn.windowTop;
-      _this.popupWidth = windowWidth;
-      _this.popupHeight = windowHeight + windowTop;
-    };
-    fixSize();
-
-
-
-
-
-
-  } };exports.default = _default;
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
-
-/***/ }),
-
 /***/ 28:
 /*!**********************************************************************************************!*\
   !*** C:/Users/bili/Desktop/suibianlianlian/training/uview-ui/libs/function/colorGradient.js ***!
@@ -13211,37 +13872,6 @@ function colorToRgba(color) {var alpha = arguments.length > 1 && arguments[1] !=
   hexToRgb: hexToRgb,
   rgbToHex: rgbToHex,
   colorToRgba: colorToRgba };exports.default = _default;
-
-/***/ }),
-
-/***/ 280:
-/*!************************************************************************************************************!*\
-  !*** C:/Users/bili/Desktop/suibianlianlian/training/uni_modules/uni-popup/components/uni-popup/message.js ***!
-  \************************************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _default = {
-  created: function created() {
-    if (this.type === 'message') {
-      // 不显示遮罩
-      this.maskShow = false;
-      // 获取子组件对象
-      this.childrenMsg = null;
-    }
-  },
-  methods: {
-    customOpen: function customOpen() {
-      if (this.childrenMsg) {
-        this.childrenMsg.open();
-      }
-    },
-    customClose: function customClose() {
-      if (this.childrenMsg) {
-        this.childrenMsg.close();
-      }
-    } } };exports.default = _default;
 
 /***/ }),
 
@@ -19472,9 +20102,9 @@ if ( true && typeof module.exports === "object") {
         "169.254.66.255",
         "192.168.0.108"
     ],
-    "debugPort": 10423,
+    "debugPort": 14948,
     "initialLaunchType": "remote",
-    "servePort": 10424
+    "servePort": 14949
 }
 ; true && r && !r.code && (t.debugInfo = r), t.isReady = !1;var o = t.auth();return t.initUniCloud = o.getLoginState().then(function (e) {return e ? Promise.resolve() : o.signInAnonymously();}).then(function () {if ( true && t.debugInfo) {var _t$debugInfo = t.debugInfo,_e7 = _t$debugInfo.address,_n3 = _t$debugInfo.servePort;return function () {var _ref11 = _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee(e, t) {var n, _r7, _o;return _regenerator.default.wrap(function _callee$(_context) {while (1) {switch (_context.prev = _context.next) {case 0:_r7 = 0;case 1:if (!(_r7 < e.length)) {_context.next = 11;break;}_o = e[_r7];_context.next = 5;return fe(_o, t);case 5:if (!_context.sent) {_context.next = 8;break;}n = _o;return _context.abrupt("break", 11);case 8:_r7++;_context.next = 1;break;case 11:return _context.abrupt("return", { address: n, port: t });case 12:case "end":return _context.stop();}}}, _callee);}));return function (_x3, _x4) {return _ref11.apply(this, arguments);};}()(_e7, _n3);}return Promise.resolve();}).then(function () {var _ref12 = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {},e = _ref12.address,n = _ref12.port;if (e) t.localAddress = e, t.localPort = n;else if (t.debugInfo) {var _e8 =  false ? undefined : "warn",_n4 = console[_e8];"remote" === t.debugInfo.initialLaunchType ? (t.debugInfo.forceRemote = !0, _n4("当前客户端和HBuilderX不在同一局域网下（或其他网络原因无法连接HBuilderX），uniCloud本地调试服务不对当前客户端生效。\n- 如果不使用uniCloud本地调试服务，请直接忽略此信息。\n- 如需使用uniCloud本地调试服务，请将客户端与主机连接到同一局域网下并重新运行到客户端。\n- 如果在HBuilderX开启的状态下切换过网络环境，请重启HBuilderX后再试")) : _n4("无法连接uniCloud本地调试服务，请检查当前客户端是否与主机在同一局域网下。\n- 如需使用uniCloud本地调试服务，请将客户端与主机连接到同一局域网下并重新运行到客户端。\n- 如果在HBuilderX开启的状态下切换过网络环境，请重启HBuilderX后再试");}}).then(function () {return new Promise(function (e) { false ? (undefined) : setTimeout(function () {u = uni.getSystemInfoSync().platform, c = uni.getStorageSync("__DC_CLOUD_UUID") || l(32), e();}, 0);});}).then(function () {t.isReady = !0;}), ie(t), function (e) {var t = e.uploadFile;e.uploadFile = function (e) {var _this10 = this;var n;return n = this.isReady ? Promise.resolve() : this.initUniCloud, n.then(function () {return t.call(_this10, e);});};var n = e.uploadFile;e.uploadFile = function (e) {return s(n).call(this, e);};}(t), function (e) {e.database = function () {if (this._database) return this._database;var t = {},n = {};var r = /*#__PURE__*/function () {function r(e, t, n) {_classCallCheck(this, r);this.content = e, this.prevStage = t, this.actionName = n;}_createClass(r, [{ key: "toJSON", value: function toJSON() {var e = this;var t = [e.content];for (; e.prevStage;) {e = e.prevStage, t.push(e.content);}return { $db: t.reverse().map(function (e) {return { $method: e.$method, $param: e.$param };}) };} }, { key: "get", value: function get() {return this._send("get", Array.from(arguments));} }, { key: "add", value: function add() {return this._send("add", Array.from(arguments));} }, { key: "remove", value: function remove() {return this._send("remove", Array.from(arguments));} }, { key: "update", value: function update() {return this._send("update", Array.from(arguments));} }, { key: "end", value: function end() {return this._send("end", Array.from(arguments));} }, { key: "set", value: function set() {throw new Error("客户端禁止使用set方法");} }, { key: "_send", value: function _send(r, o) {var s = this.toJSON();return s.$db.push({ $method: r, $param: o }), e.callFunction({ name: "DCloud-clientDB", data: { action: this.actionName, command: s } }).then(function (e) {var _e$result = e.result,r = _e$result.code,o = _e$result.message,s = _e$result.token,i = _e$result.tokenExpired;return r ? Promise.reject(new ue(o, r)) : (s && i && t.refreshToken && t.refreshToken.forEach(function (e) {e({ token: s, tokenExpired: i });}), s && i && n.refreshToken && n.refreshToken.forEach(function (e) {e({ token: s, tokenExpired: i });}), Promise.resolve(e));}).catch(function (e) {var t = new ue(e.message, e.code || "SYSTEM_ERROR");return n.error && n.error.forEach(function (e) {e(t);}), /fc_function_not_found|FUNCTION_NOT_FOUND/g.test(e.message) && console.warn("clientDB未初始化，请在web控制台保存一次schema以开启clientDB"), Promise.reject(e);});} }, { key: "useAggregate", get: function get() {var e = this,t = !1;for (; e.prevStage;) {e = e.prevStage;var _n5 = e.content.$method;if ("aggregate" === _n5 || "pipeline" === _n5) {t = !0;break;}}return t;} }, { key: "count", get: function get() {if (!this.useAggregate) return function () {return this._send("count", Array.from(arguments));};var e = this;return function () {return i({ $method: "count", $param: le(Array.from(arguments)) }, e, e.actionName);};} }]);return r;}();var o = ["db.Geo", "db.command", "command.aggregate"];function s(e, t) {return o.indexOf("".concat(e, ".").concat(t)) > -1;}function i(e, t, n) {return ce(new r(e, t, n), { get: function get(e, t) {var r = "db";return e && e.content && (r = e.content.$method), s(r, t) ? i({ $method: t }, e, n) : function () {return i({ $method: t, $param: le(Array.from(arguments)) }, e, n);};} });}function a(_ref13) {var e = _ref13.path,t = _ref13.method;return /*#__PURE__*/function () {function _class2() {_classCallCheck(this, _class2);this.param = Array.from(arguments);}_createClass(_class2, [{ key: "toJSON", value: function toJSON() {return { $newDb: [].concat(_toConsumableArray(e.map(function (e) {return { $method: e };})), [{ $method: t, $param: this.param }]) };} }]);return _class2;}();}var c = { auth: { on: function on(e, n) {t[e] = t[e] || [], t[e].indexOf(n) > -1 || t[e].push(n);}, off: function off(e, n) {t[e] = t[e] || [];var r = t[e].indexOf(n);-1 !== r && t[e].splice(r, 1);} }, on: function on(e, t) {n[e] = n[e] || [], n[e].indexOf(t) > -1 || n[e].push(t);}, off: function off(e, t) {n[e] = n[e] || [];var r = n[e].indexOf(t);-1 !== r && n[e].splice(r, 1);}, env: ce({}, { get: function get(e, t) {return { $env: t };} }), action: function action(e) {return ce({}, { get: function get(t, n) {return s("db", n) ? i({ $method: n }, null, e) : function () {return i({ $method: n, $param: le(Array.from(arguments)) }, null, e);};} });}, Geo: ce({}, { get: function get(e, t) {return a({ path: ["Geo"], method: t });} }), getCloudEnv: function getCloudEnv(e) {if ("string" != typeof e || !e.trim()) throw new Error("getCloudEnv参数错误");return { $env: e.replace("$cloudEnv_", "") };}, get serverDate() {return a({ path: [], method: "serverDate" });}, get RegExp() {return a({ path: [], method: "RegExp" });} },u = ce(c, { get: function get(e, t) {return s("db", t) ? i({ $method: t }) : function () {return i({ $method: t, $param: le(Array.from(arguments)) });};} });return this._database = u, u;};}(t), function (e) {e.getCurrentUserInfo = he, e.chooseAndUploadFile = s(pe.initChooseAndUploadFile(e));}(t), t.init = this.init, t;} }]);return _class;}())();{var _e9 = {};if (1 === [{"provider":"aliyun","spaceName":"training","spaceId":"bf26be98-8ae4-4be7-b619-966a9a2ce989","clientSecret":"uHUIfmDi5O8FrTZttkzfZQ==","endpoint":"https://api.bspapp.com"}].length) _e9 = [{"provider":"aliyun","spaceName":"training","spaceId":"bf26be98-8ae4-4be7-b619-966a9a2ce989","clientSecret":"uHUIfmDi5O8FrTZttkzfZQ==","endpoint":"https://api.bspapp.com"}][0], de = de.init(_e9);else {var _e10 = ["auth", "callFunction", "uploadFile", "deleteFile", "getTempFileURL", "downloadFile", "database", "getCurrentUSerInfo"],_t2 = [{"provider":"aliyun","spaceName":"training","spaceId":"bf26be98-8ae4-4be7-b619-966a9a2ce989","clientSecret":"uHUIfmDi5O8FrTZttkzfZQ==","endpoint":"https://api.bspapp.com"}].length > 0 ? "应用有多个服务空间，请通过uniCloud.init方法指定要使用的服务空间" : "应用未关联服务空间，请在cloudfunctions目录右键关联服务空间";_e10.forEach(function (e) {de[e] = function () {return console.error(_t2), Promise.reject(new i({ code: "SYS_ERR", message: _t2 }));};});}Object.assign(de, { get mixinDatacom() {return e = de, { props: { localdata: { type: Array, default: function _default() {return [];} }, options: { type: [Object, Array], default: function _default() {return {};} }, collection: { type: String, default: "" }, action: { type: String, default: "" }, field: { type: String, default: "" }, orderby: { type: String, default: "" }, where: { type: [String, Object], default: "" }, pageData: { type: String, default: "add" }, pageCurrent: { type: Number, default: 1 }, pageSize: { type: Number, default: 20 }, getcount: { type: [Boolean, String], default: !1 }, gettree: { type: [Boolean, String], default: !1 }, gettreepath: { type: [Boolean, String], default: !1 }, startwith: { type: String, default: "" }, limitlevel: { type: Number, default: 10 }, groupby: { type: String, default: "" }, groupField: { type: String, default: "" }, distinct: { type: [Boolean, String], default: !1 }, manual: { type: Boolean, default: !1 } }, data: function data() {return { mixinDatacomLoading: !1, mixinDatacomHasMore: !1, mixinDatacomResData: [], mixinDatacomErrorMessage: "", mixinDatacomPage: {} };}, created: function created() {var _this11 = this;this.mixinDatacomPage = { current: this.pageCurrent, size: this.pageSize, count: 0 }, this.$watch(function () {var e = [];return ["pageCurrent", "pageSize", "localdata", "collection", "action", "field", "orderby", "where", "getont", "getcount", "gettree", "groupby", "groupField", "distinct"].forEach(function (t) {e.push(_this11[t]);}), e;}, function (e, t) {var n = !1;var r = [];for (var _o2 = 2; _o2 < e.length; _o2++) {e[_o2] !== t[_o2] && (r.push(e[_o2]), n = !0);}e[0] !== t[0] && (_this11.mixinDatacomPage.current = _this11.pageCurrent), _this11.mixinDatacomPage.size = _this11.pageSize, _this11.onMixinDatacomPropsChange(n, r);});}, methods: { onMixinDatacomPropsChange: function onMixinDatacomPropsChange(e, t) {}, mixinDatacomEasyGet: function mixinDatacomEasyGet() {var _this12 = this;var _ref14 = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {},_ref14$getone = _ref14.getone,e = _ref14$getone === void 0 ? !1 : _ref14$getone,t = _ref14.success,n = _ref14.fail;this.mixinDatacomLoading || (this.mixinDatacomLoading = !0, this.mixinDatacomErrorMessage = "", this.mixinDatacomGet().then(function (n) {_this12.mixinDatacomLoading = !1;var _n$result = n.result,r = _n$result.data,o = _n$result.count;_this12.getcount && (_this12.mixinDatacomPage.count = o), _this12.mixinDatacomHasMore = r.length < _this12.pageSize;var s = e ? r.length ? r[0] : void 0 : r;_this12.mixinDatacomResData = s, t && t(s);}).catch(function (e) {_this12.mixinDatacomLoading = !1, _this12.mixinDatacomErrorMessage = e, n && n(e);}));}, mixinDatacomGet: function mixinDatacomGet() {var t = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};var n = e.database();var r = t.action || this.action;r && (n = n.action(r));var o = t.collection || this.collection;n = n.collection(o);var s = t.where || this.where;s && Object.keys(s).length && (n = n.where(s));var i = t.field || this.field;i && (n = n.field(i));var a = t.groupby || this.groupby;a && (n = n.groupBy(a));var c = t.groupField || this.groupField;c && (n = n.groupField(c)), !0 === (void 0 !== t.distinct ? t.distinct : this.distinct) && (n = n.distinct());var u = t.orderby || this.orderby;u && (n = n.orderBy(u));var l = void 0 !== t.pageCurrent ? t.pageCurrent : this.mixinDatacomPage.current,h = void 0 !== t.pageSize ? t.pageSize : this.mixinDatacomPage.size,p = void 0 !== t.getcount ? t.getcount : this.getcount,f = void 0 !== t.gettree ? t.gettree : this.gettree,d = void 0 !== t.gettreepath ? t.gettreepath : this.gettreepath,g = { getCount: p },y = { limitLevel: void 0 !== t.limitlevel ? t.limitlevel : this.limitlevel, startWith: void 0 !== t.startwith ? t.startwith : this.startwith };return f && (g.getTree = y), d && (g.getTreePath = y), n = n.skip(h * (l - 1)).limit(h).get(g), n;} } };var e;} });}var ge = de;var _default2 = ge;exports.default = _default2;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../../../../../webpack/buildin/global.js */ 3), __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))

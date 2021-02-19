@@ -95,8 +95,8 @@ __webpack_require__.r(__webpack_exports__);
 var components
 try {
   components = {
-    robinEditor: function() {
-      return __webpack_require__.e(/*! import() | uni_modules/robin-editor/components/robin-editor/robin-editor */ "uni_modules/robin-editor/components/robin-editor/robin-editor").then(__webpack_require__.bind(null, /*! @/uni_modules/robin-editor/components/robin-editor/robin-editor.vue */ 246))
+    uLine: function() {
+      return __webpack_require__.e(/*! import() | uview-ui/components/u-line/u-line */ "uview-ui/components/u-line/u-line").then(__webpack_require__.bind(null, /*! @/uview-ui/components/u-line/u-line.vue */ 246))
     }
   }
 } catch (e) {
@@ -154,6 +154,38 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(uni, uniCloud) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0; //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -252,6 +284,21 @@ var _default =
 
       //马上要到明天的时间戳
       this.cacheTime = curDate.getTime();
+    },
+
+    onEditorReady: function onEditorReady() {var _this2 = this;
+
+
+
+
+
+      uni.createSelectorQuery().select('#editor').context(function (res) {
+        _this2.editorCtx = res.context;
+      }).exec();
+
+    },
+    undo: function undo() {
+      this.editorCtx.undo();
     } } };exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"], __webpack_require__(/*! ./node_modules/@dcloudio/vue-cli-plugin-uni/packages/uni-cloud/dist/index.js */ 8)["default"]))
 

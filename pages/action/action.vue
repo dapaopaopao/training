@@ -255,20 +255,31 @@
 	}
 	
 	.item-menu-name {
+		display: flex;
+		justify-content: center;
+		align-items: center;
 		font-weight: normal;
 		font-size: 24rpx;
 		color: $u-main-color;
+		width: 200rpx;
+		margin-top: 10rpx;
+		margin-bottom: 10rpx;
 	}
 	
 	.item-container {
 		display: flex;
 		flex-wrap: wrap;
-		flex-direction: column;
+		//flex-direction: column;
+		
 		
 	}
 	
 	.item-container-2{
+		margin-top: 30rpx;
 		display: flex;
+		width: 50%;
+		justify-content: center;
+		align-items: center;
 	}
 	
 	.thumb-box {

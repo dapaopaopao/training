@@ -10,7 +10,7 @@
 		</view>
 		<view  class="wrap-taobao">
 			<view class="taobao" v-if="showActionDetail" v-for="(item,index) in riliDetail" :key="index" >
-				<view class="title">
+				<view v-if="item.kind" class="title">
 					<view class="left">
 						<!-- <image class="buddha" src="https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=1975388697,1068670603&fm=26&gp=0.jpg" mode="aspectFill"></image> -->
 						<view class="store">{{item.name}}</view>
@@ -18,7 +18,18 @@
 					<!-- <view class="entrance" @click.stop="addNewGroup(item)">新增一组</view>
 					<view class="entrance" @click.stop="deleteAction(index)">删除</view> -->
 					<view :class=""  v-for="(item1,index1) in item.group" :key='index1'>
-						{{item1.weight}}{{item1.unit}} × {{item1.num}}次
+						时间：{{item1.restTime}}
+					</view>	
+				</view>
+				<view v-else class="title">
+					<view class="left">
+						<!-- <image class="buddha" src="https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=1975388697,1068670603&fm=26&gp=0.jpg" mode="aspectFill"></image> -->
+						<view class="store">{{item.name}}</view>
+					</view>
+					<!-- <view class="entrance" @click.stop="addNewGroup(item)">新增一组</view>
+					<view class="entrance" @click.stop="deleteAction(index)">删除</view> -->
+					<view :class=""  v-for="(item1,index1) in item.group" :key='index1'>
+						{{item1.weight}} {{item1.unit}} × {{item1.num}} 次
 					</view>	
 				</view>
 			</view>
@@ -32,16 +43,19 @@
 					<view class="title">
 						<view class="left">
 							<view class="store">
-								蛋白质:{{foodDetail.protein}}克
+								蛋白质: {{foodDetail.protein}} 克
 							</view>
 							<view class="store">
-								碳水:{{foodDetail.carbohydrate}}克
+								碳水: {{foodDetail.carbohydrate}} 克
 							</view>
 							<view class="store">
-								脂肪:{{foodDetail.fat}}克
+								脂肪: {{foodDetail.fat}} 克
 							</view>
 							<view class="store">
-								热量:{{foodDetail.heat}}kcal
+								热量: {{foodDetail.heat}} kcal
+							</view>
+							<view class="store">
+								目标热量: {{foodDetail.targetHeat}} kcal
 							</view>
 						</view>
 						
@@ -55,7 +69,9 @@
 			</view>	
 			<view class="wrap-taobao">
 				<view class="diary" v-if="showDiaryDetail">
-					<rich-text :nodes="diaryDetail.content"></rich-text>
+					<view class="">
+						{{diaryDetail.content}}
+					</view>
 				</view>
 			</view>
 			

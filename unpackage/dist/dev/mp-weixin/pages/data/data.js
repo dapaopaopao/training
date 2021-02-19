@@ -208,6 +208,20 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 var _uCharts = _interopRequireDefault(__webpack_require__(/*! ../../u-charts/u-charts/u-charts.js */ 56));
 var _calendar = _interopRequireDefault(__webpack_require__(/*! ../../components/tale-calendar/calendar.vue */ 57));
 
@@ -235,7 +249,13 @@ var canvaPie = null;var _default =
         series: [{
           name: '热量（Kcal）',
           data: [],
-          color: '#000000' }] },
+          color: '#000000' },
+
+        {
+          name: '目标热量（Kcal）',
+          data: [],
+          color: '#19be6b' }] },
+
 
 
       realColumnDate:
@@ -255,6 +275,7 @@ var canvaPie = null;var _default =
     _self = this;
     this.cWidth = uni.upx2px(750);
     this.cHeight = uni.upx2px(500);
+
     this.getColumnData();
     this.getLineDate();
     this.getServerData();
@@ -535,21 +556,25 @@ var canvaPie = null;var _default =
     },
 
     getLineDate: function getLineDate() {
-      var data = this.$store.state.userInfo.food.map(function (item, index) {
-        if (item.date > new Date().getTime() - 86400000 * 7) {
-          return item.heat;
-        }
+      var heat = this.$store.state.userInfo.food.filter(function (item) {return item.date > new Date().getTime() - 86400000 * 7;}).map(function (item, index) {return item.heat;});
+      console.log('heat', heat);
+      var targetHeat = this.$store.state.userInfo.food.filter(function (item) {return item.date > new Date().getTime() - 86400000 * 7;}).map(function (item, index) {return item.targetHeat;});
+      console.log('targetHeat', targetHeat);
+      var time = this.$store.state.userInfo.food.filter(function (item) {return item.date > new Date().getTime() - 86400000 * 7;}).map(function (item, index) {
 
-      });
-      var time = this.$store.state.userInfo.food.map(function (item, index) {
-        var time = new Date(item.date);
-        var m = time.getMonth() + 1;
-        var d = time.getDate();
+        var itemTime = new Date(item.date);
+        var m = itemTime.getMonth() + 1;
+        var d = itemTime.getDate();
         var pushTime = m + '-' + d;
         return pushTime;
+
+
       });
+      console.log('time', time);
       this.realLineDate.categories = time;
-      this.realLineDate.series[0].data = data;
+      this.realLineDate.series[0].data = heat;
+      this.realLineDate.series[1].data = targetHeat;
+      console.log(this.realLineDate);
     } } };exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 

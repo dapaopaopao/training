@@ -292,6 +292,28 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 var _vuex = __webpack_require__(/*! vuex */ 17);function ownKeys(object, enumerableOnly) {var keys = Object.keys(object);if (Object.getOwnPropertySymbols) {var symbols = Object.getOwnPropertySymbols(object);if (enumerableOnly) symbols = symbols.filter(function (sym) {return Object.getOwnPropertyDescriptor(object, sym).enumerable;});keys.push.apply(keys, symbols);}return keys;}function _objectSpread(target) {for (var i = 1; i < arguments.length; i++) {var source = arguments[i] != null ? arguments[i] : {};if (i % 2) {ownKeys(Object(source), true).forEach(function (key) {_defineProperty(target, key, source[key]);});} else if (Object.getOwnPropertyDescriptors) {Object.defineProperties(target, Object.getOwnPropertyDescriptors(source));} else {ownKeys(Object(source)).forEach(function (key) {Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key));});}}return target;}function _defineProperty(obj, key, value) {if (key in obj) {Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true });} else {obj[key] = value;}return obj;}var cmdProgress = function cmdProgress() {__webpack_require__.e(/*! require.ensure | components/cmd-progress/cmd-progress */ "components/cmd-progress/cmd-progress").then((function () {return resolve(__webpack_require__(/*! ../../components/cmd-progress/cmd-progress.vue */ 193));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default =
 
 
@@ -324,20 +346,71 @@ var _vuex = __webpack_require__(/*! vuex */ 17);function ownKeys(object, enumera
       showTime: true,
 
 
+
+
+      //有氧计时器数组
+      youyangList: [],
+      //有氧计时器
+      hourYouyang: "00",
+      minuteYouyang: "00",
+      secondYouyang: "00",
+      totalCountYouyang: 0,
+      timerYouyang: null,
+      showTimeYouyang: true,
+
+
       showModel: false };
 
   },
   components: {
     cmdProgress: cmdProgress },
 
-  onShow: function onShow() {
+  onLoad: function onLoad() {
+
+  },
+  onShow: function onShow() {var _this2 = this;
     //console.log(this.$store.state.userInfo.action)
+    //this.youyangList.length=0
+    this.actionList.forEach(function (item, index) {
+      if (item.hasOwnProperty('kind')) {
+        var temp = ['00', '00', '00'];
+        if (item.restTime) {
+          temp = item.restTime.split(':');
+        }
+
+        _this2.$set(_this2.youyangList, index, {
+          hourYouyang: temp[0],
+          minuteYouyang: temp[1],
+          secondYouyang: temp[2],
+          totalCountYouyang: 0,
+          timerYouyang: null,
+          showTimeYouyang: true,
+          showNum: function showNum(num) {
+            if (num < 10) {
+              return '0' + num;
+            }
+            return num;
+          } });
+
+      }
+    });
+
+    console.log(uni.getStorageSync('trainingTime'));
+    if (uni.getStorageSync('cacheTime') > new Date().getTime()) {
+      if (uni.getStorageSync('trainingTime')) {
+        var temp = uni.getStorageSync('trainingTime').split(':');
+        this.hour = temp[0];
+        this.minute = temp[1];
+        this.second = temp[2];
+      }
+    } else {
+      uni.removeStorageSync('trainingTime');
+    }
   },
   onHide: function onHide() {
-    this.getCacheTime();
-    uni.setStorageSync('actionList', this.$store.state.actionList);
-    uni.setStorageSync('cacheTime', this.cacheTime);
-
+    // this.getCacheTime()
+    // uni.setStorageSync('actionList',this.$store.state.actionList)
+    // uni.setStorageSync('cacheTime',this.cacheTime)
   },
   computed: _objectSpread(_objectSpread({},
   (0, _vuex.mapState)(['actionList', 'part'])), {}, {
@@ -348,6 +421,13 @@ var _vuex = __webpack_require__(/*! vuex */ 17);function ownKeys(object, enumera
       return this.sumCountDown - this.countDownNum;
     } }),
 
+  watch: {
+    actionList: function actionList() {
+      this.getCacheTime();
+      uni.setStorageSync('actionList', this.$store.state.actionList);
+      uni.setStorageSync('cacheTime', this.cacheTime);
+
+    } },
 
   methods: {
     addNewGroup: function addNewGroup(item) {
@@ -356,11 +436,15 @@ var _vuex = __webpack_require__(/*! vuex */ 17);function ownKeys(object, enumera
       item.group.length > 0 ? item.group.push(newGroup) : item.group.push(this.group);
     },
 
-    deleteAction: function deleteAction(index) {
-
+    deleteAction: function deleteAction(item, index) {
+      if (item.hasOwnProperty('kind')) {
+        this.youyangList.splice(index, 1);
+      }
+      console.log(this.youyangList);
       this.actionList.splice(index, 1);
       if (this.actionList.length === 0) {
-        this.part = [];
+        this.part.length = 0;
+        //console.log(this.part)
       }
     },
 
@@ -374,21 +458,54 @@ var _vuex = __webpack_require__(/*! vuex */ 17);function ownKeys(object, enumera
       unit = unit === 'kg' ? 'lb' : 'kg';
     },
 
-    countDown: function countDown(item, e) {var _this2 = this;
+    countDown: function countDown(item, e) {var _this3 = this;
       //console.log(item,e)
       this.currentGroup = item;
       this.countDownNum = item.time;
       this.sumCountDown = item.time;
 
       this.timer = setInterval(function () {
-        if (_this2.countDownNum > 0) {
-          _this2.countDownNum--;
+
+        if (_this3.countDownNum > 0) {
+          _this3.countDownNum--;
           //console.log(this.countDownNum)
         } else {
-          clearInterval(_this2.timer);
+          uni.vibrateLong({
+            success: function success() {
+              console.log('success');
+            } });
+
+          clearInterval(_this3.timer);
         }}, 1000);
       this.showCountDown = true;
     },
+    endCountDown: function endCountDown() {
+      this.showCountDown = false;
+      clearInterval(this.timer);
+      this.currentGroup.restTime = this.restTime;
+      this.currentGroup = null;
+    },
+    countDownYouYang: function countDownYouYang(item, index) {
+      this.currentGroup = item;
+      var _this = this.youyangList[index];
+      var count = 0;
+      _this.timerYouyang = setInterval(function () {
+        count++;
+        _this.secondYouyang = _this.showNum(count % 60);
+        _this.hourYouyang = _this.showNum(parseInt(count / 60 / 60));
+        _this.minuteYouyang = _this.showNum(parseInt(count / 60) % 60);
+        _this.totalCountYouyang = count;
+      }, 1000);
+      _this.showTimeYouyang = false;
+    },
+
+    endCountDownYouYang: function endCountDownYouYang(item, index) {
+      this.youyangList[index].showTimeYouyang = true;
+      clearInterval(this.youyangList[index].timerYouyang);
+      this.currentGroup.restTime = "".concat(this.youyangList[index].hourYouyang, ":").concat(this.youyangList[index].minuteYouyang, ":").concat(this.youyangList[index].secondYouyang);
+      this.currentGroup = null;
+    },
+
 
     addTime: function addTime() {
       this.countDownNum += 10;
@@ -400,12 +517,7 @@ var _vuex = __webpack_require__(/*! vuex */ 17);function ownKeys(object, enumera
       this.sumCountDown -= 10;
     },
 
-    endCountDown: function endCountDown() {
-      this.showCountDown = false;
-      clearInterval(this.timer);
-      this.currentGroup.restTime = this.restTime;
-      this.currentGroup = null;
-    },
+
 
     showGroup: function showGroup(index) {
       var f = this.showGroupList[index] = !this.showGroupList[index];
@@ -425,7 +537,10 @@ var _vuex = __webpack_require__(/*! vuex */ 17);function ownKeys(object, enumera
 
 
     //传给后台
-    addAction: function addAction() {var _this3 = this;
+    addAction: function addAction() {var _this4 = this;
+      this.getCacheTime();
+      uni.setStorageSync('actionList', this.$store.state.actionList);
+      uni.setStorageSync('cacheTime', this.cacheTime);
       // uni.showLoading({
       // 	title: '处理中...'
       // })
@@ -442,8 +557,8 @@ var _vuex = __webpack_require__(/*! vuex */ 17);function ownKeys(object, enumera
 
       then(function (res) {
         //uni.hideLoading()
-        _this3.showModel = false;
-        clearInterval(_this3.timer);
+        _this4.showModel = false;
+        clearInterval(_this4.timer);
         uni.showModal({
           content: "\u4FDD\u5B58\u6210\u529F",
           showCancel: false });
@@ -488,6 +603,10 @@ var _vuex = __webpack_require__(/*! vuex */ 17);function ownKeys(object, enumera
     endTime: function endTime() {
       this.showTime = true;
       clearInterval(this.timerSum);
+
+      this.getCacheTime();
+      uni.setStorageSync('trainingTime', "".concat(this.hour, ":").concat(this.minute, ":").concat(this.second));
+      uni.setStorageSync('cacheTime', this.cacheTime);
     },
 
     showNum: function showNum(num) {

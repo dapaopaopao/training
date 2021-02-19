@@ -17,7 +17,7 @@
   -webkit-box-direction: normal;
   -webkit-flex-direction: column;
           flex-direction: column;
-  padding-top: 180rpx;
+  padding-top: 250rpx;
 }
 .wrap .wrap-1.data-v-42b55fc6 {
   padding: 20rpx;

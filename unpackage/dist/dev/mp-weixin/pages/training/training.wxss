@@ -220,6 +220,17 @@
   font-size: 20rpx;
   color: #82848a;
 }
+.taobao .ticket .use.data-v-c796e874 {
+  height: auto;
+  padding: 0 20rpx;
+  font-size: 30rpx;
+  border-radius: 40rpx;
+  color: #ffffff !important;
+  background-color: #ff9900 !important;
+  line-height: 50rpx;
+  color: #758ea5;
+  margin-left: 20rpx;
+}
 .taobao .ticket .right.data-v-c796e874 {
   width: 30%;
   padding: 20rpx 20rpx;

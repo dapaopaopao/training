@@ -2,6 +2,7 @@
   "navigationBarTitleText": "饮食",
   "usingComponents": {
     "u-button": "/uview-ui/components/u-button/u-button",
+    "u-input": "/uview-ui/components/u-input/u-input",
     "u-number-box": "/uview-ui/components/u-number-box/u-number-box"
   }
 }

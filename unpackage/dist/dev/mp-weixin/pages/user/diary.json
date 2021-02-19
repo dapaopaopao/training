@@ -1,6 +1,6 @@
 {
   "navigationBarTitleText": "",
   "usingComponents": {
-    "robin-editor": "/uni_modules/robin-editor/components/robin-editor/robin-editor"
+    "u-line": "/uview-ui/components/u-line/u-line"
   }
 }

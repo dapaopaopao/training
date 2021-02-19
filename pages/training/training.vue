@@ -29,11 +29,33 @@
 					<image class="buddha" :src="item.icon" mode="aspectFill"></image>
 					<view class="store">{{item.name}}</view>
 				</view>
-				<view class="entrance" @click.stop="addNewGroup(item)">新增一组</view>
-				<view class="entrance" @click.stop="deleteAction(index)">删除</view>
-
+				<view v-if="!item.kind" class="entrance" @click.stop="addNewGroup(item)">新增一组</view>
+				<view class="entrance" @click.stop="deleteAction(item,index)" style="margin-right: 25rpx;">删除</view>
 			</view>
-			<view :class="['ticket',showGroupList[index]?'active':'']"  v-for="(item1,index1) in item.group" :key='index1'>
+			
+			
+			<view v-if="item.kind" :class="['ticket']" >
+				<view class="left" style="width: 100%;border-right: dashed 0rpx rgb(224, 215, 211);">
+					<!-- <view class="picture">
+						{{index2+1}}
+					</view> -->
+					
+						<view class="" style="display: flex;justify-content: center;align-items: center;width: 600rpx;">
+							<u-icon  v-if="youyangList[index].showTimeYouyang" name="clock" size="50" @click="countDownYouYang(item,index)"></u-icon>
+							<u-icon v-if="!youyangList[index].showTimeYouyang" name="clock-fill" size="50" @click="endCountDownYouYang(item,index)"></u-icon>
+							<view style="font-size: 28rpx;margin-left: 20rpx;">{{youyangList[index].hourYouyang}}:{{youyangList[index].minuteYouyang}}:{{youyangList[index].secondYouyang}}</view>
+						</view>
+					
+				</view>
+				
+				
+				<!-- <view class="right">
+					<view class="use immediate-use" :round="true" @click="deleteGroup(index,index1)">删除</view>
+				</view> -->
+			</view>
+			
+			
+			<view v-else :class="['ticket',showGroupList[index]?'active':'']"  v-for="(item1,index1) in item.group" :key='index1'>
 				<view class="left">
 					<view class="picture">
 						{{index1+1}}
@@ -57,7 +79,7 @@
 					</view>
 				</view>
 				<view class="right">
-					<view class="use immediate-use" @click="countDown(item1,$event)" disaled='false'>
+					<view  class="use immediate-use" @click="countDown(item1,$event)" disaled='false'>
 						休息
 					</view>
 					<view class="use immediate-use" :round="true" @click="deleteGroup(index,index1)">删除</view>
@@ -70,8 +92,8 @@
 				<view v-if="showCountDown" class="mask">
 					<view class="countDown"  @tap.stop>
 						<!-- <u-circle-progress active-color="#2979ff"  width="400" bg-color="opacity"  :percent="countDownNumPercent"> -->
-						<cmd-progress type="circle" :percent="countDownNumPercent"  :showInfo="false" :width="200" ></cmd-progress>
-							<view class="u-progress-content" style="position: absolute;top: 30%;background-color: white;border-radius: 50%;height: 360rpx;width: 360rpx;">
+						<cmd-progress type="circle" :percent="countDownNumPercent"  :showInfo="false" :width="200"  style="background-color: white;border-radius: 50%;"></cmd-progress>
+							<view class="u-progress-content" style="position: absolute;top: 45%;">
 								<view class="">
 									休息时间倒计时
 								</view>
@@ -128,20 +150,71 @@
 				showTime:true,
 				
 				
+				
+				
+				//有氧计时器数组
+				youyangList:[],
+				//有氧计时器
+				hourYouyang:"00",
+				minuteYouyang:"00",
+				secondYouyang:"00",
+				totalCountYouyang:0,
+				timerYouyang:null,
+				showTimeYouyang:true,
+				
+				
 				showModel:false
 			}
 		},
 		components:{
 			cmdProgress
 		},
+		onLoad(){
+			
+		},
 		onShow(){
 			//console.log(this.$store.state.userInfo.action)
+			//this.youyangList.length=0
+			this.actionList.forEach((item,index)=>{
+				if(item.hasOwnProperty('kind')){
+					let temp = ['00','00','00']
+					if(item.restTime){
+						temp = item.restTime.split(':')
+					}
+					
+					this.$set(this.youyangList,index,{
+												hourYouyang:temp[0],
+												minuteYouyang:temp[1] ,
+												secondYouyang:temp[2] ,
+												totalCountYouyang:0,
+												timerYouyang:null,
+												showTimeYouyang:true,
+												showNum(num) {
+													if (num < 10) {
+														return '0' + num
+													}
+													return num
+												},
+											})
+				}
+			})
+			
+			console.log(uni.getStorageSync('trainingTime'))
+			if(uni.getStorageSync('cacheTime')>new Date().getTime()){
+				if(uni.getStorageSync('trainingTime')){
+					let temp = uni.getStorageSync('trainingTime').split(':')
+					this.hour= temp[0]
+					this.minute =temp[1]
+					this.second= temp[2]
+				}
+			}else{
+				uni.removeStorageSync('trainingTime')
+			}
 		},
 		onHide(){
-			this.getCacheTime()
-			uni.setStorageSync('actionList',this.$store.state.actionList)
-			uni.setStorageSync('cacheTime',this.cacheTime)
-			
+			// this.getCacheTime()
+			// uni.setStorageSync('actionList',this.$store.state.actionList)
+			// uni.setStorageSync('cacheTime',this.cacheTime)
 		},
 		computed:{
 			...mapState(['actionList','part']),
@@ -152,7 +225,14 @@
 				return this.sumCountDown-this.countDownNum
 			}
 		},
-		
+		watch:{
+			actionList(){
+				this.getCacheTime()
+				uni.setStorageSync('actionList',this.$store.state.actionList)
+				uni.setStorageSync('cacheTime',this.cacheTime)
+				
+			}
+		},
 		methods:{
 			addNewGroup(item){
 				let newGroup = JSON.parse(JSON.stringify(item.group[item.group.length-1])) 
@@ -160,11 +240,15 @@
 				item.group.length>0? item.group.push(newGroup):item.group.push(this.group)
 			},
 			
-			deleteAction(index){
-				
+			deleteAction(item,index){
+				if(item.hasOwnProperty('kind')){
+					this.youyangList.splice(index,1)
+				}
+				console.log(this.youyangList)
 				this.actionList.splice(index,1)
 				if(this.actionList.length===0){
-					this.part=[]
+					this.part.length=0
+					//console.log(this.part)
 				}
 			},
 			
@@ -185,14 +269,47 @@
 				this.sumCountDown=item.time
 				
 				this.timer = setInterval(()=>{
+					
 					if(this.countDownNum>0){
 						this.countDownNum--
 						//console.log(this.countDownNum)
 					}else{
+						uni.vibrateLong({
+						    success: function () {
+						        console.log('success');
+						    }
+						});
 						clearInterval(this.timer)
 					}},1000)
 				this.showCountDown=true
 			},
+			endCountDown(){
+				this.showCountDown=false
+				clearInterval(this.timer)
+				this.currentGroup.restTime=this.restTime
+				this.currentGroup=null
+			},
+			countDownYouYang(item,index){
+				this.currentGroup =item
+				let _this = this.youyangList[index];
+				let count = 0;
+				_this.timerYouyang = setInterval(function(){
+					count++;
+					_this.secondYouyang = _this.showNum(count % 60);
+					_this.hourYouyang = _this.showNum(parseInt(count / 60 / 60));
+					_this.minuteYouyang = _this.showNum(parseInt(count / 60) % 60);
+					_this.totalCountYouyang = count;
+				},1000);
+				_this.showTimeYouyang = false;
+			},
+			
+			endCountDownYouYang(item,index){
+				this.youyangList[index].showTimeYouyang = true;
+				clearInterval(this.youyangList[index].timerYouyang);
+				this.currentGroup.restTime = `${this.youyangList[index].hourYouyang}:${this.youyangList[index].minuteYouyang}:${this.youyangList[index].secondYouyang}`
+				this.currentGroup=null
+			},
+			
 			
 			addTime(){
 				this.countDownNum += 10
@@ -204,12 +321,7 @@
 				this.sumCountDown -= 10
 			},
 			
-			endCountDown(){
-				this.showCountDown=false
-				clearInterval(this.timer)
-				this.currentGroup.restTime=this.restTime
-				this.currentGroup=null
-			},
+			
 			
 			showGroup(index){
 				let f = this.showGroupList[index] = !this.showGroupList[index]
@@ -230,6 +342,9 @@
 			
 			//传给后台
 			addAction() {
+				this.getCacheTime()
+				uni.setStorageSync('actionList',this.$store.state.actionList)
+				uni.setStorageSync('cacheTime',this.cacheTime)
 				// uni.showLoading({
 				// 	title: '处理中...'
 				// })
@@ -292,6 +407,10 @@
 			endTime(){
 				this.showTime = true;
 				clearInterval(this.timerSum);
+				
+				this.getCacheTime()
+				uni.setStorageSync('trainingTime',`${this.hour}:${this.minute}:${this.second}`)
+				uni.setStorageSync('cacheTime',this.cacheTime)
 			},
 			
 			showNum(num) {
@@ -300,8 +419,6 @@
 				}
 				return num
 			},
-			
-			
 			
 			
 			
@@ -468,6 +585,17 @@
 						color: $u-type-info-dark;
 					}
 				}
+			}
+			.use{
+				height: auto;
+				padding: 0 20rpx;
+				font-size: 30rpx;
+				border-radius: 40rpx;
+				color: #ffffff!important;
+				background-color: $u-type-warning!important;
+				line-height: 50rpx;
+				color: rgb(117, 142, 165);
+				margin-left: 20rpx;
 			}
 			.right {
 				width: 30%;

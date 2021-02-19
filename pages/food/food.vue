@@ -18,11 +18,21 @@
 					
 				</view>
 			</view>
+			<view class="" style="display: flex;margin-left: 30rpx;margin-right: 30rpx;margin-bottom: 20rpx;border-radius: 20rpx; background-color: #F3F4F6;padding-left: 20rpx;padding-right: 20rpx;">
+				<view class="" style="display: flex;justify-content: center;align-items: center;">
+					目标热量：
+				</view>
+				<u-input v-model="targetHeat" type="text" :border="false" :clearable="false"  style="flex: 1 1 auto;"/>
+				<view class="" style="display: flex;justify-content: center;align-items: center;">
+					kcal
+				</view>
+			</view>
 			<view class="add-wrap">
 				
 				<view class="" >
 					<u-button type="default " @click="switchToAction" size="medium">添加食物</u-button>
 				</view>
+				
 				<view class="">
 					<u-button type="default" size="medium" @click="addFood">保存</u-button>
 				</view>
@@ -52,13 +62,13 @@
 					</view>
 				</view>
 				<view class="right">
-					<view  class="use immediate-use">
+					<view  class="use immediate-use" >
 						蛋白质：{{item.protein*item.weight}} {{unit}}
 					</view>
-					<view class="use immediate-use">
+					<view class="use immediate-use" >
 						碳水：{{item.carbohydrate*item.weight}} {{unit}}
 					</view>
-					<view class="use immediate-use">
+					<view class="use immediate-use" > 
 						脂肪：{{item.fat*item.weight}} {{unit}}
 					</view>
 				</view>
@@ -83,6 +93,7 @@
 				currentGroup:null,
 				timer:'',
 				showGroupList:[],
+				targetHeat:'',
 				group:
 					{
 						weight:0,
@@ -95,12 +106,20 @@
 			}
 		},
 		onShow(){
-			//console.log(this.foodList)
+			if(uni.getStorageSync('cacheTime')>new Date().getTime()){
+				if(uni.getStorageSync('targetHeat')){
+					this.targetHeat=uni.getStorageSync('targetHeat')
+				}
+			
+			}else{
+				uni.removeStorageSync('targetHeat')
+				
+			}
 		},
 		onHide(){
-			this.getCacheTime()
-			uni.setStorageSync('foodList',this.$store.state.foodList)
-			uni.setStorageSync('cacheTime',this.cacheTime)
+			// this.getCacheTime()
+			// uni.setStorageSync('foodList',this.$store.state.foodList)
+			// uni.setStorageSync('cacheTime',this.cacheTime)
 		},
 		computed:{
 			...mapState(['foodList']),
@@ -124,7 +143,18 @@
 				return this.fat*9+this.protein*4+this.carbohydrate*4
 			}
 		},
-		
+		watch:{
+			foodList(){
+				this.getCacheTime()
+				uni.setStorageSync('foodList',this.$store.state.foodList)
+				uni.setStorageSync('cacheTime',this.cacheTime)
+			},
+			targetHeat(){
+				this.getCacheTime()
+				uni.setStorageSync('targetHeat',this.targetHeat)
+				uni.setStorageSync('cacheTime',this.cacheTime)
+			}
+		},
 		methods:{
 			addNewGroup(item){
 				let newGroup = JSON.parse(JSON.stringify(item.group[item.group.length-1])) 
@@ -162,6 +192,9 @@
 			},
 			
 			addFood() {
+				this.getCacheTime()
+				uni.setStorageSync('foodList',this.$store.state.foodList)
+				uni.setStorageSync('cacheTime',this.cacheTime)
 				let newFoodList =  this.foodList.map((item,index)=>{
 					return Object.assign({},{
 						name:item.name,
@@ -181,7 +214,8 @@
 							protein:this.protein,
 							carbohydrate:this.carbohydrate,
 							fat:this.fat,
-							heat:this.heat
+							heat:this.heat,
+							targetHeat:this.targetHeat
 						}
 					}
 				}).then((res) => {
@@ -229,7 +263,7 @@
 		align-items: center;
 		flex-direction: column;
 		
-		padding-top: 180rpx;
+		padding-top: 250rpx;
 		.wrap-1{
 			padding: 20rpx;
 			position: fixed;
@@ -405,6 +439,7 @@
 					line-height: 40rpx;
 					color: rgb(117, 142, 165);
 					margin-left: 20rpx;
+					
 				}
 			}
 			

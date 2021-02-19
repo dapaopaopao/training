@@ -26,8 +26,16 @@
 										<image class="item-menu-image" :src="item1.icon" mode=""></image>
 										<view class="item-menu-name">{{item1.name}}</view>
 									</view>
-									<view >
-										
+									<view style="display: flex;justify-content: center;flex-direction: column;margin-left: 40rpx;" >
+										<view class="" style="margin-top: 10rpx;">
+											碳水:{{item1.carbohydrate*100}}%
+										</view>
+										<view class="" style="margin-top: 10rpx;">
+											蛋白质:{{item1.protein*100}}%
+										</view>
+										<view class="" style="margin-top: 10rpx;">
+											脂肪:{{item1.fat*100}}%
+										</view>
 									</view>
 									
 								</view>
@@ -252,6 +260,7 @@
 	
 	.item-container-2{
 		display: flex;
+		margin-bottom: 20rpx;
 	}
 	
 	.thumb-box {

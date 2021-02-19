@@ -98,6 +98,9 @@ try {
     uButton: function() {
       return __webpack_require__.e(/*! import() | uview-ui/components/u-button/u-button */ "uview-ui/components/u-button/u-button").then(__webpack_require__.bind(null, /*! @/uview-ui/components/u-button/u-button.vue */ 165))
     },
+    uInput: function() {
+      return Promise.all(/*! import() | uview-ui/components/u-input/u-input */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uview-ui/components/u-input/u-input")]).then(__webpack_require__.bind(null, /*! @/uview-ui/components/u-input/u-input.vue */ 200))
+    },
     uNumberBox: function() {
       return __webpack_require__.e(/*! import() | uview-ui/components/u-number-box/u-number-box */ "uview-ui/components/u-number-box/u-number-box").then(__webpack_require__.bind(null, /*! @/uview-ui/components/u-number-box/u-number-box.vue */ 179))
     }
@@ -230,6 +233,16 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
+
+
+
+
+
+
+
+
+
 var _vuex = __webpack_require__(/*! vuex */ 17);function ownKeys(object, enumerableOnly) {var keys = Object.keys(object);if (Object.getOwnPropertySymbols) {var symbols = Object.getOwnPropertySymbols(object);if (enumerableOnly) symbols = symbols.filter(function (sym) {return Object.getOwnPropertyDescriptor(object, sym).enumerable;});keys.push.apply(keys, symbols);}return keys;}function _objectSpread(target) {for (var i = 1; i < arguments.length; i++) {var source = arguments[i] != null ? arguments[i] : {};if (i % 2) {ownKeys(Object(source), true).forEach(function (key) {_defineProperty(target, key, source[key]);});} else if (Object.getOwnPropertyDescriptors) {Object.defineProperties(target, Object.getOwnPropertyDescriptors(source));} else {ownKeys(Object(source)).forEach(function (key) {Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key));});}}return target;}function _defineProperty(obj, key, value) {if (key in obj) {Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true });} else {obj[key] = value;}return obj;}var _default =
 {
   data: function data() {
@@ -241,6 +254,7 @@ var _vuex = __webpack_require__(/*! vuex */ 17);function ownKeys(object, enumera
       currentGroup: null,
       timer: '',
       showGroupList: [],
+      targetHeat: '',
       group:
       {
         weight: 0,
@@ -253,12 +267,20 @@ var _vuex = __webpack_require__(/*! vuex */ 17);function ownKeys(object, enumera
 
   },
   onShow: function onShow() {
-    //console.log(this.foodList)
+    if (uni.getStorageSync('cacheTime') > new Date().getTime()) {
+      if (uni.getStorageSync('targetHeat')) {
+        this.targetHeat = uni.getStorageSync('targetHeat');
+      }
+
+    } else {
+      uni.removeStorageSync('targetHeat');
+
+    }
   },
   onHide: function onHide() {
-    this.getCacheTime();
-    uni.setStorageSync('foodList', this.$store.state.foodList);
-    uni.setStorageSync('cacheTime', this.cacheTime);
+    // this.getCacheTime()
+    // uni.setStorageSync('foodList',this.$store.state.foodList)
+    // uni.setStorageSync('cacheTime',this.cacheTime)
   },
   computed: _objectSpread(_objectSpread({},
   (0, _vuex.mapState)(['foodList'])), {}, {
@@ -282,6 +304,17 @@ var _vuex = __webpack_require__(/*! vuex */ 17);function ownKeys(object, enumera
       return this.fat * 9 + this.protein * 4 + this.carbohydrate * 4;
     } }),
 
+  watch: {
+    foodList: function foodList() {
+      this.getCacheTime();
+      uni.setStorageSync('foodList', this.$store.state.foodList);
+      uni.setStorageSync('cacheTime', this.cacheTime);
+    },
+    targetHeat: function targetHeat() {
+      this.getCacheTime();
+      uni.setStorageSync('targetHeat', this.targetHeat);
+      uni.setStorageSync('cacheTime', this.cacheTime);
+    } },
 
   methods: {
     addNewGroup: function addNewGroup(item) {
@@ -320,6 +353,9 @@ var _vuex = __webpack_require__(/*! vuex */ 17);function ownKeys(object, enumera
     },
 
     addFood: function addFood() {
+      this.getCacheTime();
+      uni.setStorageSync('foodList', this.$store.state.foodList);
+      uni.setStorageSync('cacheTime', this.cacheTime);
       var newFoodList = this.foodList.map(function (item, index) {
         return Object.assign({}, {
           name: item.name,
@@ -339,7 +375,8 @@ var _vuex = __webpack_require__(/*! vuex */ 17);function ownKeys(object, enumera
             protein: this.protein,
             carbohydrate: this.carbohydrate,
             fat: this.fat,
-            heat: this.heat } } }).
+            heat: this.heat,
+            targetHeat: this.targetHeat } } }).
 
 
       then(function (res) {

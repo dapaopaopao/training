@@ -119,6 +119,7 @@
   display: -webkit-box;
   display: -webkit-flex;
   display: flex;
+  margin-bottom: 20rpx;
 }
 .thumb-box.data-v-5b65be3c {
   width: 33.333333%;

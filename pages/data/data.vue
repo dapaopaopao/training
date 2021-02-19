@@ -5,14 +5,28 @@
 				<view class="qiun-columns">
 					<view class="qiun-bg-white qiun-title-bar qiun-common-mt" >
 						<view class="qiun-title-dot-light">今天</view>
-						<view class="">
-							分享
+						<!-- <view class=""  v-if="">
+							总时间：uni.getStorageSync('trainingTime')
 						</view>
+						<view class="" v-else>
+							总时间：00:00:00
+						</view> -->
 					</view>
 					<u-empty class="empty" text="毫无训练痕迹" mode="list"  v-if="actionList.length===0?true:false"></u-empty>
 					<view  class="wrap-taobao">
 						<view class="taobao" v-for="(item,index) in actionList" :key="index" >
-							<view class="title">
+							<view v-if="item.kind" class="title">
+								<view class="left">
+									<!-- <image class="buddha" src="https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=1975388697,1068670603&fm=26&gp=0.jpg" mode="aspectFill"></image> -->
+									<view class="store">{{item.name}}</view>
+								</view>
+								<!-- <view class="entrance" @click.stop="addNewGroup(item)">新增一组</view>
+								<view class="entrance" @click.stop="deleteAction(index)">删除</view> -->
+								<view :class=""  >
+									时间：{{item.restTime}}
+								</view>	
+							</view>
+							<view v-else class="title">
 								<view class="left">
 									<!-- <image class="buddha" src="https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=1975388697,1068670603&fm=26&gp=0.jpg" mode="aspectFill"></image> -->
 									<view class="store">{{item.name}}</view>
@@ -20,7 +34,7 @@
 								<!-- <view class="entrance" @click.stop="addNewGroup(item)">新增一组</view>
 								<view class="entrance" @click.stop="deleteAction(index)">删除</view> -->
 								<view :class=""  v-for="(item1,index1) in item.group" :key='index1'>
-									{{item1.weight}}{{item1.unit}} × {{item1.num}}次
+									{{item1.weight}} {{item1.unit}} × {{item1.num}} 次
 								</view>	
 							</view>
 						</view>
@@ -79,7 +93,13 @@
 						name: '热量（Kcal）',
 						data: [],
 						color: '#000000'
-					}]
+					},
+					{
+						name: '目标热量（Kcal）',
+						data: [],
+						color: '#19be6b'
+					}
+					]
 				},
 				realColumnDate :
 					{
@@ -98,6 +118,7 @@
 			_self = this;
 			this.cWidth=uni.upx2px(750);
 			this.cHeight=uni.upx2px(500);
+			
 			this.getColumnData();
 			this.getLineDate();
 			this.getServerData();
@@ -378,22 +399,27 @@
 			},
 			
 			getLineDate(){
-				let data = this.$store.state.userInfo.food.map((item,index)=>{
-					if(item.date>new Date().getTime()-86400000*7){
-						return item.heat
-					}
+				let heat = this.$store.state.userInfo.food.filter((item)=>{return item.date>new Date().getTime()-86400000*7}).map((item,index)=>{return item.heat})
+				console.log('heat',heat)
+				let targetHeat = this.$store.state.userInfo.food.filter((item)=>{return item.date>new Date().getTime()-86400000*7}).map((item,index)=>{return item.targetHeat})
+				console.log('targetHeat',targetHeat)
+				let time = this.$store.state.userInfo.food.filter((item)=>{return item.date>new Date().getTime()-86400000*7}).map((item,index)=>{
+					
+						let itemTime = new Date(item.date)
+						let m = itemTime.getMonth()+1
+						let d = itemTime.getDate()
+						let pushTime = m + '-' + d
+						return pushTime
+					
 					
 				})
-				let time = this.$store.state.userInfo.food.map((item,index)=>{
-					let time = new Date(item.date)
-					let m = time.getMonth()+1
-					let d = time.getDate()
-					let pushTime = m + '-' + d
-					return pushTime
-				})
+				console.log('time',time)
 				this.realLineDate.categories=time
-				this.realLineDate.series[0].data = data
+				this.realLineDate.series[0].data = heat
+				this.realLineDate.series[1].data = targetHeat
+				console.log(this.realLineDate)
 			},
+			
 			
 			
 		}
